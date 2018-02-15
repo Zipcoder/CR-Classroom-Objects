@@ -290,13 +290,13 @@
 <br><br><br><br><br>
 
 ### Part 2.2; Defining construction
-* Define a `Student` constructor whose parameters are used to initalize its instance variable. The class `Classroom` should support 3 different ways of being constructed.
+* Define a `Classroom` constructor whose parameters are used to initalize its instance variable. The class `Classroom` should support 3 different ways of being constructed.
 	
-	1. The class `Student` should define a constructor which takes an argument of an `int` representative of the `maxNumberOfStudents` that this `Classroom` can hold.
+	1. The class `Classroom` should define a constructor which takes an argument of an `int` representative of the `maxNumberOfStudents` that this `Classroom` can hold.
 	
-	2. The class `Student` should define an additional constructor which takes an argument of `Student[]` representative of the collection of `Student` objects this `Classroom` will store.
+	2. The class `Classroom` should define an additional constructor which takes an argument of `Student[]` representative of the collection of `Student` objects this `Classroom` will store.
 	
-	3. The class `Student` should define a [nullary constructor](https://en.wikipedia.org/wiki/Nullary_constructor) which initializes the composite `students` object to be an empty array of 30 `Student` objects.
+	3. The class `Classroom` should define a [nullary constructor](https://en.wikipedia.org/wiki/Nullary_constructor) which initializes the composite `students` object to be an empty array of 30 `Student` objects.
 
 
 
@@ -333,7 +333,7 @@
 <br><br><br><br><br>
 
 * **Define method `getAverageExamScore()`**
-	* Define a getter which returns the sum of all exams divded by the number of students.
+	* Define a getter which returns the sum of all Students' average scores divded by the number of students.
 
 
 		* Sample Script:
@@ -442,7 +442,7 @@
 <br><br><br><br><br>
 
 * **Define method `gradeClass()`**
-	* The class `Classroom` should define a method `getGradeBook()` which returns a mapping of `Student` objects to a respective letter grade determined by creating a [grading curve](https://en.wikipedia.org/wiki/Grading_on_a_curve) such that
+	* The class `Classroom` should define a method `gradeClass()` which returns a mapping of `Student` objects to a respective letter grade determined by creating a [grading curve](https://en.wikipedia.org/wiki/Grading_on_a_curve) such that
 		* An `A` is awarded to students whose class average is in the upper 10th percentile.
 		* A `B` is awarded to students whose class average falls between the 25th and 29th percentile.
 		* A `C` is awarded to students whose class average falls between the 30th and 50th percentile.
