@@ -1,9 +1,9 @@
-sudo: false
+sudo: true
 language: java
 
 deploy:
   provider: script
-  script: "mvn test"
+  script: "echo \"Time is an illusion, every time is party time\">~/wisdom"
   skip_cleanup: true
   on:
     tags: true
