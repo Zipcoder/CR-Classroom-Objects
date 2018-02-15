@@ -333,7 +333,7 @@
 <br><br><br><br><br>
 
 * **Define method `getAverageExamScore()`**
-	* Define a getter which returns the sum of all exams divded by the number of students.
+	* Define a getter which returns the sum of all Students' average scores divded by the number of students.
 
 
 		* Sample Script:
@@ -442,7 +442,7 @@
 <br><br><br><br><br>
 
 * **Define method `gradeClass()`**
-	* The class `Classroom` should define a method `getGradeBook()` which returns a mapping of `Student` objects to a respective letter grade determined by creating a [grading curve](https://en.wikipedia.org/wiki/Grading_on_a_curve) such that
+	* The class `Classroom` should define a method `gradeClass()` which returns a mapping of `Student` objects to a respective letter grade determined by creating a [grading curve](https://en.wikipedia.org/wiki/Grading_on_a_curve) such that
 		* An `A` is awarded to students whose class average is in the upper 10th percentile.
 		* A `B` is awarded to students whose class average falls between the 25th and 29th percentile.
 		* A `C` is awarded to students whose class average falls between the 30th and 50th percentile.
