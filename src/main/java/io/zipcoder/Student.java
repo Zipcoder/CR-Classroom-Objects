@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Student {
     private String firstName;
     private String lastName;
-    private ArrayList<Integer> testScores;
+    private ArrayList<Double> testScores;
     // These are helper methods to assist us with array operations.
     private int totalExams;
     private int examsTaken;
@@ -20,15 +20,15 @@ public class Student {
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.testScores = new ArrayList<Integer>();
+        this.testScores = new ArrayList<Double>();
         this.examsTaken = 0;
     }
 
-    public Student(String firstName, String lastName, Integer[] testScores) {
+    public Student(String firstName, String lastName, Double[] testScores) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.testScores = new ArrayList<Integer>();
-        for (Integer score: testScores) {
+        this.testScores = new ArrayList<Double>();
+        for (Double score: testScores) {
             this.testScores.add(score);
         }
         this.totalExams = testScores.length;
@@ -44,7 +44,7 @@ public class Student {
     public Student(String firstName, String lastName, int totalExams) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.testScores = new ArrayList<Integer>();
+        this.testScores = new ArrayList<Double>();
         testScores.ensureCapacity(totalExams);
         this.totalExams = totalExams;
     }
@@ -91,7 +91,7 @@ public class Student {
         StringBuilder display = new StringBuilder();
         display.append("Test Scores: \n");
         int i = 1;
-        for (Integer testscore : this.testScores){
+        for (Double testscore : this.testScores){
             display.append("Test " + i + " -> " + testscore + "\n");
             i++;
         }
@@ -106,7 +106,7 @@ public class Student {
      * @param score
      * @return A boolean based on if the operation worked or not.
      */
-    public boolean takeExam(int score) {
+    public boolean takeExam(Double score) {
         if (this.totalExams > this.examsTaken){
             this.testScores.add(score);
             return true;
@@ -122,7 +122,11 @@ public class Student {
      * @param newScore What we want to change it to.
      * @return A boolean based on if the operation worked or not.
      */
-    public boolean changeScoreForExam(int examNum, int newScore){
+    public boolean changeScoreForExam(int examNum, Double newScore){
+        if (testScores.get(examNum - 1) > -1) {
+            this.testScores.set(examNum - 1, newScore);
+            return true;
+        }
         return false;
     }
 
@@ -131,7 +135,7 @@ public class Student {
      * If they haven't taken any, be nice and give them 100.0.
      * @return The average for all the exams a student has taken.
      */
-    public double getAverage() {
+    public Double getAverage() {
         return 100.0;
     }
 }
