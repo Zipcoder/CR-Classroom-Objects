@@ -1,9 +1,12 @@
 package io.zipcoder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Student {
     private String firstName;
     private String lastName;
-    private int[] testScores;
+    private ArrayList<Integer> testScores;
     // These are helper methods to assist us with array operations.
     private int totalExams;
     private int examsTaken;
@@ -15,7 +18,18 @@ public class Student {
      * @param lastName
      */
     public Student(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.testScores = new ArrayList<Integer>();
+    }
 
+    public Student(String firstName, String lastName, Integer[] testScores) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.testScores = new ArrayList<Integer>();
+        for (Integer score: testScores) {
+            this.testScores.add(score);
+        }
     }
 
     /**
@@ -25,27 +39,30 @@ public class Student {
      * @param totalExams
      */
     public Student(String firstName, String lastName, int totalExams) {
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.testScores = new ArrayList<Integer>();
+        testScores.ensureCapacity(totalExams);
     }
 
     public String getFirstName() {
-        return null;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-
+        this.lastName = lastName;
     }
 
     public int getTotalExams() {
-        return 0;
+        return testScores.size();
     }
 
     public void setTotalExams(int totalExams) {
