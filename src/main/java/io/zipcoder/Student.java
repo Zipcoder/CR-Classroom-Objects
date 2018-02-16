@@ -34,32 +34,42 @@ public class Student {
     }
 
     public int getNumberOfExamsTaken(){
-        return examScores.size();
+        return this.examScores.size();
     }
 
     public String getExamScores(){
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i<examScores.size(); i++){
-            builder.append("Exam " + (i+1) + " => " + examScores.get(i) + "\n");
+        builder.append("Exam Scores:\n");
+        for (int i = 0; i<this.examScores.size(); i++){
+            builder.append("\tExam " + (i+1) + " => " + Math.round(this.examScores.get(i)) + "\n");
         }
         return builder.toString();
     }
 
     public void addExamScore(Double newScore){
-        examScores.add(newScore);
+        this.examScores.add(newScore);
     }
 
-    public void setExamScore(int examIndex, Double newScore){
-
+    public void setExamScore(int examNumber, Double newScore){
+        this.examScores.set(examNumber-1, newScore);
     }
 
-    public Double getAverageExamScore(){
-        return null;
+    public Long getAverageExamScore(){
+        double sum = 0.0;
+        for(Double d : this.examScores){
+            sum += d;
+        }
+        return Math.round(sum/this.examScores.size());
     }
 
     @Override
     public String toString(){
-        return null;
+        StringBuilder builder = new StringBuilder();
+        builder.append("Student Name: " + this.getFirstName() + " " + this.getLastName() + "\n");
+        builder.append("Average Score = " + this.getAverageExamScore() + "\n");
+        builder.append(this.getExamScores());
+
+        return builder.toString();
     }
 
 

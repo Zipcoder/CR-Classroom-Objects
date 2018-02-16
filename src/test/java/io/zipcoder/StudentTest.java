@@ -4,7 +4,10 @@ package io.zipcoder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
+
 import java.util.ArrayList;
+
+import static com.sun.tools.doclint.Entity.delta;
 
 public class StudentTest {
 
@@ -90,9 +93,11 @@ public class StudentTest {
         //Student stinkyPete
 
         //When
-        String expected = "Exam 1 => 45.67\n" +
-                "Exam 2 => 92.34\n" +
-                "Exam 3 => 100.0\n";
+        String expected =
+                "Exam Scores:\n"+
+                "\tExam 1 => 46\n" +
+                "\tExam 2 => 92\n" +
+                "\tExam 3 => 100\n";
         String actual = stinkyPete.getExamScores();
 
         //Then
@@ -105,10 +110,12 @@ public class StudentTest {
         stinkyPete.addExamScore(98.45);
 
         //When
-        String expected = "Exam 1 => 45.67\n" +
-                "Exam 2 => 92.34\n" +
-                "Exam 3 => 100.0\n" +
-                "Exam 4 => 98.45\n";
+        String expected =
+                "Exam Scores:\n"+
+                "\tExam 1 => 46\n" +
+                "\tExam 2 => 92\n" +
+                "\tExam 3 => 100\n" +
+                "\tExam 4 => 98\n";
         String actual = stinkyPete.getExamScores();
 
         //Then
@@ -118,16 +125,54 @@ public class StudentTest {
     @Test
     public void setExamScoreTest() {
         //Given
-        stinkyPete.setExamScore(0, 98.45);
+        stinkyPete.setExamScore(1, 98.45);
 
         //When
-        String expected = "Exam 1 => 98.45\n" +
-                "Exam 2 => 92.34\n" +
-                "Exam 3 => 100.0\n" +
+        String expected =
+                "Exam Scores:\n"+
+                "\tExam 1 => 98\n" +
+                "\tExam 2 => 92\n" +
+                "\tExam 3 => 100\n";
+
         String actual = stinkyPete.getExamScores();
 
         //Then
         Assert.assertTrue(actual.equals(expected));
+    }
+
+    @Test
+    public void getAverageExamScoreTest() {
+        //Given
+        //Student stinkyPete
+
+        //When
+        int expected = 79;
+
+        Long actual = stinkyPete.getAverageExamScore();
+
+        //Then
+        System.out.println(actual);
+        Assert.assertTrue(actual == expected);
+    }
+
+    @Test
+    public void toStringTest() {
+        //Given
+        //Student stinkyPete
+
+        //When
+        String expected =
+                "Student Name: Stinky Pete\n"+
+                "Average Score = 79\n"+
+                "Exam Scores:\n"+
+                "\tExam 1 => 46\n" +
+                "\tExam 2 => 92\n" +
+                "\tExam 3 => 100\n";
+
+        String actual = stinkyPete.toString();
+
+        //Then
+        Assert.assertEquals(actual,expected);
     }
 
 
