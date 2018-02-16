@@ -79,7 +79,7 @@ public class StudentTest {
         Double[] testScores = {100.0, 90.0, 75.0};
         jeff = new Student("jeff", "bridges", testScores);
         Double expected = 88.33;
-        Assert.assertEquals(expected, jeff.getAverage());
+        Assert.assertEquals(expected, jeff.getAverage(), 0);
     }
 
 }

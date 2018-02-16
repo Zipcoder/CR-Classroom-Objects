@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -136,6 +137,14 @@ public class Student {
      * @return The average for all the exams a student has taken.
      */
     public Double getAverage() {
+        double average = 0.0;
+        if (this.examsTaken > 0){
+            for (Double score: testScores) {
+                average += (score * 10);
+            }
+            DecimalFormat grading = new DecimalFormat("#.##");
+            return Double.parseDouble(grading.format((average/10)/examsTaken));
+        }
         return 100.0;
     }
 }

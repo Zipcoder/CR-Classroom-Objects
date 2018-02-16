@@ -9,24 +9,55 @@ public class Classroom {
     /**
      * Empty constructor.  You get to decide what max students should default to.
      */
-    public Classroom() {
+    public Classroom(Student[] studentList, int studentsEnrolled, int maxStudents) {
+        this.studentsEnrolled = studentsEnrolled;
+        this.maxStudents = maxStudents;
+        this.students = new Student[maxStudents];
+        int index = 0;
+        for (Student student:studentList) {
+            students[index] = student;
+            index++;
+        }
+    }
 
+    public Classroom(){
+        this.studentsEnrolled = 0;
+        this.maxStudents = 10;
+        this.students = new Student[10];
+    }
+
+    public int getStudentsEnrolled(){
+        return this.studentsEnrolled;
     }
 
     /**
-     * Constructor where the caller defines wht maxStudents is.
+     * Constructor where the caller defines what maxStudents is.
      * @param maxStudents
      */
     public Classroom(int maxStudents) {
-
+        this.maxStudents = maxStudents;
+        this.students = new Student[maxStudents];
+        this.studentsEnrolled = 0;
     }
 
     /**
      * Constructor that builds a class from an existing Student array.
-     * @param students
+     *
      */
-    public Classroom(Student[] students) {
+    public Classroom(Student[] studentArray) {
+        this.students = new Student[10];
+        this.maxStudents = 10;
+        this.studentsEnrolled = studentArray.length;
+        int index = 0;
+        for (Student student:studentArray) {
+            students[index] = student;
+            index++;
+        }
 
+    }
+
+    public Student[] getStudents(){
+        return this.students;
     }
 
     /**
@@ -36,6 +67,12 @@ public class Classroom {
      * @return
      */
     public boolean addStudent(Student student) {
+        for (int i = 0; i < students.length; i++){
+            if (students[i] == null){
+                students[i] = student;
+                return true;
+            }
+        }
         return false;
     }
 
