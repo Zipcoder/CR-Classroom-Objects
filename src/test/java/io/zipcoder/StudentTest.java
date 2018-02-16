@@ -10,7 +10,11 @@ public class StudentTest {
 
     @Before
     public void setup() {
-        testStudent = new testStudent();
+
+        testStudent = new Student("bob", "spaudling", );
+
+
+
     }
 
     @Test
@@ -21,5 +25,8 @@ public class StudentTest {
 //        String actual = newStudent.firstName;
 //        Assert.assertEquals(expected,actual);
     }
+
+    @Test
+
 
 }
