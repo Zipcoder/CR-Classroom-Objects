@@ -11,7 +11,7 @@ public class StudentTest {
 
     @Before
     public void setup() {
-        Double[] testScores = {98.5, 82.0, 92.5};
+        Double[] testScores = {98.5, 80.0, 92.5};
         testStudent = new Student("Peter", "Pan", testScores);
     }
 
@@ -83,7 +83,7 @@ public class StudentTest {
 
     @Test
     public void getAverageExamScore() {
-        Double expected = 91.0;
+        Double expected = 90.33;
         Double actual = testStudent.getAverageExamScore();
         Assert.assertEquals(expected, actual, 0.01);
     }
