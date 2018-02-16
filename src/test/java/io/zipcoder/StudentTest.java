@@ -14,12 +14,12 @@ public class StudentTest {
     }
 
     @Test
-    public void newStudentTest(){
-        testStudent.firstName= null;
-        testStudent.lastName=null;
-        String expected = "Jim";
-        String actual = "Bob";
-        Assert.assertEquals(expected,actual);
+//    public void newStudentTest(){
+//        testStudent.firstName= null;
+//        testStudent.lastName=null;
+//        String expected = "Jim";
+//        String actual = newStudent.firstName;
+//        Assert.assertEquals(expected,actual);
     }
 
 }

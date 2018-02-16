@@ -34,10 +34,20 @@ public class Student {
         return this.examScores.size();
     }
 
-    public void add() {
+    public Double addExamScore(){
+        return null;
+    }
 
+    public ArrayList<Double> setExamScore(int examNumber, double newScore) {
+        return null;
+    }
 
+    public double getAverageExamScore() {
+        return null;
+    }
 
+    public String toString() {
+        return null;
     }
 
 
