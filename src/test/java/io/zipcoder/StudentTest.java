@@ -75,7 +75,7 @@ public class StudentTest {
     public void testSetExamScore(){
         testScores.add(85.0);
 
-        String expected = "Exam 1 --> 150.0\n";
+        String expected = "Exam Scores: \n\tExam 1 --> 150.0\n";
         testStudent.setExamScore(1, 150);
         String actual = testStudent.printTestScores();
         Assert.assertEquals(expected, actual);
