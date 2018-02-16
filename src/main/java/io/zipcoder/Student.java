@@ -21,6 +21,7 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.testScores = new ArrayList<Integer>();
+        this.examsTaken = 0;
     }
 
     public Student(String firstName, String lastName, Integer[] testScores) {
@@ -30,6 +31,8 @@ public class Student {
         for (Integer score: testScores) {
             this.testScores.add(score);
         }
+        this.totalExams = testScores.length;
+        this.examsTaken = testScores.length;
     }
 
     /**
@@ -43,6 +46,7 @@ public class Student {
         this.lastName = lastName;
         this.testScores = new ArrayList<Integer>();
         testScores.ensureCapacity(totalExams);
+        this.totalExams = totalExams;
     }
 
     public String getFirstName() {
@@ -62,15 +66,15 @@ public class Student {
     }
 
     public int getTotalExams() {
-        return testScores.size();
+        return totalExams;
     }
 
     public void setTotalExams(int totalExams) {
-
+        this.totalExams = totalExams;
     }
 
     public int getExamsTaken() {
-        return 0;
+        return testScores.size();
     }
 
 
@@ -84,7 +88,14 @@ public class Student {
      * @return The test scores in a nice string representation.
      */
     public String printExamScores() {
-        return null;
+        StringBuilder display = new StringBuilder();
+        display.append("Test Scores: \n");
+        int i = 1;
+        for (Integer testscore : this.testScores){
+            display.append("Test " + i + " -> " + testscore + "\n");
+            i++;
+        }
+        return display.toString();
     }
 
     /**
@@ -96,6 +107,10 @@ public class Student {
      * @return A boolean based on if the operation worked or not.
      */
     public boolean takeExam(int score) {
+        if (this.totalExams > this.examsTaken){
+            this.testScores.add(score);
+            return true;
+        }
         return false;
     }
 
