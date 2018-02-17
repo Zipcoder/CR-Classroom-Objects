@@ -38,10 +38,6 @@ public class Student {
         return this.lastName;
     }
 
-    public double getTestScore() {
-        return 0;
-    }
-
     public int getNumberOfExamsTaken() {
         int tests = 0;
         for (int i = 0; i<examScores.size(); i++) {
@@ -61,20 +57,29 @@ public class Student {
         return allExamScores.toString().trim();
     }
 
-    public double addExamScore(Double examScore){
-        return 0;
+    public void addExamScore(Double examScore){
+        examScores.add(examScore);
     }
 
     public void setExamScore(int examNumber, Double newScore) {
 
+        this.examScores.set(examNumber, newScore);
     }
 
     public double getAverageExamScore() {
-        return 0;
+        int combinedScores = 0;
+        for(double score : examScores) {
+            combinedScores += score;
+        }
+        return (combinedScores / getNumberOfExamsTaken());
     }
 
     public String toString() {
-        return null;
+        StringBuilder studentFile = new StringBuilder();
+        studentFile.append("Student Name: " + getFirstName() + " " + getLastName() +"\n");
+        studentFile.append("> Average Score: " + getAverageExamScore() + "\n");
+        studentFile.append("> " + getExamScores());
+        return studentFile.toString();
     }
 
 
