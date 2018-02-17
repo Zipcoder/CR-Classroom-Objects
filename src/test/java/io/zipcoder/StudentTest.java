@@ -148,7 +148,7 @@ public class StudentTest {
         //When
         int expected = 79;
 
-        Long actual = stinkyPete.getAverageExamScore();
+        double actual = stinkyPete.getAverageExamScore();
 
         //Then
         System.out.println(actual);
@@ -163,7 +163,7 @@ public class StudentTest {
         //When
         String expected =
                 "Student Name: Stinky Pete\n"+
-                "Average Score = 79\n"+
+                "Average Score = 79.0\n"+
                 "Exam Scores:\n"+
                 "\tExam 1 => 46\n" +
                 "\tExam 2 => 92\n" +

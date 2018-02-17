@@ -54,7 +54,7 @@ public class Student {
         this.examScores.set(examNumber-1, newScore);
     }
 
-    public Long getAverageExamScore(){
+    public double getAverageExamScore(){
         double sum = 0.0;
         for(Double d : this.examScores){
             sum += d;
