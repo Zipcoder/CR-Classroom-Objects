@@ -1,92 +1,122 @@
 package io.zipcoder;
 
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class StudentTest {
     String firstName = "Frankie";
     String lastName = "Rodriguez";
+    Double[] examScores = {100.0, 95.0, 123.0, 96.0};
+    Student student = new Student(firstName, lastName, examScores);
 
 
     @Test
-    public void getExamScoresTestPos(){
-
-        Double[] examScores = { 100.0, 95.0, 123.0, 96.0 };
-        Student student = new Student(firstName, lastName, examScores);
+    public void getExamScoresTest1() {
         String actual = student.getExamScores();
-        Assert.assertTrue(actual.length() > 0);
+        String expected = "Exam 1 ->  100.0\n" +
+                "Exam 2 ->  95.0\n" +
+                "Exam 3 ->  123.0\n" +
+                "Exam 4 ->  96.0\n";
+        Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void getExamScoresTestNeg(){
-
-        Double[] examScores = { 100.0, 95.0, 123.0, 96.0 };
-        Student student = new Student(firstName, lastName, examScores);
+    public void getExamScoresTest2() {
         String actual = student.getExamScores();
         Assert.assertFalse(actual.equals(""));
     }
-
     @Test
-    public void addExamScoreTestPos(){
-        Double[] examScores = { };
-        Student student = new Student(firstName, lastName, examScores);
-        String actual = student.addExamScore(examScores);
-        Assert.assertTrue(actual.length() > 0);
+    public void addExamScoreTest1() {
+        Double[] examScores = {100.0};
+        student.addExamScore(examScores);
+        String actual = student.getExamScores();
+        String expected = "Exam 1 ->  100.0\n" +
+                "Exam 2 ->  95.0\n" +
+                "Exam 3 ->  123.0\n" +
+                "Exam 4 ->  96.0\n" +
+                "Exam 5 ->  100.0\n";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void addExamScoreTestNeg(){
-        Double[] examScores = { };
-        Student student = new Student(firstName, lastName, examScores);
-        String actual = student.addExamScore(examScores);
-        Assert.assertFalse(actual.length() == 0);
+    public void addExamScoreTest2() {
+        Double[] examScores = {100.0 , 84.94, 43.0};
+        student.addExamScore(examScores);
+        String actual = student.getExamScores();
+        String expected = "Exam 1 ->  100.0\n" +
+                "Exam 2 ->  95.0\n" +
+                "Exam 3 ->  123.0\n" +
+                "Exam 4 ->  96.0\n" +
+                "Exam 5 ->  100.0\n" +
+                "Exam 6 ->  84.94\n" +
+                "Exam 7 ->  43.0\n";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void setExamScoreTestPos(){
-        Double[] examScores = { 100.0 };
-        Student student = new Student(firstName, lastName, examScores);
-        String actual = student.setExamScore(1, 150.0);
-        Assert.assertTrue(!actual.equals(examScores));
+    public void setExamScoreTest1() {
+        student.setExamScore(1, 150.0);
+        String actual = student.getExamScores();
+        String expected ="Exam 1 ->  150.0\n" +
+                "Exam 2 ->  95.0\n" +
+                "Exam 3 ->  123.0\n" +
+                "Exam 4 ->  96.0\n";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void setExamScoreTestNeg(){
-        Double[] examScores = { 100.0 };
+    public void setExamScoreTest2() {
         Student student = new Student(firstName, lastName, examScores);
-        String actual = student.setExamScore(1, 150.0);
-        Assert.assertFalse(actual.equals(examScores));
+        student.setExamScore(1, 192.0);
+        String actual = student.getExamScores();
+        String expected ="Exam 1 ->  192.0\n" +
+                "Exam 2 ->  95.0\n" +
+                "Exam 3 ->  123.0\n" +
+                "Exam 4 ->  96.0\n";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void getAverageExamScoreTestPos(){
-        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
+    public void getAverageExamScoreTest1() {
+        Double[] examScores = {100.0, 150.0, 250.0, 0.0};
         Student student = new Student(firstName, lastName, examScores);
         String actual = student.getAverageExamScore();
-        Assert.assertTrue(actual.length() > 0);
+        String expected = "125.0";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void getAverageExamScoreTestNeg(){
-        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
-        Student student = new Student(firstName, lastName, examScores);
+    public void getAverageExamScoreTest2() {
         String actual = student.getAverageExamScore();
-        Assert.assertFalse(actual.length() == 0);
+        String expected = "103.5";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void toStringTestPos(){
-        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
+    public void toStringTest1() {
+        Double[] examScores = {100.0, 150.0, 250.0, 0.0};
         Student student = new Student(firstName, lastName, examScores);
         String actual = student.toString();
-        Assert.assertTrue(actual.length() > 0);
+        String expected = "Student Name: Frankie Rodriguez\n" +
+                "> Average Score: 125.0\n" +
+                "> Exam Scores:\n" +
+                "Exam 1 ->  100.0\n" +
+                "Exam 2 ->  150.0\n" +
+                "Exam 3 ->  250.0\n" +
+                "Exam 4 ->  0.0\n";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void toStringTestNeg(){
-        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
-        Student student = new Student(firstName, lastName, examScores);
+    public void toStringTest2() {
         String actual = student.toString();
-        Assert.assertFalse(actual.length() == 0);
+        String expected = "Student Name: Frankie Rodriguez\n" +
+                "> Average Score: 103.5\n" +
+                "> Exam Scores:\n" +
+                "Exam 1 ->  100.0\n" +
+                "Exam 2 ->  95.0\n" +
+                "Exam 3 ->  123.0\n" +
+                "Exam 4 ->  96.0\n";
+        Assert.assertEquals(expected, actual);
     }
 }

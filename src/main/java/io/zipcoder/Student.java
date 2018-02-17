@@ -6,13 +6,14 @@ import java.util.Arrays;
 public class Student {
     private String firstName;
     private String lastName;
-    private ArrayList<Double> examScores;
+    private ArrayList<Double> examScores = new ArrayList<Double>();
     // These are helper methods to assist us with array operations.
     private int totalExams;
     private int examsTaken;
 
     /**
      * How we're going to construct our students when we know how many tests they're going to take
+     *
      * @param firstName
      * @param lastName
      * @param examScores
@@ -23,12 +24,6 @@ public class Student {
         this.examScores.addAll(Arrays.asList(examScores));
     }
 
-    /**
-     * Constructor for a student with just their first and last name.
-     * You must make a default amount of tests here.
-     * @param firstName
-     * @param lastName
-     */
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,24 +58,41 @@ public class Student {
     }
 
 
-    public String getExamScores(){
-        return null;
+    public String getExamScores() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 1; i <= this.examScores.size(); i++) {
+            result.append("Exam " + i + " ->  " + this.examScores.get(i - 1));
+            result.append("\n");
+        }
+        return result.toString();
     }
 
-    public String addExamScore(Double[] examScores){
-        return null;
+    public void addExamScore(Double[] examScores) {
+        this.examScores.addAll(Arrays.asList(examScores));
     }
 
-    public String setExamScore(int examNumber, double newScore){
-        return null;
+    public void setExamScore(int examNumber, double newScore) {
+        examScores.set(examNumber - 1, newScore);
     }
 
-    public String getAverageExamScore(){
-        return null;
+    public String getAverageExamScore() {
+        Double result = 0.0;
+        Double counterForDivision = 0.0;
+        for (Double entry : examScores) {
+            result += entry;
+            counterForDivision++;
+        }
+        result = result / counterForDivision;
+        return result.toString();
     }
 
     @Override
-    public String toString(){
-        return null;
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format("Student Name: %s %s\n", firstName, lastName));
+        result.append(String.format("> Average Score: %s\n", getAverageExamScore()));
+        result.append("> Exam Scores:\n");
+        result.append(getExamScores());
+        return result.toString();
     }
 }
