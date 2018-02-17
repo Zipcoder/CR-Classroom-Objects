@@ -67,7 +67,9 @@ public class Student {
             totalScore += indexScore;
         }
 
-        double averageExamScore = totalScore / examScores.size();
+        double roundAndMoveDecimal = Math.round(totalScore / examScores.size() * 100);
+
+        double averageExamScore = roundAndMoveDecimal / 100;
 
         return averageExamScore;
     }

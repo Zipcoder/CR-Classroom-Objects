@@ -57,7 +57,7 @@ public class StudentTest {
 
     @Test
     public void getExamScoresTest() {
-        String expected = "\tExam 1 -> 98.5\n\tExam 2 -> 82.0\n\tExam 3 -> 92.5\n";
+        String expected = "\tExam 1 -> 98.5\n\tExam 2 -> 80.0\n\tExam 3 -> 92.5\n";
         String actual = testStudent.getExamScores();
         Assert.assertEquals(expected, actual);
     }
@@ -90,9 +90,9 @@ public class StudentTest {
 
     @Test
     public void toStringTest() {
-        String expected = "Student Name: Peter Pan\n> Average Score: 91.0\n> Exam Scores:\n" +
+        String expected = "Student Name: Peter Pan\n> Average Score: 90.33\n> Exam Scores:\n" +
                 "\tExam 1 -> 98.5\n" +
-                "\tExam 2 -> 82.0\n" +
+                "\tExam 2 -> 80.0\n" +
                 "\tExam 3 -> 92.5\n";
         String actual = testStudent.toString();
         Assert.assertEquals(expected, actual);
