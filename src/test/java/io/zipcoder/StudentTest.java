@@ -104,7 +104,7 @@ public class StudentTest {
     public void setExamScoreTest() {
         // Given
         //Student student = new Student();
-        String expected = "Exam Scores:\n\tExam 1 -> 89.5\n\tExam 2 -> 65.5\n\tExam 3 -> 93.5";
+        String expected = "Exam Scores:\n\tExam 1 -> 65.5\n\tExam 2 -> 100.0\n\tExam 3 -> 93.5";
         student.setExamScore(1, 65.5);
         // When
         //student.addExamScore(expected);
@@ -121,7 +121,7 @@ public class StudentTest {
         double expected = 94.0;
         double actual = student.getAverageExamScore();
 
-        Assert.assertEquals(expected, actual, .1);
+        Assert.assertEquals(expected, actual, .01);
     }
 
     @Test

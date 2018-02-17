@@ -63,17 +63,18 @@ public class Student {
 
     public void setExamScore(int examNumber, Double newScore) {
 
-        this.examScores.set(examNumber, newScore);
+        this.examScores.set(examNumber -1, newScore);
     }
 
     public double getAverageExamScore() {
-        int combinedScores = 0;
+        double combinedScores = 0;
         for(double score : examScores) {
             combinedScores += score;
         }
-        return (combinedScores / getNumberOfExamsTaken());
+        return Math.round(combinedScores / getNumberOfExamsTaken());
     }
 
+    @Override
     public String toString() {
         StringBuilder studentFile = new StringBuilder();
         studentFile.append("Student Name: " + getFirstName() + " " + getLastName() +"\n");
