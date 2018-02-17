@@ -14,7 +14,6 @@ public class Classroom {
     }
 
     public Classroom(Student[] students){
-        classRoster = students;
     }
 
     public Classroom(){
@@ -22,7 +21,7 @@ public class Classroom {
     }
 
     public Student[] getStudents() {
-        return classRoster;
+        return null;
     }
 
     public Double getAverageExamScore(){

@@ -20,7 +20,7 @@ public class Student {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
     }
 
     public String getLastName() {
@@ -32,7 +32,7 @@ public class Student {
     }
 
     public int getNumberOfExamsTaken(){
-        return this.examScores.size();
+        return -1;
     }
 
     public Double addExamScore(){
