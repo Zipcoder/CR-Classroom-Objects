@@ -51,6 +51,36 @@ public class ClassroomTest {
         Assert.assertFalse(testRoom.addStudent(yeff));
     }
 
-    
+    @Test
+    public void removeStudentTest(){
+        Student jeff = new Student("jeff", "bridges", 2);
+        Student beff = new Student("beff", "smidges", 2);
+        Student yeff = new Student("yeff", "ridges", 2);
+        Student[] temp = {jeff, beff, yeff};
+        testRoom = new Classroom(temp);
+        Student[] expected = {jeff, yeff, null, null, null, null, null, null, null, null};
+        Student[] actual = testRoom.removeStudent("beff", "smidges");
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getClassAverageTest(){
+        Double[] testscores1 = {100.0, 100.0, 100.0};
+        Double[] testscores2 = {80.0, 80.0, 80.0};
+        Double[] testscores3 = {70.0, 70.0, 70.0};
+        Student mary = new Student("mary", "martin", testscores1);
+        Student gary = new Student("gary", "gartin", testscores2);
+        Student steve = new Student("steve", "steve", testscores3);
+        Student[] temp = {mary, gary, steve};
+        testRoom = new Classroom(temp);
+        Double expected = 83.33;
+        Double actual = testRoom.getClassAverage();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void classScoresTest(){
+        
+    }
 
 }

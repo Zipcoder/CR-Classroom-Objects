@@ -1,5 +1,8 @@
 package io.zipcoder;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 public class Classroom {
     private Student[] students;
     // Helper fields
@@ -85,15 +88,53 @@ public class Classroom {
      * @param lastName
      * @return
      */
-    public Student removeStudent(String firstName, String lastName) {
-        return null;
+    public Student[] removeStudent(String firstName, String lastName) {
+        ArrayList<Student> postRemoval = new ArrayList<Student>();
+        Student[] postFormat = new Student[this.maxStudents];
+        for (int i = 0; i < this.studentsEnrolled; i++){
+            checkStudentEquivilenceAddToList(firstName, lastName, postRemoval, students[i]);
+        }
+        if (this.studentsEnrolled == postRemoval.size()) return null;
+        int index = 0;
+        createReturnArray(postRemoval, postFormat, index);
+        return postFormat;
+    }
+
+    private void createReturnArray(ArrayList<Student> postRemoval, Student[] postFormat, int index) {
+        for (Student keeper:postRemoval) {
+            postFormat[index] = keeper;
+            index++;
+        }
+    }
+
+    private void checkStudentEquivilenceAddToList(String firstName, String lastName, ArrayList<Student> postRemoval, Student student) {
+        if (!(student.getFirstName().equals(firstName) && student.getLastName().equals(lastName))){
+            postRemoval.add(student);
+        }
     }
 
     /**
      * Return the average score of all of the student's average scores.
      */
     public double getClassAverage(){
-        return 100.0;
+        Double totalAverages = 0.0;
+        for (Student testTaker : this.students) {
+            totalAverages = assembleAverageTotal(totalAverages, testTaker);
+        }
+        return findAverageOfAverages(totalAverages);
+    }
+
+    private double findAverageOfAverages(Double totalAverages) {
+        totalAverages = totalAverages * 10;
+        DecimalFormat grading = new DecimalFormat("#.##");
+        return Double.parseDouble(grading.format((totalAverages/10)/this.studentsEnrolled));
+    }
+
+    private Double assembleAverageTotal(Double totalAverages, Student testTaker) {
+        if (testTaker != null) {
+            totalAverages += testTaker.getAverage();
+        }
+        return totalAverages;
     }
 
     /**
@@ -110,6 +151,7 @@ public class Classroom {
      * @return
      */
     public String getClassScores(){
+        if (this.studentsEnrolled == 0);
         return null;
     }
 
