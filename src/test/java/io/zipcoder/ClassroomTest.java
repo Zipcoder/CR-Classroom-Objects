@@ -83,7 +83,7 @@ public class ClassroomTest {
     @Test
     public void addStudentTest(){
         //Given
-        Classroom toBeAddedTo = new Classroom(1);
+        Classroom toBeAddedTo = new Classroom(0);
         Student lazyLeon = new Student("Lazy", "Leon", new Double[]{0.0, 50.0, 100.0});
 
 
@@ -118,6 +118,63 @@ public class ClassroomTest {
     }
 
     @Test
+    public void getStudentsByScoreTest(){
+        //Given
+        //Classroom test
+        Student franticFroilan = new Student("Frantic", "Froilan",new Double[]{100., 100.0, 100.});
+        test.addStudent(franticFroilan);
+
+        //When
+        Student [] expected = {franticFroilan, terribleTariq, smellyPeter, sugarySam, juicyJoe, stinkyPete};
+        Student[] actual = test.getStudentsByScore();
+
+
+        //Then
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
+    public void getStudentsByScoreSimilarNameTest(){
+        //Given
+        //Classroom test
+        Student franticFroilan = new Student("Frantic", "Froilan",new Double[]{100., 100.0, 100.});
+        Student franticFroilaz = new Student("Frantic", "Froilaz",new Double[]{100., 100.0, 100.});
+        test.addStudent(franticFroilaz);
+        test.addStudent(franticFroilan);
+
+
+        //When
+        Student [] expected = {franticFroilan, franticFroilaz, terribleTariq, smellyPeter, sugarySam, juicyJoe, stinkyPete};
+        Student[] actual = test.getStudentsByScore();
+
+
+        //Then
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
+    public void getStudentsByScoreSameLastNameTest(){
+        //Given
+        //Classroom test
+        Student franticFroilan = new Student("Frantic", "Froilan",new Double[]{100., 100.0, 100.});
+        Student fineFroilan = new Student("Fine", "Froilan",new Double[]{100., 100.0, 100.});
+        test.addStudent(franticFroilan);
+        test.addStudent(fineFroilan);
+
+
+        //When
+        Student [] expected = {fineFroilan, franticFroilan, terribleTariq, smellyPeter, sugarySam, juicyJoe, stinkyPete};
+        Student[] actual = test.getStudentsByScore();
+
+
+        //Then
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
     public void identifyStudentTest(){
         //Given
         //Classroom test
@@ -141,6 +198,30 @@ public class ClassroomTest {
 
         //Then
         Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void moveNullToEndTest(){
+        //Given
+        Student franticFroilan = new Student ("Frantic", "Froilan", new Double[]{100.0, 75.0, 88.0});
+        Student lazyLeon = new Student("Lazy", "Leon", new Double[]{0.0, 50.0, 100.0});
+        Student [] test = {null, franticFroilan, lazyLeon};
+        Classroom reorderTest = new Classroom (test);
+
+
+        //When
+        reorderTest.moveNullToEnd();
+        Student [] expected = {franticFroilan, lazyLeon, null};
+        Student [] actual = reorderTest.getStudents();
+
+        //Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void reverseSortTest(){
+        //Given
+
     }
 
 }
