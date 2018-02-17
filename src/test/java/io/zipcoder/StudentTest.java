@@ -4,29 +4,22 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 
+import java.util.ArrayList;
+
 public class StudentTest {
 
-    Student testStudent;
+    @Test
+    public void getFirstNameTest(){
+        ArrayList<Double> exams = new ArrayList<>();
+        Student testStudent = new Student("Amy", "gill", exams);
 
-    @Before
-    public void setup() {
-
-        testStudent = new Student("bob", "spaudling", );
-
-
+        String expected = "Amy";
+        String actual = testStudent.getFirstName();
+        Assert.assertEquals(expected, actual);
 
     }
 
-    @Test
-//    public void newStudentTest(){
-//        testStudent.firstName= null;
-//        testStudent.lastName=null;
-//        String expected = "Jim";
-//        String actual = newStudent.firstName;
-//        Assert.assertEquals(expected,actual);
-    }
 
-    @Test
 
 
 }

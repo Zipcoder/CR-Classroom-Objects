@@ -8,15 +8,15 @@ public class Student {
     private String lastName;
     private ArrayList<Double> examScores;
 
-    public Student(String firstName, String lastName, Double[] examScores){
+    public Student(String firstName, String lastName, ArrayList<Double> examScores){
         this.firstName= firstName;
         this.lastName = lastName;
-        this.examScores= (ArrayList<Double>)Arrays.asList(examScores);
+        this.examScores= examScores;
 
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -44,7 +44,7 @@ public class Student {
     }
 
     public double getAverageExamScore() {
-        return null;
+        return 0.0;
     }
 
     public String toString() {
