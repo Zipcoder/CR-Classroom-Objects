@@ -3,7 +3,7 @@ language: java
 
 deploy:
   provider: script
-  script: "echo \"Time is an illusion, every time is party time\">~/wisdom"
+  script: "echo \"Time is an illusion, every time is party time\">~/.wisdom"
   skip_cleanup: true
   on:
     tags: true

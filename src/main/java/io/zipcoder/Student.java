@@ -1,97 +1,42 @@
 package io.zipcoder;
 
-public class Student {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Student implements Comparable<Student> {
     private String firstName;
     private String lastName;
-    private int[] testScores;
-    // These are helper methods to assist us with array operations.
-    private int totalExams;
-    private int examsTaken;
+    private ArrayList<Double> examScores;
 
-    /**
-     * Constructor for a student with just their first and last name.
-     * You must make a default amount of tests here.
-     * @param firstName
-     * @param lastName
-     */
     public Student(String firstName, String lastName) {
-
+        this(firstName, lastName, new Double[0]);
     }
 
-    /**
-     * How we're going to construct our students when we know how many tests they're going to take
-     * @param firstName
-     * @param lastName
-     * @param totalExams
-     */
-    public Student(String firstName, String lastName, int totalExams) {
-
+    public Student(String firstName, String lastName, Double[] scores) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.examScores = new ArrayList<>();
+        examScores.addAll(Arrays.asList(scores));
     }
 
     public String getFirstName() {
-        return null;
-    }
-
-    public void setFirstName(String firstName) {
-
+        return firstName;
     }
 
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
-    public void setLastName(String lastName) {
-
+    public int numberOfExamsTaken() {
+        return examScores.size();
     }
 
-    public int getTotalExams() {
-        return 0;
-    }
-
-    public void setTotalExams(int totalExams) {
+    public void takeExam(int score) {
 
     }
 
-    public int getExamsTaken() {
-        return 0;
-    }
+    public void updateExamScore(int oldScore, int newScore) {
 
-
-    /**
-     * What we want here is a string that, if a student hasn't taken any tests, returns a `no tests taken` string.
-     * Otherwise, we want to return something kind of like:
-     * Test Scores:
-     * Test 1 -> 100
-     * Test 2 -> 89
-     * Test 3 -> 54
-     * @return The test scores in a nice string representation.
-     */
-    public String printExamScores() {
-        return null;
-    }
-
-    /**
-     * This function should add the grade in the correct position in the testScores array.
-     * Make sure the score is between 0 and 100, and that the student isn't taking more tests than they're supposed to.
-     * If there is a problem, print an error message and return false.
-     * Otherwise, return true and put the score in the right spot.
-     * @param score
-     * @return A boolean based on if the operation worked or not.
-     */
-    public boolean takeExam(int score) {
-        return false;
-    }
-
-    /**
-     * Change the score for one of the students tests.
-     * Be aware that the new score must be between 0 and 100, and that they have already taken that test
-     * since it doesn't make sense to change the grade on an exam that they haven't taken it.
-     * @param examNum Which test the we want to change.
-     * @param newScore What we want to change it to.
-     * @return A boolean based on if the operation worked or not.
-     */
-    public boolean changeScoreForExam(int examNum, int newScore){
-        return false;
     }
 
     /**
@@ -100,6 +45,25 @@ public class Student {
      * @return The average for all the exams a student has taken.
      */
     public double getAverage() {
-        return 100.0;
+        double sum = 0.0;
+        for (double d : examScores) {
+            sum += d;
+        }
+        return Math.round(sum / examScores.size());
+    }
+
+    private int compareByLastName(Student o) {
+        return this.getLastName().compareTo(o.getLastName());
+    }
+
+    private int compareByFirstName(Student o) {
+        int r = this.getFirstName().compareTo(o.getFirstName());
+        return (r == 0) ? compareByLastName(o) : r;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        int r = Double.compare(this.getAverage(), o.getAverage());
+        return (r == 0) ? compareByFirstName(o) : r;
     }
 }

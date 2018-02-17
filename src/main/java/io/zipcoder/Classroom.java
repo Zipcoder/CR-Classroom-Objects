@@ -1,16 +1,20 @@
 package io.zipcoder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 public class Classroom {
-    private Student[] students;
-    // Helper fields
-    private int studentsEnrolled;
+    private ArrayList<Student> students;
     private int maxStudents;
+    private final int fDEFAULT_MAX_STUDENTS = 30;
 
     /**
      * Empty constructor.  You get to decide what max students should default to.
      */
     public Classroom() {
-
+        students = new ArrayList<>(fDEFAULT_MAX_STUDENTS);
     }
 
     /**
@@ -18,7 +22,7 @@ public class Classroom {
      * @param maxStudents
      */
     public Classroom(int maxStudents) {
-
+        this.maxStudents = maxStudents;
     }
 
     /**
@@ -26,7 +30,16 @@ public class Classroom {
      * @param students
      */
     public Classroom(Student[] students) {
+        this.students = (ArrayList<Student>) Arrays.asList(students);
+    }
 
+    public Student getStudentByName(String first, String last) {
+        for (Student s : students) {
+            if (s.getFirstName().equals(first) && s.getLastName().equals(last)) {
+                return s;
+            }
+        }
+        return null;
     }
 
     /**
@@ -36,7 +49,7 @@ public class Classroom {
      * @return
      */
     public boolean addStudent(Student student) {
-        return false;
+        return students.add(student);
     }
 
     /**
@@ -72,15 +85,13 @@ public class Classroom {
      *
      * @return
      */
-    public String getClassScores(){
-        return null;
-    }
-
-    /**
-     * Sorts the Students array from highest average to lowest, and ties are broken alphabetically.
-     */
-    public void sortStudentsByScore() {
-
+    public String getStudentsByScore() {
+        StringBuilder sb = new StringBuilder();
+        Collections.sort(students);
+        for (Student s : students) {
+            sb.append(String.format("%1s %2s : %3s \n", s.getFirstName(), s.getLastName(), s.getAverage()));
+        }
+        return sb.toString();
     }
 
     /**

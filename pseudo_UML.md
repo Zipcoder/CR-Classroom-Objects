@@ -23,6 +23,7 @@
 	* String lastName (get/set)
 	* ArrayList<Double> examScores (get)
 	
+	+ Student(String first, String last, Double[] scores)
 	+ takeExam()
 	+ getNumberOfExamsTaken()
 	+ addExamScore(double examScore)
