@@ -79,7 +79,7 @@ public class Classroom {
                 else if (result > 0){
                     temp.add(students[k]);
                     temp.add(students[i]);
-                }git
+                }
                 else if(result == 0){
                     temp.add(students[i]);
                 }

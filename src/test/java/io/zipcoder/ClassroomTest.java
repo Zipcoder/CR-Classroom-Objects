@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class ClassroomTest {
 
@@ -85,6 +86,14 @@ public class ClassroomTest {
         String [] actual = classroom.getStudentsByScore();
 
         Assert.assertEquals(expected, actual);
+        }
+
+        @Test
+    public void testGetGradeBook(){
+            TreeMap<Student, Character> expected =;
+            TreeMap<Student, Character> actual = classroom.getGradeBook();
+
+            Assert.assertEquals(expected,actual);
         }
 // @Test
 //    public void testDefaultConstructor() {
