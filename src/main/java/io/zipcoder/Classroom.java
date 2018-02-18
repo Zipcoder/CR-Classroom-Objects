@@ -1,10 +1,12 @@
 package io.zipcoder;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Classroom {
 
     protected Student[] students;
+    HashMap<Student, String> gradeBook= new HashMap<>();
 
     public Classroom() {
 
@@ -85,8 +87,34 @@ public class Classroom {
         return students;
     }
 
-    public void getGradeBook() {
 
+    public HashMap<Student, String> getGradeBook() {
+
+        int A = (int)Math.round(0.9 * students.length); // 9
+        int B = (int)Math.round(0.71 * students.length); // 7
+        int C = (int)Math.round(0.5 * students.length); // 5
+        int D = (int)Math.round(0.11 * students.length); // 1
+
+        Student[] studentArray = getStudentsByScore();
+
+
+        for (int i = 0; i < studentArray.length - A; i++) {
+            gradeBook.put(studentArray[i], "A");
+        }
+        for (int i = studentArray.length - A; i < studentArray.length - B; i++) {
+            gradeBook.put(studentArray[i], "B");
+        }
+        for (int i = studentArray.length - B; i < studentArray.length - C; i++) {
+            gradeBook.put(studentArray[i], "C");
+        }
+        for (int i = studentArray.length - C; i < studentArray.length - D; i++) {
+            gradeBook.put(studentArray[i], "D");
+        }
+        for (int i = studentArray.length - D; i < studentArray.length; i++) {
+            gradeBook.put(studentArray[i], "F");
+        }
+
+        return gradeBook;
     }
 
     public boolean isThereAnEmptySeat() {

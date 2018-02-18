@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class ClassroomTest {
 
@@ -20,6 +21,7 @@ public class ClassroomTest {
     Student joeyJoystick;
     Student robbyRaisin;
     Student[] aTestStudentArray;
+
 
     @Before
     public void setup() {
@@ -220,6 +222,28 @@ public class ClassroomTest {
         String actual = Arrays.toString(aDifferentTestClassroom.getStudents());
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void getGradeBookTest1() {
+        testClassroom.getGradeBook();
+        String expected = "A";
+        String actual = testClassroom.gradeBook.get(robbyRaisin);
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getGradeBookTest2() {
+//        testClassroom.getStudentsByScore();
+//        for (int i = 0; i < aTestStudentArray.length; i++) {
+//            System.out.println(aTestStudentArray[i]);
+
+            System.out.println(Math.round(1.1));
+
+//        testClassroom.getGradeBook();
+//        String expected = "C";
+//        String actual = testClassroom.gradeBook.get(joeyJoystick);
+//        Assert.assertEquals(expected, actual);
+        }
 
 
 }
