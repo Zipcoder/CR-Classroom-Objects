@@ -10,14 +10,13 @@ public class Classroom {
     //Classroom blue = new Classroom(50);
 
     public Classroom(int maxNumberOfStudents){
-        this.maxNumberOfStudents = maxNumberOfStudents;
-    }
+    return null;    }
 
     public Classroom(Student[] students){
     }
 
     public Classroom(){
-        this(30);
+        this(-1);
     }
 
     public Student[] getStudents() {
