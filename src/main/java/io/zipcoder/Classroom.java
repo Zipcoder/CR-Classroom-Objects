@@ -4,9 +4,6 @@ import java.util.*;
 
 public class Classroom {
 
-    static int averageOrder;
-    static int firstNameOrder;
-    static int lastNameOrder;
     ArrayList<Student> students = new ArrayList<>();
 
     public Classroom(int maxNumberOfStudents) {
