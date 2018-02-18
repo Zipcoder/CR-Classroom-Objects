@@ -64,14 +64,21 @@ public class ClassroomTest {
          }
 
          @Test
-        public void testGetAverageExamScore() {
+         public void testNumberOfStudentsInClass() {
+            int expected = 3;
+            int actual = classroom.numberOfStudentsInClass();
 
-        Double expected = 82.0;
+             Assert.assertEquals(expected, actual);
+         }
+         @Test
+        public void testGetAverageExamScoreOfAllStudents() {
 
-            Double actual =  classroom.getAverageExamScore();
+            Double expected = 82.0;
+            Double actual =  classroom.getAverageExamScoreOfAllStudents();
 
             Assert.assertEquals(expected,actual, .01);
     }
+
         @Test
         public void testGetStudentByScore (){
         String [] expected = {student3.toString(),student2.toString(),student1.toString()};

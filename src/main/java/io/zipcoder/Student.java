@@ -24,6 +24,7 @@ public class Student {
         this.lastName = lastName;
     }
 
+
     public String getFirstName() {
         return firstName;
     }
@@ -62,6 +63,12 @@ public class Student {
         return  combinedTotal/getNumberOfExamsTaken();
 
     }
+    public double setCurvedAverageExamScore (double curvedAverageExamScore) {
+        return curvedAverageExamScore;
+    }
+
+
+
 
     @Override
     public String toString() {

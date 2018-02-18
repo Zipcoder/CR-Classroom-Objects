@@ -1,8 +1,6 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 public class Classroom {
     public Student [] students;
@@ -22,7 +20,7 @@ public class Classroom {
     }
 //define a getter which returns the sum of all exams divided by the number of students
 
-    public double getAverageExamScore() {
+    public double getAverageExamScoreOfAllStudents() {
        double count = 0.0;
         double sumOfExamScores = 0.0;
         for(int i = 0; i < students.length; i++) {
@@ -52,23 +50,82 @@ public class Classroom {
         }
         return  false;
     }
-    public String [] getStudentsByScore() {
-        ArrayList<Student> temp = new ArrayList<>(Arrays.asList(this.students));
-        Collections.sort(temp, Student.AverageTestScoreComparator.thenComparu)
-        String [] studentSortedArray = new String[students.length];
-        for (int i = 0; i < students.length;i++){
-            if (students[i] != null) {
-                temp.add(students[i]);
+
+    public int numberOfStudentsInClass () {
+        int count = 0;
+        for (int n = 0; n < students.length; n++) {
+            if (students[n] != null) {
+                count++;
             }
-            students.
-        temp.sort(temp, stud );
+        }
+        return count;
+    }
+    public String [] getStudentsByScore() {
+        ArrayList<Student> temp = new ArrayList<>();
+        String [] studentSortedArray = new String[students.length];
+
+        for (int i = 0; i <numberOfStudentsInClass();i++){
+            for(int k = 0; k < numberOfStudentsInClass(); k++) {
+             if(students[i].getAverageExamScore() < students[k].getAverageExamScore()){
+                 temp.add(students[i]);
+                }
+
+            else if(students[i].getAverageExamScore() == students[k].getAverageExamScore()) {
+                int result = students[i].getFirstName().compareTo(students[k].getFirstName());
+                if (result < 0) {
+                    temp.add(students[i]);
+                    temp.add(students[k]);
+                }
+                else if (result > 0){
+                    temp.add(students[k]);
+                    temp.add(students[i]);
+                }git
+                else if(result == 0){
+                    temp.add(students[i]);
+                }
+
+                }
+
+            }
+
+        }
+        System.out.println(temp);
+        for(int n = 0; n <numberOfStudentsInClass(); n++){
+            studentSortedArray[n] = String.valueOf(temp.toArray()) + " ";
         }
 
-        return null;
+        return studentSortedArray;
 
     }
+//
+//    public Character getLetterGrade(){
+//        ArrayList<Double> intArrayOfAverageScores = new ArrayList<>(numberOfStudentsInClass());
+//        //find the student with the highest average score in the class
+//        for(int i = 0; i < numberOfStudentsInClass(); i++){
+//           intArrayOfAverageScores.add(students[i].getAverageExamScore());
+//        }
+//        Collections.sort(intArrayOfAverageScores);
+//        Double highestAverageScore = intArrayOfAverageScores.get(0);
+//        //get the difference in percentage
+//        Double percentageDifference = 100.0 - highestAverageScore;
+//        //add the percentage difference to each student
+//        for(int n = 0; n < numberOfStudentsInClass(); n++){
+//           if(students[n].setCurvedAverageExamScore(students[n].getAverageExamScore() + percentageDifference) > 90.0);
+//        }
+//        for (int k = 0; k < numberOfStudentsInClass(); k++){
+//           if (students[k].setCurvedAverageExamScore() > 90.0){
+//
+//            }
+//        }
+
+//}
     //grading curve
-    public void getGradeBook() {
+    public TreeMap<Student, Character> getGradeBook() {
+//        TreeMap<Student, Character> gradeBook = new TreeMap<>();
+//        for(int i = 0; i < numberOfStudentsInClass(); i++){
+//            gradeBook.put(students[i].getFirstName() + " "+students[i].getLastName(), students[i].get);
+//        }
+return null;
 
 
     }
