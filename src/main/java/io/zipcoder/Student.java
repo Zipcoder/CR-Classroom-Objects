@@ -39,12 +39,6 @@ public class Student {
         return this.lastName;
     }
 
-    /*
-    public double getTestScore() {
-        return 0;
-    }
-    */
-
     public Integer getNumberOfExamsTaken(){
 
         int counter = 0;

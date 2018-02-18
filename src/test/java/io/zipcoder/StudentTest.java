@@ -7,9 +7,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 public class StudentTest {
-    //private String firstName;
-    //private String lastName;
-    //private ArrayList<Double> examScores;
 
     Student testStudent;
 
@@ -46,21 +43,6 @@ public class StudentTest {
         // Then
         Assert.assertEquals(expected, actual);
     }
-    /*
-    @Test
-    public void TestScoreTest() {
-        // Given
-        Student student = new Student();
-        double expected = 0.0;
-
-        // When
-        //student.setLastName(expected);
-        double actual = student.getTestScore();
-
-        // Then
-        Assert.assertEquals(expected, actual, .01);
-    }
-    */
 
     @Test
     public void GetNumberOfExamsTakenTest() {
@@ -76,10 +58,9 @@ public class StudentTest {
 
     @Test
     public void GetExamScoresTest() {
-        // Given
-        String expected = "Exam Scores:\n\t\tExam 1 -> 98.0\n\t\tExam 2 -> 92.0\n\t\tExam 3 -> 96.0\n";
+        // Whenn
 
-        // When
+        String expected = "Exam Scores:\n\t\tExam 1 -> 98.0\n\t\tExam 2 -> 92.0\n\t\tExam 3 -> 96.0\n";
         String actual = testStudent.getExamScores();
 
         // Then
@@ -87,17 +68,37 @@ public class StudentTest {
     }
 
     @Test
-    public void addExamScoreTest() {
+    public void addExamScore() {
+        //When
+        testStudent.addExamScore(99.0);
+
+        String expected = "Exam Scores:\n" +
+                "\t\tExam 1 -> 98.0\n" +
+                "\t\tExam 2 -> 92.0\n" +
+                "\t\tExam 3 -> 96.0\n" +
+                "\t\tExam 4 -> 99.0\n";
+        String actual = testStudent.getExamScores();
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void setExamScoreTest() {
         // Given
-        double examScore = 98.0;
-        testStudent.addExamScore(examScore);
+        testStudent.setExamScore(1, 92.0);
+        //String firstName = "George";
+        //String lastName = "Clooney";
+        //Double[] testScores = {98.0, 77.0, 100.0};
 
         // When
-        double expected = 4;
-        double actual = testStudent.getNumberOfExamsTaken();
+        //Student student = new Student(firstName, lastName, testScores);
+
+        String expected = "Exam Scores:\n\t\tExam 1 -> 92.0\n\t\tExam 2 -> 92.0\n\t\tExam 3 -> 96.0\n";;
+        String actual = testStudent.getExamScores();
 
         // Then
-        Assert.assertEquals(expected, actual, .01);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -128,7 +129,7 @@ public class StudentTest {
         // Then
         Assert.assertEquals(expected, actual);
     }
-    }
+}
 
 
 
