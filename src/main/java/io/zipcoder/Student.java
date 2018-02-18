@@ -33,6 +33,14 @@ public class Student extends Classroom{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+//    public String getStudentName() {
+//        String studentName = firstName + lastName;
+//        return studentName;
+//    }
+//    public void setStudentName(String firstName, String lastName) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//    }
 
     public ArrayList<Double> getTestScores() {
         return examScores;
@@ -49,7 +57,7 @@ public class Student extends Classroom{
         for(int i = 0; i < examScores.size(); i++){
             int count = (i + 1);
             double score = examScores.get(i);
-            int newScore = (int)score;
+            double newScore = score;
             examScore.append("\t   Exam " + count + " -> " + newScore + "\n");
             }
         return examScore.toString();
@@ -66,15 +74,13 @@ public class Student extends Classroom{
     }
 
     public double getAverageExamScore() {
-        int total = 0;
+        double total = 0;
 
         for (int i = 0; i < examScores.size(); i++){
             total += examScores.get(i);
         }
+        return (total / examScores.size());
 
-        int averageScore = Math.round(total / examScores.size());
-
-        return averageScore;
     }
 
     public String toString() {
