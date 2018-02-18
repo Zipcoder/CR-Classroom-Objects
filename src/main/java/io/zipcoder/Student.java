@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Student  {
 
-    private Integer numberOfExamsScores;
-    private Double[] testScores;
     private String firstName;
     private String lastName;
-    private ArrayList<Double> examScores;
+    private ArrayList<Double> examScores = new ArrayList<>();
 
     public Student(String firstName, String lastName, Double[] testScores) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.testScores = testScores;
+        for (int i =0; i <testScores.length; i++) {
+            examScores.add(testScores[i]);
+        }
     }
 
     public void setFirstName(String firstName) {
@@ -24,8 +24,8 @@ public class Student  {
         this.lastName = lastName;
     }
 
-    public void setExamScores(ArrayList<Double> examScores) {
-        this.examScores = examScores;
+    public void setExamScore(int examNumber, Double examGrade) {
+        examScores.set(examNumber-1, examGrade);
     }
 
     public String getFirstName() {
@@ -35,29 +35,29 @@ public class Student  {
     public String getLastName() {
         return this.lastName;
     }
-    public Double[] getTestScores() {
-        return this.testScores;
+    public Double getAverageExamScore() {
+        Double sumOfExamScores =0.00;
+        for (int i =0; i < examScores.size(); i++) {
+            sumOfExamScores += examScores.get(i);
+        } return sumOfExamScores / examScores.size();
+    }
+    public void addExamScore(Double testScore) {
+        examScores.add(testScore);
     }
 
     public String getExamScores() {
-       StringBuilder examScoresFormatted = new StringBuilder();
-       examScoresFormatted.append("Exam Scores: ");
-       for (int i = 0; i < testScores.length; i++) {
-           examScoresFormatted.append("\n\t Exam " +(i+1) + " -> "+ Math.round(testScores[i]));
-       }
-        return examScoresFormatted.toString();
+        StringBuilder examScoresLister = new StringBuilder("Exam Scores: ");
+        for (int i = 0; i < examScores.size(); i++) {
+            examScoresLister.append("\n\tExam " + (i + 1) + " -> " +(examScores.get(i)));
+        }
+        return examScoresLister.toString();
     }
+    public String toString() {
+        String stringStudent;
+        stringStudent = String.format("Student Name: %s %s\n" +
+                " > Average Score: %.1f\n" +
+                " > " + getExamScores(),firstName, lastName, getAverageExamScore());
+        return stringStudent;
 
-    public void addExamScore(double examScore) {
-        examScores.add(examScore);
     }
-
-    public void setExamScore(int examNumber, double newScore) {
-        this.examScore = examNumber
-    }
-
-    public Integer getNumberOfExamScores() {
-        return 0;
-    }
-
 }
