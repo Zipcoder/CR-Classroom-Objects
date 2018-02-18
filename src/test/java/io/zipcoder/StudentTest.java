@@ -239,10 +239,31 @@ public class StudentTest {
         // Then
         Assert.assertEquals(expectedFinalToString, actualFinalToString);
         //System.out.println(actualFinalToString);
-
     }
 
+    @Test
+    public void getLetterGradePositiveTest() {
+        // Given
+        String expectedFirstName = "Adam";
+        String expectedLastName = "Anderson";
+        //Double[] expectedDoubleArray = new Double[0];
+        Double[] expectedDoubleArray = { 1.0, 2.0, 3.0 };
+        ArrayList<Double> expectedDoubleArrayList = new ArrayList<Double>(Arrays.asList(expectedDoubleArray));
+        this.student = new Student(expectedFirstName, expectedLastName, expectedDoubleArray);
 
+        double expectedAverageExamScore = 2.0;
+        String expectedLetterGrade = "F";
 
+        // When
+        String actualFirstName = this.student.getFirstName();
+        String actualLastName = this.student.getLastName();
+        double actualAverageExamScore = this.student.getStudentAverageExamScore();
+        String actualLetterGrade = this.student.getLetterGrade();
+
+        // Then
+        Assert.assertEquals(expectedAverageExamScore, actualAverageExamScore, 0.001);
+        Assert.assertEquals(expectedLetterGrade, actualLetterGrade);
+
+    }
 
 }

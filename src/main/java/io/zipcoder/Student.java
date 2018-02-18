@@ -100,4 +100,24 @@ public class Student {
         return sb.toString();
     }
 
+    public String getLetterGrade() {
+
+        double studentAverageScore = this.getStudentAverageExamScore();
+        String letterGrade = "";
+
+        if (studentAverageScore >= 90.0) {
+            letterGrade = "A";
+        } else if (studentAverageScore >= 80.0) {
+            letterGrade = "B";
+        } else if (studentAverageScore >= 70.0) {
+            letterGrade = "C";
+        } else if (studentAverageScore >= 60.0) {
+            letterGrade = "D";
+        } else {
+            letterGrade = "F";
+        }
+
+        return letterGrade;
+    }
+
 }

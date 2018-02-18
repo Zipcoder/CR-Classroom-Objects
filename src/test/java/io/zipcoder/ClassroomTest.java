@@ -335,6 +335,61 @@ public class ClassroomTest {
         Assert.assertEquals(expectedFirstName0, actualSecondElementFirstName);
         Assert.assertEquals(expectedFirstName1, actualThirdElementFirstName);
         Assert.assertEquals(expectedFirstName3, actualFourthElementFirstName);
-
     }
+
+    @Test
+    public void getGradeBookPositiveTest() {
+        // Given
+        String expectedFirstName0 = "Zack";
+        String expectedFirstName1 = "Joseph";
+        String expectedFirstName2 = "Ben";
+        String expectedFirstName3 = "Adam";
+        String expectedFirstName4 = "David";
+
+        String expectedLastName0 = "Anderson";
+        String expectedLastName1 = "Benjamin";
+        String expectedLastName2 = "Charles";
+        String expectedLastName3 = "Denver";
+        String expectedLastName4 = "Emerson";
+
+
+
+        Double[] expectedDoubleArray0 = { 92.0, 95.0, 100.0 }; // A
+        Double[] expectedDoubleArray1 = { 72.0, 73.0, 74.0 };  // B
+        Double[] expectedDoubleArray2 = { 55.0, 65.0, 68.0 };  // C
+        Double[] expectedDoubleArray3 = { 20.0, 35.0, 45.0 };  // D
+        Double[] expectedDoubleArray4 = { 0.0, 5.0, 8.0 };     // F
+
+        Student[] expectedStudentsArray = { new Student(expectedFirstName0, expectedLastName0, expectedDoubleArray0),
+                new Student(expectedFirstName1, expectedLastName1, expectedDoubleArray1),
+                new Student(expectedFirstName2, expectedLastName2, expectedDoubleArray2),
+                new Student(expectedFirstName3, expectedLastName3, expectedDoubleArray3),
+                new Student(expectedFirstName4, expectedLastName4, expectedDoubleArray4) };
+
+        this.classroom = new Classroom(expectedStudentsArray);
+//        System.out.println("original array: ");
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+//
+        // After calling getStudentsByAverageScore
+        this.classroom.getStudentsbyAverageScore();
+//        System.out.println("sorted new Comparator: ");
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+//        System.out.println("+++++++++++++++++++++");
+
+//        System.out.println("treeMap before calling GetGradeBook: ");
+//        System.out.println(this.classroom.hashMap.toString());
+//        System.out.println("+++++++++++++++++++++");
+
+        this.classroom.getGradeBook();
+//        System.out.println("treeMap after calling GetGradeBook: ");
+//        System.out.println(this.classroom.hashMap.toString());
+
+        // When
+        String expectedMapValueLetter0 = "A";
+        String actualMapValueLetter0 = this.classroom.hashMap.get(this.classroom.getStudentsbyAverageScore()[0]);
+
+        // Then
+        Assert.assertEquals(expectedMapValueLetter0, actualMapValueLetter0);
+    }
+
 }

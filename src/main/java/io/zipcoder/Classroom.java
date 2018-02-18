@@ -2,21 +2,28 @@ package io.zipcoder;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Classroom {
 
     protected Student[] studentsArray;
+    protected HashMap<Student, String> hashMap;
 
     public Classroom(int maxNumberOfStudents) {
         this.studentsArray = new Student[maxNumberOfStudents];
+        this.hashMap = new HashMap<Student, String>();
     }
 
     public Classroom(Student[] collectionOfStudents) {
         this.studentsArray = collectionOfStudents;
+        this.hashMap = new HashMap<Student, String>();
+
     }
 
     public Classroom() {
         this.studentsArray = new Student[30];
+        this.hashMap = new HashMap<Student, String>();
+
     }
 
     public Student[] getStudents() {
@@ -89,6 +96,23 @@ public class Classroom {
         return this.studentsArray;
     }
 
+    public HashMap<Student, String> getGradeBook() {
+    /**
+     * The class Classroom should define a method getGradeBook() which returns a mapping
+     * of Student objects to a respective letter grade determined by creating a grading curve such that
+     * An A is awarded to students whose class average is in the upper 10th percentile.
+     * A B is awarded to students whose class average falls between the 25th and 29th percentile.
+     * A C is awarded to students whose class average falls between the 30th and 50th percentile.
+     * A D is awarded to students whose class average falls between the 51st and 89th percentile.
+     * An F is awarded to students whose class average is in the lower 10th percentile.
+     */
+
+        for (Student student : this.studentsArray) {
+            this.hashMap.put(student, student.getLetterGrade());
+        }
+
+        return this.hashMap;
+    }
 
 
 }
