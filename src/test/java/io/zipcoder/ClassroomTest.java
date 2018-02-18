@@ -314,97 +314,10 @@ public class ClassroomTest {
     }
 
     @Test
-    public void getStudentsByScore1(){
-        //Given
-        int maxNumberofStudents = 3;
-        Classroom testClassroom = new Classroom(maxNumberofStudents);
-        Double[] examScores1 = {94.0, 95.0, 100.0};
-        Double[] examScores2 = {100.0, 95.0, 100.0};
-        Double[] examScores3 = {100.0, 95.0, 100.0};
-        Student student1 = new Student ("Zeke", "Stow", examScores1);
-        Student student2 = new Student("Bill", "Burr", examScores2);
-        Student student3 = new Student("Betty", "Bop", examScores3);
-        Student [] studentsArray = {student1, student2, student3};
-
-        testClassroom.addStudent(student1);
-        testClassroom.addStudent(student2);
-        testClassroom.addStudent(student3);
-        testClassroom.getStudentsByScore();
-
-        //When
-        Student[] expected = {student3, student2, student1};
-        Student[] actual = testClassroom.getStudentsByScore();
-
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void getStudentsByScore2(){
-        //Given
-        int maxNumberofStudents = 3;
-        Classroom testClassroom = new Classroom(maxNumberofStudents);
-        Double[] examScores1 = {94.0, 95.0, 100.0};
-        Double[] examScores2 = {100.0, 95.0, 100.0};
-        Double[] examScores3 = {100.0, 95.0, 100.0};
-        Student student1 = new Student ("Zeke", "Stow", examScores1);
-        Student student2 = new Student("Bill", "Burr", examScores2);
-        Student student3 = new Student("Betty", "Bop", examScores3);
-        Student [] studentsArray = {student1, student2, student3};
-
-        testClassroom.addStudent(student1);
-        testClassroom.addStudent(student2);
-        testClassroom.addStudent(student3);
-        testClassroom.getStudentsByScore();
-
-        //When
-        Student[] expected = {student2, student1, student1};
-        Student[] actual = testClassroom.getStudentsByScore();
-
-        //Then
-        Assert.assertNotEquals(expected, actual);
-    }
-
-    @Test
     public void getGradeBookTest1(){
         //Given
         int maxNumberofStudents = 3;
         Classroom testClassroom = new Classroom(maxNumberofStudents);
-
-        //When
-        String expected = null;
-        String actual = testClassroom.getGradeBook();
-
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void getGradeBookTest2(){
-        //Given
-        Classroom testClassroom = new Classroom(10);
-
-        Double[] examScores1 = {100.0, 100.0, 100.0};
-        Double[] examScores2 = {100.0, 100.0, 98.0};
-        Double[] examScores3 = {98.0, 95.0, 93.0};
-        Double[] examScores4 = {95.0, 93.0, 96.0};
-        Double[] examScores5 = {91.0, 93.0, 91.0};
-        Double[] examScores6 = {83.0, 87.0, 81.0};
-        Double[] examScores7 = {79.0, 78.0, 72.0};
-        Double[] examScores8 = {75.0, 74.0, 71.0};
-        Double[] examScores9 = {71.0, 71.0, 70.0};
-        Double[] examScores10 = {62.0, 71.0, 60.0};
-
-        Student student1 = new Student ("Alfred", "Alnardo", examScores1);
-        Student student2 = new Student ("Betsy", "Baker", examScores2);
-        Student student3 = new Student ("Charlie", "Chew", examScores3);
-        Student student4 = new Student ("Donny", "Darko", examScores4);
-        Student student5 = new Student ("Eric", "Einhorn", examScores5);
-        Student student6 = new Student ("Frank", "Fuchini", examScores6);
-        Student student7 = new Student ("Gary", "Goober", examScores7);
-        Student student8 = new Student ("Helga", "Henderson", examScores8);
-        Student student9 = new Student ("Indy", "Iverson", examScores9);
-        Student student10 = new Student ("Jake", "Joobles", examScores10);
 
         //When
         String expected = null;

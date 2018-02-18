@@ -10,7 +10,6 @@ public class Classroom {
 
     private Student[] students;
 
-
     public Classroom(int maxNumberOfStudents) {
 
         this.students = new Student[maxNumberOfStudents];
@@ -85,31 +84,7 @@ public class Classroom {
 
     public Student[] getStudentsByScore() {
 
-        Arrays.sort(this.students, sortByAverage);
-
-        return this.students;
-    }
-
-    // Will sort students by Average Score //
-    // If two students have the same average then it will sort lexigraphically by Last Name //
-    public static Comparator<Student> sortByAverage = new Comparator<Student>() {
-
-        @Override
-        public int compare(Student student1, Student student2) {
-
-            if (student1.getAverageExamScore() < student2.getAverageExamScore()) {
-                return 1;
-            } else if (student1.getAverageExamScore() > student2.getAverageExamScore()) {
-                return -1;
-            } else {
-                return student1.getLastName().compareToIgnoreCase(student2.getLastName());
-            }
-        }
-    };
-
-    public int getPercentile(){
-
-        return 0;
+        return null;
     }
 
     public String getGradeBook() {
