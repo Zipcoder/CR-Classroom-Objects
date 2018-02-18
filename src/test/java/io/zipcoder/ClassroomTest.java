@@ -195,5 +195,48 @@ public class ClassroomTest {
         //System.out.println(expectedClassroomAverageExamScore);
     }
 
+    @Test
+    public void addStudentPositiveTest() {
+        // Given
+        String expectedFirstName0 = "first0";
+        String expectedFirstName1 = "first1";
+        String expectedFirstName2 = "first2";
+
+        String expectedLastName0 = "last0";
+        String expectedLastName1 = "last1";
+        String expectedLastName2 = "last2";
+
+        Double[] expectedDoubleArray0 = { 25.0, 34.0, 41.0 };
+        Double[] expectedDoubleArray1 = { 47.0, 7.0, 13.0 };
+        Double[] expectedDoubleArray2 = { 50.0, 100.0, 35.0 };
+
+        Student[] expectedStudentsArray = { new Student(expectedFirstName0, expectedLastName0, expectedDoubleArray0),
+                                            new Student(expectedFirstName1, expectedLastName1, expectedDoubleArray1),
+                                            new Student(expectedFirstName2, expectedLastName2, expectedDoubleArray2) };
+
+        this.classroom = new Classroom(expectedStudentsArray);
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+//        System.out.println(this.classroom.getClassroomAverageExamScore());
+//        System.out.println("+++++++++++++++++++++");
+
+        String expectedNewFirst = "newFirst";
+        String expectedNewLast = "newLast";
+        Double[] expectedNewDoubleArray = { 9.0, 9.0, 9.0 };
+        this.classroom.addStudent(new Student(expectedNewFirst, expectedNewLast, expectedNewDoubleArray));
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+//        System.out.println(this.classroom.getClassroomAverageExamScore());
+
+        // When
+        String actualNewFirst = this.classroom.getStudents()[3].getFirstName();
+        String actualNewLast = this.classroom.getStudents()[3].getLastName();
+        String actualNewDoubleArray = this.classroom.getStudents()[3].getExamScoresArrayList().toString();
+        //System.out.println(this.classroom.getStudents()[3].toString());
+
+        // Then
+        Assert.assertEquals(expectedNewFirst, actualNewFirst);
+        Assert.assertEquals(expectedNewLast, actualNewLast);
+        Assert.assertEquals(Arrays.toString(expectedNewDoubleArray), actualNewDoubleArray);
+    }
+
 
 }
