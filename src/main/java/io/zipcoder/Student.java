@@ -74,6 +74,18 @@ public class Student {
         return averageExamScore;
     }
 
+    public double getTotalExamScore() {
+        double totalScore = 0;
+        for (Double indexScore : this.examScores) {
+            totalScore += indexScore;
+        }
+        return totalScore;
+    }
+
+    public int getCountOfExams() {
+        return examScores.size();
+    }
+
     @Override
     public String toString() {
 

@@ -89,6 +89,20 @@ public class StudentTest {
     }
 
     @Test
+    public void getTotalExamScoreTest() {
+        double expected = 271;
+        double actual = testStudent.getTotalExamScore();
+        Assert.assertEquals(expected, actual, 0.005);
+    }
+
+    @Test
+    public void getCountOfExamsTest() {
+        int expected = 3;
+        int actual = testStudent.getCountOfExams();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
     public void toStringTest() {
         String expected = "Student Name: Peter Pan\n> Average Score: 90.33\n> Exam Scores:\n" +
                 "\tExam 1 -> 98.5\n" +
