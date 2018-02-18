@@ -80,7 +80,34 @@ public class ClassroomTest {
 
     @Test
     public void classScoresTest(){
-        
+        Double[] testscores1 = {100.0, 100.0, 100.0};
+        Double[] testscores2 = {80.0, 80.0, 80.0};
+        Double[] testscores3 = {70.0, 70.0, 70.0};
+        Student mary = new Student("mary", "martin", testscores1);
+        Student gary = new Student("gary", "gartin", testscores2);
+        Student steve = new Student("steve", "steve", testscores3);
+        Student[] temp = {mary, gary, steve};
+        testRoom = new Classroom(temp);
+        String expected = "Students:\nmary martin -> 100.0\ngary gartin -> 80.0\n" +
+                "steve steve -> 70.0\n";
+        String actual = testRoom.getClassScores();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void sortStudentsByScoreTest(){
+        Double[] testscores1 = {100.0, 100.0, 100.0};
+        Double[] testscores2 = {80.0, 80.0, 80.0};
+        Double[] testscores3 = {70.0, 70.0, 70.0};
+        Student gary = new Student("gary", "gartin", testscores2);
+        Student mary = new Student("mary", "martin", testscores1);
+        Student steve = new Student("steve", "steve", testscores3);
+        Student[] temp = {mary, steve, gary};
+        testRoom = new Classroom(temp);
+        Student[] expected = {mary, gary, steve, null, null, null, null, null, null, null};
+        testRoom.sortStudentsByScore();
+        Student[] actual = testRoom.getStudents();
+        Assert.assertEquals(expected, actual);
     }
 
 }

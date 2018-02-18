@@ -2,6 +2,9 @@ package io.zipcoder;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Classroom {
     private Student[] students;
@@ -151,14 +154,41 @@ public class Classroom {
      * @return
      */
     public String getClassScores(){
-        if (this.studentsEnrolled == 0);
-        return null;
+        if (this.studentsEnrolled == 0) return "No Students";
+        StringBuilder finalOutput = new StringBuilder("Students:\n");
+        finalOutputAssembler(finalOutput);
+        return finalOutput.toString();
+    }
+
+    private void finalOutputAssembler(StringBuilder finalOutput) {
+        for (Student validStudent : this.students){
+            if (validStudent != null){
+                finalOutput.append(validStudent.getFirstName() + " " + validStudent.getLastName() + " -> "
+                        + validStudent.getAverage() + "\n");
+            }
+        }
     }
 
     /**
      * Sorts the Students array from highest average to lowest, and ties are broken alphabetically.
      */
     public void sortStudentsByScore() {
+        ArrayList<Student> inputArrayList = new ArrayList<Student>();
+        for (Student validStudent:this.students) {
+            if (validStudent != null) inputArrayList.add(validStudent);
+        }
+        Collections.sort(inputArrayList, new Comparator<Student>(){
+            public int compare(Student s1, Student s2) {
+                return s2.getAverage().compareTo(s1.getAverage());
+            }
+
+        });
+        int index = 0;
+        for (Student sortedStudent:inputArrayList) {
+            this.students[index] = sortedStudent;
+            //System.out.println(sortedStudent.getFirstName());
+            index++;
+        }
 
     }
 
