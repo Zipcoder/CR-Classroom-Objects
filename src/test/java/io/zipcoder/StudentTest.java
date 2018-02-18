@@ -5,10 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
-import java.util.ArrayList;
-
-import static com.sun.tools.doclint.Entity.delta;
-
 public class StudentTest {
 
     Student stinkyPete;
@@ -83,7 +79,6 @@ public class StudentTest {
         int actual = stinkyPete.getNumberOfExamsTaken();
 
         //Then
-        //System.out.println(actual);
         Assert.assertTrue(actual == expected);
     }
 
@@ -151,7 +146,6 @@ public class StudentTest {
         double actual = stinkyPete.getAverageExamScore();
 
         //Then
-        System.out.println(actual);
         Assert.assertTrue(actual == expected);
     }
 
