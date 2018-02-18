@@ -81,7 +81,7 @@ public class Student {
         for(int index = 0; index < this.testScores.size(); index++) {
             sum += this.testScores.get(index);
             }
-       return sum/this.testScores.size();
+       return sum/testScores.size();
    }
 
    @Override

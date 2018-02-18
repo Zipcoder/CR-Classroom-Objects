@@ -47,10 +47,24 @@ public class Classroom {
         for (int index = 0; index < this.students.length; index++) {
             if (students[index].getFirstName().contains(firstName) && students[index].getLastName().contains(lastName)) {
                 students[index] = null;
+                this.nullToEnd();
                 return true;
             }
         }
         return false;
+    }
+
+    public void nullToEnd() {
+        Student[] tempArray = Arrays.copyOf(this.students, this.students.length);
+        int counter = 0;
+        for(int index = 0; index < this.students.length; index++) {
+            if(this.students[index] != null) {
+                tempArray[index] = this.students[index];
+                counter++;
+            }
+        }
+        tempArray[this.students.length - 1] = null;
+        this.students = tempArray;
     }
 
     public String listStudentsByScore() {
