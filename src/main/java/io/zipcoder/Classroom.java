@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Classroom {
@@ -49,9 +50,26 @@ public class Classroom {
         for (int i = 0; i < students.length; i++){
             if ((students[i].getFirstName().equals(firstName)) && (students[i].getLastName().equals(lastName))){
                 students[i] = null;
+                this.sortNullToEnd();
+                break;
             }
         }
         return "This student is not enrolled";
+    }
+
+    public void sortNullToEnd(){
+        int counter = 0;
+
+        Student[] tempArray = Arrays.copyOf(this.students, this.students.length);
+            for(int i = 0; i < this.students.length; i++){
+                if(!(students[i] == null)){
+                    tempArray[counter] = students[i];
+                    counter++;
+                }
+            }
+            tempArray[students.length - 1] = null;
+            this.students = tempArray;
+
     }
 
     public double getClassAverage(){
@@ -63,9 +81,9 @@ public class Classroom {
 
     }
 
-    public String getStudentByScore(){
-
-    }
+//    public String getStudentByScore(){
+//
+//    }
 
 
     public String getClassScores(){

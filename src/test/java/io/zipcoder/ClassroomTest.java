@@ -170,14 +170,14 @@ public class ClassroomTest {
         Student student6 = new Student("Optimus", "Prime", testScore6);
     testClassroom.addStudents(student6);
     testClassroom.removeStudent("Rachel", "Zane");
-    String expected = "[null, Student Name: Optimus Prime\n" +
+    String expected = "[Student Name: Optimus Prime\n" +
             "> Average Score: 99.0\n" +
             "> Exam Scores: \n" +
             "\tExam 1 --> 99.0\n" +
             "\tExam 2 --> 99.0\n" +
             "\tExam 3 --> 99.0\n" +
             "\tExam 4 --> 99.0\n" +
-            "]";
+            ", null]";
     String actual =  Arrays.toString(testClassroom.getStudents());
     Assert.assertEquals(expected,actual);
     }
