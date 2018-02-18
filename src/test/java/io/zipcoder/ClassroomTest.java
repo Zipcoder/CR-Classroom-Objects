@@ -238,5 +238,50 @@ public class ClassroomTest {
         Assert.assertEquals(Arrays.toString(expectedNewDoubleArray), actualNewDoubleArray);
     }
 
+    @Test
+    public void removeStudentPositiveTest() {
+        // Given
+        String expectedFirstName0 = "first0";
+        String expectedFirstName1 = "first1";
+        String expectedFirstName2 = "first2";
+
+        String expectedLastName0 = "last0";
+        String expectedLastName1 = "last1";
+        String expectedLastName2 = "last2";
+
+        Double[] expectedDoubleArray0 = { 25.0, 34.0, 41.0 };
+        Double[] expectedDoubleArray1 = { 47.0, 7.0, 13.0 };
+        Double[] expectedDoubleArray2 = { 50.0, 100.0, 35.0 };
+
+        Student[] expectedStudentsArray = { new Student(expectedFirstName0, expectedLastName0, expectedDoubleArray0),
+                new Student(expectedFirstName1, expectedLastName1, expectedDoubleArray1),
+                new Student(expectedFirstName2, expectedLastName2, expectedDoubleArray2) };
+
+        this.classroom = new Classroom(expectedStudentsArray);
+//        System.out.println("original array: ");
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+//        System.out.println("+++++++++++++++++++++");
+
+        String expectedNewFirst = "newFirst";
+        String expectedNewLast = "newLast";
+        Double[] expectedNewDoubleArray = { 9.0, 9.0, 9.0 };
+        this.classroom.addStudent(new Student(expectedNewFirst, expectedNewLast, expectedNewDoubleArray));
+//        System.out.println("array with added: ");
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+//        System.out.println("+++++++++++++++++++++");
+
+
+        String expectedFirstNameToRemove = expectedFirstName2;
+        String expectedLastNameToRemove = expectedLastName2;
+        this.classroom.removeStudent(expectedFirstNameToRemove, expectedLastNameToRemove);
+//        System.out.println("array with removed: ");
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+
+        // When
+
+
+        // Then
+        Assert.assertNull(this.classroom.getStudents()[3]);
+    }
 
 }
