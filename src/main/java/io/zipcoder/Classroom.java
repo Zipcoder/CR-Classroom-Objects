@@ -3,6 +3,7 @@ import io.zipcoder.Student.*;
 import java.sql.Array;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 
 import static java.util.Arrays.sort;
 
@@ -71,16 +72,44 @@ public class Classroom{
     }
 
     public Student[] getStudentsByScore() {
-        Arrays.sort(students, byAverageScoreThenByName);
+        Arrays.sort(students, sortByScoreThenName);
         return students;
-
     }
 
-    public static Comparator<Student> byAverageScoreThenByName = new Comparator<Student>() {
+
+    public LinkedHashMap<Student,String> getGradeBook(){
+        LinkedHashMap<Student, String> gradeBook = new LinkedHashMap<>();
+        Classroom classroom = new Classroom(students);
+        classroom.getStudentsByScore();
+        Student [] classMap = classroom.getStudentsByScore();
+        int a = (int)Math.round(.1*classMap.length)-1;
+        int b = (int)Math.round(.3*classMap.length)-1;
+        int c = (int)Math.round(.5*classMap.length)-1;
+        int d = (int)Math.round(.9*classMap.length)-1;
+
+        for(int i = 0; i<classMap.length; i++) {
+            if(i <= a) {
+                gradeBook.put(classMap[i], "A");
+            } else if (i <= b) {
+                gradeBook.put(classMap[i], "B");
+            } else if (i <= c) {
+                gradeBook.put(classMap[i], "C");
+            } else if (i <= d) {
+                gradeBook.put(classMap[i], "D");
+            }  else {
+                gradeBook.put(classMap[i], "F");
+            }
+        }
+        return gradeBook;
+    }
+
+    //for getStudentsByScore
+    public static Comparator<Student> sortByScoreThenName = new Comparator<Student>() {
         @Override
         public int compare(Student studentOne, Student studentTwo) {
             int isGreaterOrLess = 0;
             if (studentOne.getAverageExamScore() < studentTwo.getAverageExamScore()) {
+
                 isGreaterOrLess = 1;
             } else if (studentOne.getAverageExamScore() > studentTwo.getAverageExamScore()) {
                 isGreaterOrLess = -1;

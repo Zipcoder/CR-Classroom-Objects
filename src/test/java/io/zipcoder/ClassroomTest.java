@@ -2,9 +2,13 @@ package io.zipcoder;
 
 import org.junit.Test;
 import org.junit.Assert;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static io.zipcoder.Classroom.sortByScoreThenName;
 
 
 public class ClassroomTest {
@@ -14,6 +18,12 @@ public class ClassroomTest {
     Student studentTwo = new Student("Ben","Messick", examScoresTwo);
     ArrayList<Double> examScoresThree = new ArrayList<>(Arrays.asList(100.0, 100.0));
     Student studentThree = new Student("Elliot", "Journs", examScoresThree);
+    ArrayList<Double> examScoresFour = new ArrayList<>(Arrays.asList(65.0, 70.0, 60.0));
+    Student studentFour = new Student("Bob", "Adams", examScoresFour);
+    ArrayList<Double> examScoresFive = new ArrayList<>(Arrays.asList(65.0, 70.0, 60.0));
+    Student studentFive = new Student("Samantha", "Pennington", examScoresFive);
+    ArrayList<Double> examScoresSix = new ArrayList<>(Arrays.asList(65.0, 55.0, 45.0));
+    Student studentSix = new Student("Andrew","Xavier", examScoresSix);
 
     @Test
     public void firstConstructorTest() {
@@ -134,6 +144,55 @@ public class ClassroomTest {
 
     }
 
+
+    @Test
+    public void testGetPercentile() {
+        ArrayList<Double> examScoresOne = new ArrayList<>(Arrays.asList(85.0, 90.0, 95.0));
+        Student studentOne = new Student("Emily","Blanding", examScoresOne);
+
+        ArrayList<Double> examScoresTwo = new ArrayList<>(Arrays.asList(70.0, 90.0, 80.0));
+        Student studentTwo = new Student("Ben","Messick", examScoresTwo);
+
+        ArrayList<Double> examScoresThree = new ArrayList<>(Arrays.asList(100.0, 100.0, 100.0));
+        Student studentThree = new Student("Elliot", "Journs", examScoresThree);
+
+        ArrayList<Double> examScoresFour = new ArrayList<>(Arrays.asList(65.0, 70.0, 60.0));
+        Student studentFour = new Student("Bob", "Adams", examScoresFour);
+
+        ArrayList<Double> examScoresFive = new ArrayList<>(Arrays.asList(65.0, 70.0, 60.0));
+        Student studentFive = new Student("Samantha", "Pennington", examScoresFive);
+
+        ArrayList<Double> examScoresSix = new ArrayList<>(Arrays.asList(65.0, 55.0, 45.0));
+        Student studentSix = new Student("Andrew","Xavier", examScoresSix);
+        Classroom classroom = new Classroom();
+
+    }
+
+    @Test
+    public void testSortByScoreThenName() {
+        Classroom classroom = new Classroom();
+        ArrayList<Double> examScoresOne = new ArrayList<>(Arrays.asList(85.0, 90.0, 95.0));
+        Student studentOne = new Student("Emily","Blanding", examScoresOne);
+
+        ArrayList<Double> examScoresTwo = new ArrayList<>(Arrays.asList(70.0, 90.0, 80.0));
+        Student studentTwo = new Student("Ben","Messick", examScoresTwo);
+        int expected = -1;
+        classroom.addStudent(studentOne);
+        classroom.addStudent(studentTwo);
+        int actual = classroom.sortByScoreThenName.compare(studentOne,studentTwo);
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetGradeBook() {
+        //Given
+        Student[] students = {studentOne, studentTwo, studentThree, studentFour, studentFive, studentSix};
+        Classroom classroom = new Classroom(students);
+
+        LinkedHashMap<Student,String> actualStudentMap= classroom.getGradeBook();
+        System.out.println(actualStudentMap.toString());
+
+    }
 }
 
 
