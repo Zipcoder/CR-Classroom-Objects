@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.TreeMap;
 
 public class ClassroomTest {
 
@@ -88,6 +89,78 @@ public class ClassroomTest {
         Assert.assertEquals(expectedArray, actualArray);
 
     }
-    
+    @Test
+    public void getGradeBookTest(){
+        // : Given
+        Double[] examScores1 = {100.0, 100.0, 80.0};
+        Double[] examScores2 ={20.0, 50.0, 25.0};
+        Double[] examScores3 = {90.0, 50.0, 25.0};;
+        Double[] examScores4 = {70.0, 50.0, 50.0};
+        Double[] examScores5 ={90.0, 60.0, 25.0};
+        Double[] examScores6 = {10.0, 20.0, 25.0};;
+        Double[] examScores7 = {5.0, 100.0, 60.0};
+        Double[] examScores8 ={96.0, 45.0, 25.0};
+        Double[] examScores9 = {1.0, 5.0, 5.0};
+        Double[] examScores10 ={35.0, 30.0, 30.0};
+        Student student1 = new Student("Tom", "Fantana", examScores1);
+        Student student2 = new Student("Bob", "Smith", examScores2);
+        Student student3 = new Student("Frank", "Hopkins", examScores3);
+        Student student4 = new Student("Tim", "Matthews", examScores4);
+        Student student5 = new Student("John", "Farr", examScores5);
+        Student student6 = new Student("Bill", "Ceil", examScores6);
+        Student student7 = new Student("Tony", "Perry", examScores7);
+        Student student8 = new Student("Fred", "McCormick", examScores8);
+        Student student9 = new Student("Greg", "Red", examScores9);
+        Student student10 = new Student("Sam", "Dela", examScores10);
+        Student[] students={student1, student2, student3, student4, student5, student6, student7, student8, student9, student10};
+        Classroom classroom=new Classroom(students);
+
+        // When
+
+        String expectedAStudent="A";
+        String actualAStudent= classroom.getGradeBook().get(student1);
+
+        // Then
+
+        Assert.assertEquals(expectedAStudent, actualAStudent);
+
+    }
+    @Test
+    public void getGradeBookTestForBStudent(){
+        // : Given
+        Double[] examScores1 = {100.0, 100.0, 80.0};
+        Double[] examScores2 ={20.0, 50.0, 25.0};
+        Double[] examScores3 = {90.0, 50.0, 25.0};;
+        Double[] examScores4 = {70.0, 50.0, 50.0};
+        Double[] examScores5 ={90.0, 60.0, 85.0};
+        Double[] examScores6 = {10.0, 20.0, 25.0};;
+        Double[] examScores7 = {5.0, 100.0, 60.0};
+        Double[] examScores8 ={96.0, 45.0, 25.0};
+        Double[] examScores9 = {1.0, 5.0, 5.0};
+        Double[] examScores10 ={35.0, 30.0, 30.0};
+        Student student1 = new Student("Tom", "Fantana", examScores1);
+        Student student2 = new Student("Bob", "Smith", examScores2);
+        Student student3 = new Student("Frank", "Hopkins", examScores3);
+        Student student4 = new Student("Tim", "Matthews", examScores4);
+        Student student5 = new Student("John", "Farr", examScores5);
+        Student student6 = new Student("Bill", "Ceil", examScores6);
+        Student student7 = new Student("Tony", "Perry", examScores7);
+        Student student8 = new Student("Fred", "McCormick", examScores8);
+        Student student9 = new Student("Greg", "Red", examScores9);
+        Student student10 = new Student("Sam", "Dela", examScores10);
+        Student[] students={student1, student2, student3, student4, student5, student6, student7, student8, student9, student10};
+        Classroom classroom=new Classroom(students);
+
+        // When
+
+        String expectedAStudent="B";
+        String actualAStudent= classroom.getGradeBook().get(student5);
+
+        // Then
+
+        Assert.assertEquals(expectedAStudent, actualAStudent);
+
+    }
+
 
 }

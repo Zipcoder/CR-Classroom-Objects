@@ -81,31 +81,48 @@ public class Classroom {
             return this.students;
     }
 
-//    public void TreeMap<String, Student> getGradeBook() {
-//        TreeMap<Double, Student> studentsByAverageScore = new TreeMap<Double, Student>(Collections.reverseOrder());
-//        ArrayList<Student> studentListByAverage;
-//        studentListByAverage = new ArrayList<>();
-//        for (Student student : this.students) {
-//            studentsByAverageScore.put(Double.parseDouble(student.getAverageExamScore()), student);
-//        }
-//        for (Map.Entry<Double, Student> entry : studentsByAverageScore.entrySet()) {
-//            Student value = entry.getValue();
-//
-//            studentListByAverage.add(value);
-//
-//
-//        }
-//
-//    }
+    public HashMap<Student, String> getGradeBook() {
+        HashMap<Student, String> gradeBook = new HashMap<>();
+        Student[] sortedByAverage= getStudentsByScore();
+
+        int a = (int)Math.round(.1 * sortedByAverage.length)-1;
+        int b = (int)Math.round(.3 * sortedByAverage.length)-1;
+        int c = (int)Math.round(.5 * sortedByAverage.length)-1;
+        int d = (int)Math.round(.9 * sortedByAverage.length)-1;
+
+        for (int i = 0; i < sortedByAverage.length; i++) {
+            if(i<=a){
+                gradeBook.put(sortedByAverage[i], "A");
+
+            } else if(i<=b){
+                gradeBook.put(sortedByAverage[i], "B");
+
+            } else if(i<=c){
+                gradeBook.put(sortedByAverage[i],"C");
+
+            } else if(i<=d){
+                gradeBook.put(sortedByAverage[i],"D");
+
+            } else{
+                gradeBook.put(sortedByAverage[i],"F");
+
+            }
+        }
 
 
-
-
-
-
-
-
-
+               return gradeBook;
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
