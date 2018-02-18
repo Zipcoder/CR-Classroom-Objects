@@ -1,10 +1,7 @@
 package io.zipcoder;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class Classroom {
     private Student[] students;
@@ -173,24 +170,46 @@ public class Classroom {
      * Sorts the Students array from highest average to lowest, and ties are broken alphabetically.
      */
     public void sortStudentsByScore() {
-        ArrayList<Student> inputArrayList = new ArrayList<Student>();
+        //ArrayList<Student> inputArrayList = new ArrayList<Student>();
+        Student[] inputArray = new Student[studentsEnrolled];
+        int firstIndex = 0;
         for (Student validStudent:this.students) {
-            if (validStudent != null) inputArrayList.add(validStudent);
-        }
-        Collections.sort(inputArrayList, new Comparator<Student>(){
-            public int compare(Student s1, Student s2) {
-                return s2.getAverage().compareTo(s1.getAverage());
+            if (validStudent != null){
+                inputArray[firstIndex] = validStudent;
+                firstIndex++;
             }
-
-        });
+        }
+        //listSorter(inputArrayList);
+        Arrays.sort(inputArray, studentComparator);
         int index = 0;
-        for (Student sortedStudent:inputArrayList) {
+        for (Student sortedStudent:inputArray) {
             this.students[index] = sortedStudent;
-            //System.out.println(sortedStudent.getFirstName());
+            System.out.println(sortedStudent.getFirstName());
             index++;
         }
 
     }
+
+//    private void listSorter(ArrayList<Student> inputArrayList) {
+//        Collections.sort(inputArrayList, new Comparator<Student>(){
+//            public int compare(Student s1, Student s2) {
+//                return s2.getAverage().compareTo(s1.getAverage());
+//            }
+//        });
+//    }
+
+    private void listSorter(ArrayList<Student> inputArrayList){
+
+    }
+    Comparator<Student> studentComparator = new Comparator<Student>() {
+        public int compare(Student o1, Student o2) {
+            double difference = o2.getAverage() - o1.getAverage();
+            if (difference == 0.0){
+                difference = o2.getLastName().compareTo(o1.getLastName());
+            }
+            return ((int) difference);
+        }
+    };
 
     /**
      * CHALLENGE METHOD: Don't stress on this.  It's just a little something to challenge you.
