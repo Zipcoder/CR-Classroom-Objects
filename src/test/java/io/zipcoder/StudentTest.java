@@ -128,7 +128,7 @@ public class StudentTest {
         //Act
         String actual = student.getExamScores();
         //Assert
-        Assert.assertEquals("Exam: 100.00\nExam: 95.00\nExam: 123.00\nExam: 96.00", actual);
+        Assert.assertEquals("Exam 1: 100.00\nExam 2: 95.00\nExam 3: 123.00\nExam 4: 96.00", actual);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class StudentTest {
         Double[] examScores = {100.0, 95.0, 123.0, 96.0};
         Student student = new Student("Leon", "Hunter", examScores);
         String expected = "Student Name: Leon Hunter\n" +
-                "Average Score: 125.00\n" +
+                "Average Score: 104.0\n" +
                 "Exam Scores:\n" +
                 "Exam 1: 100.00\n" +
                 "Exam 2: 95.00\n" +

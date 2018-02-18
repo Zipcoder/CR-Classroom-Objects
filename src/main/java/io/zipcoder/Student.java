@@ -86,9 +86,8 @@ public class Student {
   public String toString(){
          StringBuilder studentRecord = new StringBuilder();
          Formatter prettyPrint = new Formatter(studentRecord);
-         prettyPrint.format("Student Name: %s %s%nAverage Score: %s%n%s%n",
+         prettyPrint.format("Student Name: %s %s%nAverage Score: %s%nExam Scores:%n%s%n",
                  this.getFirstName(), this.getLastName(), this.getAverageExamScore(), this.getExamScores());
-
         return studentRecord.toString().trim();
          }
 }
