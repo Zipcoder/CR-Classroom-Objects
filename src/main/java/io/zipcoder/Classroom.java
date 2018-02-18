@@ -1,6 +1,6 @@
 package io.zipcoder;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Classroom {
     private Student[] students;
@@ -55,6 +55,18 @@ public class Classroom {
     }
 
     public Student[] getStudentsByScore() {
+        ArrayList<Student> studentScoreSort = new ArrayList<>();
+        for (int i =0; i <students.length; i++) {
+            if (students[i] != null) {
+                studentScoreSort.add(students[i]);
+            }
+        }
+        Student[] sortedArray= studentScoreSort.toArray(new Student[0]);
+        Arrays.sort((sortedArray));
+        return sortedArray;
 
+    }
+    public TreeMap<String, Student> getGradeBook() {
+        
     }
 }

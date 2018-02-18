@@ -1,8 +1,9 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Student  {
+public class Student implements Comparable {
 
     private String firstName;
     private String lastName;
@@ -59,5 +60,10 @@ public class Student  {
                 " > " + getExamScores(),firstName, lastName, getAverageExamScore());
         return stringStudent;
 
+    }
+
+    @Override
+    public int compareTo(Object s) {
+        return Comparator.comparing(Student::getAverageExamScore).thenComparing(Student::getLastName).compare(this,(Student) s);
     }
 }

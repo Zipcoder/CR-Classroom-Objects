@@ -84,5 +84,25 @@ public class ClassroomTest {
 
         Student[] sorted = classroom.getStudentsByScore();
         String actual = sorted[0].getFirstName();
+        String expected = "Deon";
+    }
+
+    @Test
+    public void getGradeBookTest() {
+        int maxNumberOfStudents = 10;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
+        Double[] examScores2 = { 100.0, 150.0, 250.0, 0.0 };
+        Double[] examScores3 = { 10.0, 15.0, 25.0, 10.0 };
+        Double[] examScores4 = { 10.0, 15.0, 5.0, 0.0 };
+        Student student = new Student("Leon", "Punter", examScores);
+        Student student2 = new Student("Deon", "Hunter", examScores2);
+        Student student3 = new Student("Teon", "Shunter", examScores3);
+        Student student4 = new Student("Peon", "Bunter", examScores4);
+        classroom.addStudent(student);
+        classroom.addStudent(student2);
+        classroom.addStudent(student3);
+        classroom.addStudent(student4);
+
     }
 }
