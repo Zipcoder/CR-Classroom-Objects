@@ -72,7 +72,7 @@ public class Student extends Classroom{
             total += examScores.get(i);
         }
 
-        int averageScore = total / examScores.size();
+        int averageScore = Math.round(total / examScores.size());
 
         return averageScore;
     }
