@@ -100,7 +100,7 @@ public class ClassroomTest {
     public void addStudentTest1() {
         int maxNumberOfStudents = 3;
         Classroom aDifferentTestClassroom = new Classroom(maxNumberOfStudents);
-        aDifferentTestClassroom.addStudent("Newkid", "Ontheblock", new Double[] {84.0});
+        aDifferentTestClassroom.addStudent("Newkid", "Ontheblock", new Double[]{84.0});
         String expected = "[Student Name: Newkid Ontheblock\n" +
                 "> Average Score: 84.0\n" +
                 "> Exam Scores:\n\tExam 1 -> 84.0\n, null, null]";
@@ -129,7 +129,7 @@ public class ClassroomTest {
         anotherTestStudentArray = new Student[]{russRussell};
 
         Classroom aDifferentTestClassroom = new Classroom(anotherTestStudentArray);
-        aDifferentTestClassroom.addStudent("Phil", "Phillips", new Double[] {66.0});
+        aDifferentTestClassroom.addStudent("Phil", "Phillips", new Double[]{66.0});
 
         String expected = "[Student Name: Russ Russell\n" +
                 "> Average Score: 86.83\n" +
@@ -233,17 +233,18 @@ public class ClassroomTest {
 
     @Test
     public void getGradeBookTest2() {
-//        testClassroom.getStudentsByScore();
-//        for (int i = 0; i < aTestStudentArray.length; i++) {
-//            System.out.println(aTestStudentArray[i]);
+        testClassroom.getGradeBook();
+        String expected = "C";
+        String actual = testClassroom.gradeBook.get(tommyToggle);
+        Assert.assertEquals(expected, actual);
+    }
 
-            System.out.println(Math.round(1.1));
-
-//        testClassroom.getGradeBook();
-//        String expected = "C";
-//        String actual = testClassroom.gradeBook.get(joeyJoystick);
-//        Assert.assertEquals(expected, actual);
-        }
-
+    @Test
+    public void getGradeBookTest3() {
+        testClassroom.getGradeBook();
+        String expected = "F";
+        String actual = testClassroom.gradeBook.get(timmyTuna);
+        Assert.assertEquals(expected, actual);
+    }
 
 }

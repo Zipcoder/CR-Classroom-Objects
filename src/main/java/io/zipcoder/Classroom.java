@@ -90,10 +90,10 @@ public class Classroom {
 
     public HashMap<Student, String> getGradeBook() {
 
-        int A = (int)Math.round(0.9 * students.length); // 9
-        int B = (int)Math.round(0.71 * students.length); // 7
-        int C = (int)Math.round(0.5 * students.length); // 5
-        int D = (int)Math.round(0.11 * students.length); // 1
+        int A = (int)Math.round(0.9 * students.length);
+        int B = (int)Math.round(0.71 * students.length);
+        int C = (int)Math.round(0.5 * students.length);
+        int D = (int)Math.round(0.11 * students.length);
 
         Student[] studentArray = getStudentsByScore();
 
