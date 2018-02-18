@@ -64,6 +64,6 @@ public class Student implements Comparable {
 
     @Override
     public int compareTo(Object s) {
-        return Comparator.comparing(Student::getAverageExamScore).thenComparing(Student::getLastName).compare(this,(Student) s);
+        return Comparator.comparing(Student::getAverageExamScore).reversed().thenComparing(Student::getLastName).compare(this,(Student) s);
     }
 }

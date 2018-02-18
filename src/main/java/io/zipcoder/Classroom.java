@@ -67,6 +67,16 @@ public class Classroom {
 
     }
     public TreeMap<String, Student> getGradeBook() {
-        
+        TreeMap<String, Student> letterGradeSort = new TreeMap<>();
+        Student[] sortedArray = getStudentsByScore();
+        double a = (.1*sortedArray.length)-1;
+        double b = (.3*sortedArray.length)-1;
+        double c = (.5*sortedArray.length)-1;
+        double d = (.9*sortedArray.length)-1;
+
+        for (int i =0; i <sortedArray.length; i++) {
+            
+        }
+        return letterGradeSort;
     }
 }

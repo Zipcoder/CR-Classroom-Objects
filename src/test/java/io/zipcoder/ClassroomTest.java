@@ -85,6 +85,7 @@ public class ClassroomTest {
         Student[] sorted = classroom.getStudentsByScore();
         String actual = sorted[0].getFirstName();
         String expected = "Deon";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -99,10 +100,18 @@ public class ClassroomTest {
         Student student2 = new Student("Deon", "Hunter", examScores2);
         Student student3 = new Student("Teon", "Shunter", examScores3);
         Student student4 = new Student("Peon", "Bunter", examScores4);
+        Student student5 = new Student("Zeon", "Puniter", examScores);
+        Student student6 = new Student("Weon", "Hilunter", examScores2);
+        Student student7 = new Student("Qeon", "Shlunter", examScores3);
+        Student student8 = new Student("Eeon", "Blunter", examScores4);
         classroom.addStudent(student);
         classroom.addStudent(student2);
         classroom.addStudent(student3);
         classroom.addStudent(student4);
+        classroom.addStudent(student5);
+        classroom.addStudent(student6);
+        classroom.addStudent(student7);
+        classroom.addStudent(student8);
 
     }
 }
