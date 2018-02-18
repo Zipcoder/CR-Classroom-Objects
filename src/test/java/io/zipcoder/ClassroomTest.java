@@ -306,7 +306,7 @@ public class ClassroomTest {
         scores9.add(150.0);
         scores9.add(175.0);
         scores9.add(70.0);
-        Student student9 = new Student("Meda", "Tecle", scores9);
+        Student student9 = new Student("Medahane", "Tecle", scores9);
         classroom.addStudent(student9);
 
         ArrayList<Double> scores10 = new ArrayList<>();
@@ -317,16 +317,18 @@ public class ClassroomTest {
         Student student10 = new Student("Bryan", "Scot", scores10);
         classroom.addStudent(student10);
 
-        String expected = "Natalie  Albert  195  A\n"+
-                "Mary  Abraham  186.25  B\n"+
-                "Bryan  Scot  185.0  C\n"+
-                "Natalie  Richard  182.5  C\n"+
-                "Thomas  Robert  180.0  C\n"+
-                "Efrem  Gebray  177.5  F\n"+
-                "Eduardo  Rodrigez  173.75  D\n"+
-                "Bereket  Negash  162.5  D\n"+
-                "Meda  Tecle  148.75  D\n"+
-                "Melat  Abraha  195  F\n";
+        String expected = "Grade Book\n"+
+                          "First Name             Last Name                         Grade\n"+
+                          "Natalie              Albert              195.0             A\n"+
+                          "Mary             Abraham                 186.25              B\n"+
+                          "Bryan                Scot                185.0               C\n"+
+                          "Natalie              Richard             182.5               C\n"+
+                          "Thomas               Robert              180.0               C\n"+
+                          "Efrem                Gebray              177.5               C\n"+
+                          "Eduardo              Rodrigez            173.75              D\n"+
+                          "Bereket              Negash              162.5               D\n"+
+                          "Medahane             Tecle               148.75              D\n"+
+                          "Melat                Abraha              146.25             F\n";
 
         String actual = classroom.getGradeBook();
         Assert.assertEquals(expected,actual);

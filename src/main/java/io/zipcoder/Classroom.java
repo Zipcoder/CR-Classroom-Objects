@@ -77,18 +77,18 @@ public class Classroom {
         Collections.sort(this.students, myComparator);
         StringBuilder builder = new StringBuilder();
         builder.append("Grade Book\n");
-        builder.append("First Name      Last Name         Grade");
+        builder.append("First Name              Last Name               Grade\n");
 
         for (int i = 0; i < students.size(); i++) {
             if (100 * (i + 1) / students.size() <= 10) {
-                builder.append(students.get(i).getFirstName()+"     "+students.get(i).getLastName()+"   "+"A\n");
+                builder.append(students.get(i).getFirstName()+"             "+students.get(i).getLastName()+"               "+"A\n");
             } else if (10 < 100 * (i + 1) / students.size() && 100 * (i + 1) / students.size() <= 29) {
-                builder.append(students.get(i).getFirstName()+"     "+students.get(i).getLastName()+"   "+"B\n");
-            } else if (30 < 100 * (i + 1) / students.size() && 100 * (i + 1) / students.size() <= 50) {
-                builder.append(students.get(i).getFirstName()+"     "+students.get(i).getLastName()+"   "+"C\n");
-            } else if (51 < 100 * (i + 1) / students.size() && 100 * (i + 1) / students.size() <= 89) {
-                builder.append(students.get(i).getFirstName()+"     "+students.get(i).getLastName()+"   "+"D\n");
-            } else builder.append(students.get(i).getFirstName()+"     "+students.get(i).getLastName()+"   "+"F\n");
+                builder.append(students.get(i).getFirstName()+"             "+students.get(i).getLastName()+"               "+"B\n");
+            } else if (29 < 100 * (i + 1) / students.size() && 100 * (i + 1) / students.size() <= 50) {
+                builder.append(students.get(i).getFirstName()+"             "+students.get(i).getLastName()+"               "+"C\n");
+            } else if (50 <100 * (i + 1) / students.size() && 100 * (i + 1) / students.size() <= 89) {
+                builder.append(students.get(i).getFirstName()+"             "+students.get(i).getLastName()+"               "+"D\n");
+            } else builder.append(students.get(i).getFirstName()+"              "+students.get(i).getLastName()+"               "+"F\n");
         }
         return builder.toString();
 
