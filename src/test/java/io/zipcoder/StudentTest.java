@@ -25,6 +25,7 @@ public class StudentTest {
         String actual = student.getExamScores();
         Assert.assertFalse(actual.equals(""));
     }
+
     @Test
     public void addExamScoreTest1() {
         Double[] examScores = {100.0};
@@ -40,7 +41,7 @@ public class StudentTest {
 
     @Test
     public void addExamScoreTest2() {
-        Double[] examScores = {100.0 , 84.94, 43.0};
+        Double[] examScores = {100.0, 84.94, 43.0};
         student.addExamScore(examScores);
         String actual = student.getExamScores();
         String expected = "Exam 1 ->  100.0\n" +
@@ -57,7 +58,7 @@ public class StudentTest {
     public void setExamScoreTest1() {
         student.setExamScore(1, 150.0);
         String actual = student.getExamScores();
-        String expected ="Exam 1 ->  150.0\n" +
+        String expected = "Exam 1 ->  150.0\n" +
                 "Exam 2 ->  95.0\n" +
                 "Exam 3 ->  123.0\n" +
                 "Exam 4 ->  96.0\n";
@@ -69,7 +70,7 @@ public class StudentTest {
         Student student = new Student(firstName, lastName, examScores);
         student.setExamScore(1, 192.0);
         String actual = student.getExamScores();
-        String expected ="Exam 1 ->  192.0\n" +
+        String expected = "Exam 1 ->  192.0\n" +
                 "Exam 2 ->  95.0\n" +
                 "Exam 3 ->  123.0\n" +
                 "Exam 4 ->  96.0\n";
