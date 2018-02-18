@@ -184,7 +184,7 @@ public class ClassroomTest{
         classroom.addStudent(PaxFen);
         Student[] actual = classroom.getStudentsByScore(150.0);
         // Then
-        Student [] expected = new Student[]{JoeFen,kayFen};
+        Student [] expected = new Student[]{kayFen, JoeFen};
 
         Assert.assertArrayEquals(expected, actual);
     }
@@ -230,7 +230,6 @@ public class ClassroomTest{
     @Test
     public void getGradeBook() {
         //Given
-        Classroom classroom = new Classroom(5);
 
         Double[] examScores1 = {99.0, 50.0, 82.0};
         Double[] examScores2 = {100.0, 100.0, 50.0};
@@ -243,11 +242,51 @@ public class ClassroomTest{
         Student student3 = new Student ("Elisha", "Renz", examScores3);
         Student student4 = new Student ("Nico", "Janse", examScores4);
         Student student5 = new Student ("Tegan", "Naicker", examScores5);
+
+        Student[] students = new Student[5];
+        Classroom classroom = new Classroom(students);
+
+        classroom.addStudent(student1);
+        classroom.addStudent(student2);
+        classroom.addStudent(student3);
+        classroom.addStudent(student4);
+        classroom.addStudent(student5);
+
         //When
-        String expected = null;
+        String expected = "{A=[Student Name: Joe Fen\n" +
+                "> Average Score: 77.0\n" +
+                "> Exam Scores: \n" +
+                "\t   Exam 1 -> 99.0\n" +
+                "\t   Exam 2 -> 50.0\n" +
+                "\t   Exam 3 -> 82.0\n" +
+                "], B=[Student Name: Pax Fennimore\n" +
+                "> Average Score: 83.33333333333333\n" +
+                "> Exam Scores: \n" +
+                "\t   Exam 1 -> 100.0\n" +
+                "\t   Exam 2 -> 100.0\n" +
+                "\t   Exam 3 -> 50.0\n" +
+                "], C=[Student Name: Elisha Renz\n" +
+                "> Average Score: 81.66666666666667\n" +
+                "> Exam Scores: \n" +
+                "\t   Exam 1 -> 92.0\n" +
+                "\t   Exam 2 -> 80.0\n" +
+                "\t   Exam 3 -> 73.0\n" +
+                "], D=[Student Name: Nico Janse\n" +
+                "> Average Score: 82.0\n" +
+                "> Exam Scores: \n" +
+                "\t   Exam 1 -> 100.0\n" +
+                "\t   Exam 2 -> 84.0\n" +
+                "\t   Exam 3 -> 62.0\n" +
+                ", Student Name: Tegan Naicker\n" +
+                "> Average Score: 66.66666666666667\n" +
+                "> Exam Scores: \n" +
+                "\t   Exam 1 -> 60.0\n" +
+                "\t   Exam 2 -> 50.0\n" +
+                "\t   Exam 3 -> 90.0\n" +
+                "]}";
         TreeMap<Character, ArrayList<Student>> actual = classroom.getGradeBook();
         //Then
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual.toString());
     }
 }
 

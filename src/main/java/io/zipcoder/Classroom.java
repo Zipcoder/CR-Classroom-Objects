@@ -116,8 +116,7 @@ public class Classroom {
     public TreeMap<Character, ArrayList<Student>> getGradeBook() {
 
         TreeMap<Character, ArrayList<Student>> gradeBook = new TreeMap<>();
-        List<Student> students = getStudentsByScore();
-        int numOfStudents = students.size();
+        int numOfStudents = students.length;
         for (int i = 1; i <= numOfStudents; i++) {
             Double percent = ((i - 1) / (double) numOfStudents);
             Character gradeLetter;
@@ -132,15 +131,11 @@ public class Classroom {
             }
             ArrayList<Student> currentStudents = gradeBook.get(gradeLetter);
 
-            Student student = students.get(i - 1);
+            Student student = students[i - 1];
             currentStudents.add(student);
             gradeBook.put(gradeLetter, currentStudents);
         }
         return gradeBook;
 
-    }
-
-    private List<Student> getStudentsByScore() {
-        return null;
     }
 }
