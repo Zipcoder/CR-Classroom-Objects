@@ -39,7 +39,7 @@ public class StudentTest {
         Student joeFen = new Student(firstName, lastName, examScores);
 
         String actual = joeFen.getExamScores();
-        String expected = "Exam Scores: \n\t   Exam 1 -> 100\n\t   Exam 2 -> 95\n\t   Exam 3 -> 123\n\t   Exam 4 -> 96\n";
+        String expected = "Exam Scores: \n\t   Exam 1 -> 100.0\n\t   Exam 2 -> 95.0\n\t   Exam 3 -> 123.0\n\t   Exam 4 -> 96.0\n";
 
         Assert.assertEquals(expected, actual);
     }
@@ -65,7 +65,7 @@ public class StudentTest {
 
         joeFen.addExamScore(100.0);
         String actual = joeFen.getExamScores();
-        String expected = "Exam Scores: \n\t   Exam 1 -> 50\n\t   Exam 2 -> 140\n\t   Exam 3 -> 100\n";
+        String expected = "Exam Scores: \n\t   Exam 1 -> 50.0\n\t   Exam 2 -> 140.0\n\t   Exam 3 -> 100.0\n";
 
         Assert.assertEquals(expected, actual);
     }
@@ -80,7 +80,7 @@ public class StudentTest {
         joeFen.setExamScore(1, 150.0);
         String actual = joeFen.getExamScores();
 
-        String expected = "Exam Scores: \n\t   Exam 1 -> 150\n";
+        String expected = "Exam Scores: \n\t   Exam 1 -> 150.0\n";
 
         Assert.assertEquals(expected, actual);
     }
@@ -106,8 +106,9 @@ public class StudentTest {
         Student joeFen = new Student(firstName, lastName, examScores);
 
         String actual = joeFen.toString();
-        String expected = "Student Name: Joe Fen\n> Average Score: 125.0\n> Exam Scores: \n\t   Exam 1 -> 100\n\t   Exam 2 -> 150\n\t   Exam 3 -> 250\n\t   Exam 4 -> 0\n";
+        String expected = "Student Name: Joe Fen\n> Average Score: 125.0\n> Exam Scores: \n\t   Exam 1 -> 100.0\n\t   Exam 2 -> 150.0\n\t   Exam 3 -> 250.0\n\t   Exam 4 -> 0.0\n";
 
         Assert.assertEquals(expected, actual);
     }
+
 }

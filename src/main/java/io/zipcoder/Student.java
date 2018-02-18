@@ -2,6 +2,7 @@ package io.zipcoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Student extends Classroom{
     private String firstName;
@@ -33,14 +34,6 @@ public class Student extends Classroom{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-//    public String getStudentName() {
-//        String studentName = firstName + lastName;
-//        return studentName;
-//    }
-//    public void setStudentName(String firstName, String lastName) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//    }
 
     public ArrayList<Double> getTestScores() {
         return examScores;
@@ -92,5 +85,20 @@ public class Student extends Classroom{
         String result = sb.toString();
 
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(firstName, student.firstName) &&
+                Objects.equals(lastName, student.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(firstName, lastName);
     }
 }

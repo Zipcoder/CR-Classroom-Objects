@@ -1,7 +1,6 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Classroom {
 
@@ -57,14 +56,14 @@ public class Classroom {
             if (student != null && student.getFirstName().contains(firstName) &&
                     student.getLastName().contains(lastName)) {
                 students[i] = null;
-                this.moveNull();
+                this.moveNullSortArray();
                 return true;
             }
         }
         return false;
     }
 
-    public void moveNull() {
+    public void moveNullSortArray() {
         Student[] copyArray = Arrays.copyOf(students, students.length);
 
         for (int i = 0; i < students.length; i++) {
@@ -74,15 +73,74 @@ public class Classroom {
         students = copyArray;
     }
 
-    public String getStudentsByScore(double v, double v1, double v2, double v3) {
-        ArrayList<Student> studentScore = new ArrayList<>();
-        for (int i = 0; i < students.length; i++) {
-            if (students[i] != null)
-                studentScore.add(students[i]);
+    public Student[] getStudentsByScore(double matchingScore) {
+        List<Student> studentScore = new ArrayList<>();
+
+        for (Student student : getStudents()) {
+            if (student.getExamScores().contains(String.valueOf(matchingScore))) {
+                studentScore.add(student);
+            }
         }
-        return studentScore.toString();
+        studentScore = sortFoundStudents(studentScore);
+        return studentScore.toArray(new Student[0]);
+    }
+
+    private List<Student> sortFoundStudents(List<Student> studentScore) {
+        Collections.sort(studentScore, new StudentComparator());
+        return studentScore;
+    }
+
+    class StudentComparator implements Comparator<Student> {
+
+        @Override
+        public int compare(Student student1, Student student2) {
+            int returnValue = -1;
+
+            if (student1.getAverageExamScore() > student2.getAverageExamScore()) {
+                returnValue = 1;
+            } else if (student1.getAverageExamScore() == student2.getAverageExamScore()) {
+                returnValue = compareLexigraphically(student1, student2);
+
+            }
+            return returnValue;
+        }
+
+        private int compareLexigraphically(Student student1, Student student2) {
+            String student1Name = student1.getFirstName() + student1.getLastName();
+            String student2Name = student2.getFirstName() + student2.getLastName();
+
+            return student1Name.compareTo(student2Name);
+        }
+    }
+
+    public TreeMap<Character, ArrayList<Student>> getGradeBook() {
+
+        TreeMap<Character, ArrayList<Student>> gradeBook = new TreeMap<>();
+        List<Student> students = getStudentsByScore();
+        int numOfStudents = students.size();
+        for (int i = 1; i <= numOfStudents; i++) {
+            Double percent = ((i - 1) / (double) numOfStudents);
+            Character gradeLetter;
+            if (percent <= .1) gradeLetter = 'A';
+            else if (percent > .1 && percent <= .29) gradeLetter = 'B';
+            else if (percent > .29 && percent <= .50) gradeLetter = 'C';
+            else if (percent > .50 && percent <= .89) gradeLetter = 'D';
+            else gradeLetter = 'F';
+
+            if (!gradeBook.containsKey(gradeLetter)) {
+                gradeBook.put(gradeLetter, new ArrayList<Student>());
+            }
+            ArrayList<Student> currentStudents = gradeBook.get(gradeLetter);
+
+            Student student = students.get(i - 1);
+            currentStudents.add(student);
+            gradeBook.put(gradeLetter, currentStudents);
+        }
+        return gradeBook;
 
     }
-    public void getGradeBook() {
+
+    private List<Student> getStudentsByScore() {
+        return null;
     }
 }
