@@ -9,27 +9,14 @@ public class Classroom {
     private ArrayList<Student> students;
     private int maxStudents;
 
-    /**
-     * Empty constructor.  You get to decide what max students should default to.
-     */
     public Classroom() {
         students = new ArrayList<>(fDEFAULT_MAX_STUDENTS);
     }
 
-    /**
-     * Constructor where the caller defines wht maxStudents is.
-     *
-     * @param maxStudents
-     */
     public Classroom(int maxStudents) {
         this.maxStudents = maxStudents;
     }
 
-    /**
-     * Constructor that builds a class from an existing Student array.
-     *
-     * @param students
-     */
     public Classroom(Student[] students) {
         this.students = (ArrayList<Student>) Arrays.asList(students);
     }
@@ -43,27 +30,10 @@ public class Classroom {
         return null;
     }
 
-    /**
-     * Adds a student to the class, and returns true.
-     * If you cannot add any more students, then return false and print an error statement.
-     *
-     * @param student
-     * @return
-     */
     public boolean addStudent(Student student) {
         return students.add(student);
     }
 
-    /**
-     * Returns the student with the firstName and lastName, and removes them from the array.
-     * If there is no student, return null.
-     * NOTE: You're going to want to move some students around in the array so that there are no empty spaces in the
-     * middle.
-     *
-     * @param firstName
-     * @param lastName
-     * @return
-     */
     public boolean removeStudent(String firstName, String lastName) {
         return students.remove(getStudentByName(firstName, lastName));
     }
@@ -141,8 +111,12 @@ public class Classroom {
         return sb.toString();
     }
 
-    //
-    public String getLetterGrade(double grade) {
+    /**
+     * Give students the grade they earn (assuming test fairness)
+     * @param grade the final grade to be assigned a letter
+     * @return the letter grade
+     */
+    private String getLetterGrade(double grade) {
         if (grade >= 90)
             return "A";
         else if (grade >= 80)

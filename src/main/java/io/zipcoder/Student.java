@@ -50,15 +50,26 @@ public class Student implements Comparable<Student> {
         return Math.round(sum / examScores.size());
     }
 
+    /**
+     * compare lexicographically by last name;
+     */
     private int compareByLastName(Student o) {
         return this.getLastName().compareTo(o.getLastName());
     }
 
+    /**
+     * compare lexicographically by first name, if first names
+     * are the same, use last name...
+     */
     private int compareByFirstName(Student o) {
         int r = this.getFirstName().compareTo(o.getFirstName());
         return (r == 0) ? compareByLastName(o) : r;
     }
 
+    /**
+     * first use Double.compareTo on averageScore, if equal scores,
+     * compare lexicographically by first name...
+     */
     @Override
     public int compareTo(Student o) {
         int r = Double.compare(this.getAverage(), o.getAverage());
