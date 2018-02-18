@@ -31,10 +31,6 @@ public class Student implements Comparable<Student> {
         return examScores;
     }
 
-    public int numberOfExamsTaken() {
-        return examScores.size();
-    }
-
     public void takeExam(double score) {
         examScores.add(score);
     }
@@ -46,11 +42,6 @@ public class Student implements Comparable<Student> {
             examScores.set(examNumber - 1, newScore);
     }
 
-    /**
-     * Return the average for all of the exams that the student has taken.
-     * If they haven't taken any, be nice and give them 100.0.
-     * @return The average for all the exams a student has taken.
-     */
     public double getAverage() {
         double sum = 0.0;
         for (double d : examScores) {

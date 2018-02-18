@@ -79,19 +79,6 @@ public class Classroom {
         return Math.round(sum / students.size());
     }
 
-    /**
-     * Return a string of student names and their averages, like.
-     * <p>
-     * Students:
-     * Bart Simpson -> 72.4
-     * Homer Simpson -> 0.1
-     * Lisa Simpson -> 100.0
-     * Milhouse Van Houten -> 87.6
-     * <p>
-     * If there are no students in the array, return No Students.
-     *
-     * @return
-     */
     public String getStudentsByScore() {
         StringBuilder sb = new StringBuilder();
 
@@ -127,13 +114,44 @@ public class Classroom {
      *
      * @return
      */
+
+    /**
+     * A bell curve is a natural distribution pattern, not a method of grading. Think about
+     * what would happen if a class of ten students all scored within 10 points of a perfect
+     * score on a 100 point test, each having a unique score. Forcing this class into a bell
+     * curve would mean the student that scored a 100% has an A and the student that
+     * scored a 90% has been labeled a 'failure' and effectively disenfranchised for
+     * retaining 90% of the tested material. Unacceptable.
+     * - v
+     */
     public String gradeClass() {
         StringBuilder sb = new StringBuilder();
-        //sort, reverse students
-        // foreach {
-        //  get ratio to 100
-            //apply to everyone else
-            //assign letter grade
+
+        Collections.sort(students);
+        Collections.reverse(students);
+        double ratio = 100 / students.get(0).getAverage();
+        sb.append("    Student    Curved Grade\n---------------------------\n");
+        for (Student s : students) {
+            sb.append(String.format("%8s %-8s %5.1f %2s\n",
+                    s.getFirstName(),
+                    s.getLastName(),
+                    (ratio * s.getAverage()),
+                    getLetterGrade(ratio * s.getAverage())));
+        }
         return sb.toString();
+    }
+
+    //
+    public String getLetterGrade(double grade) {
+        if (grade >= 90)
+            return "A";
+        else if (grade >= 80)
+            return "B";
+        else if (grade >= 70)
+            return "C";
+        else if (grade >= 60)
+            return "D";
+
+        return "F";
     }
 }

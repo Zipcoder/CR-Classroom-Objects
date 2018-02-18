@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 public class ClassroomTest {
     private volatile Classroom classroom;
 
@@ -115,9 +113,14 @@ public class ClassroomTest {
 
     @Test
     public void testGradeClass() {
-        String expected = "";
+        String expected = "    Student    Curved Grade\n" +
+                "---------------------------\n" +
+                " William Riker    100.0  A\n" +
+                " Leonard Nimoy     92.1  A\n" +
+                " William Shatner   86.5  B\n" +
+                "DeForest Kelly     44.9  F\n";
         String actual = classroom.gradeClass();
-        System.out.println(actual);
+
         Assert.assertEquals(expected, actual);
     }
 }
