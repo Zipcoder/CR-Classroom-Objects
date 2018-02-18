@@ -5,19 +5,26 @@ public class Classroom {
     // Helper fields
     private int studentsEnrolled;
     private int maxStudents;
+    private int numOfExams = 3;
+
+    public Classroom(Student[] students, int studentsEnrolled, int maxStudents) {
+        this.students = students;
+        this.studentsEnrolled = studentsEnrolled;
+        this.maxStudents = maxStudents;
+    }
 
     /**
      * Empty constructor.  You get to decide what max students should default to.
      */
-    public Classroom() {
-
-    }
 
     /**
      * Constructor where the caller defines wht maxStudents is.
      * @param maxStudents
      */
     public Classroom(int maxStudents) {
+        for(int i = maxStudents; i<= maxStudents; i++){
+            Student student = new Student("Billy", "Bob", new int[3]);
+        }
 
     }
 

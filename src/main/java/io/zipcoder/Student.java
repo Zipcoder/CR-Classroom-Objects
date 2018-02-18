@@ -1,59 +1,38 @@
 package io.zipcoder;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Student {
     private String firstName;
     private String lastName;
-    private int[] testScores;
-    // These are helper methods to assist us with array operations.
-    private int totalExams;
+    private ArrayList<Double> testScores;
     private int examsTaken;
-
+// These are helper methods to assist us with array operations.
     /**
      * Constructor for a student with just their first and last name.
      * You must make a default amount of tests here.
      * @param firstName
      * @param lastName
      */
-    public Student(String firstName, String lastName) {
-
+    //my student constructor
+    //this creates a student object that will be inserted into the class array
+    public Student(String firstName, String lastName, ArrayList<Double> testScores) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.testScores = testScores;
+    }
+    //returning the test scores of the student
+    public ArrayList<Double> getTestScores(Student student) {
+        return this.testScores;
     }
 
-    /**
-     * How we're going to construct our students when we know how many tests they're going to take
-     * @param firstName
-     * @param lastName
-     * @param totalExams
-     */
-    public Student(String firstName, String lastName, int totalExams) {
-
+    public String getFirstName(Student student) {
+        return this.firstName;
     }
 
-    public String getFirstName() {
-        return null;
-    }
-
-    public void setFirstName(String firstName) {
-
-    }
-
-    public String getLastName() {
-        return null;
-    }
-
-    public void setLastName(String lastName) {
-
-    }
-
-    public int getTotalExams() {
-        return 0;
-    }
-
-    public void setTotalExams(int totalExams) {
-
-    }
-
-    public int getExamsTaken() {
-        return 0;
+    public String getLastName(Student student) {
+        return this.lastName;
     }
 
 
@@ -66,9 +45,16 @@ public class Student {
      * Test 3 -> 54
      * @return The test scores in a nice string representation.
      */
-    public String printExamScores() {
-        return null;
+    //printing the scores of the student and verifying if a test was taken at all
+    public void printExamScores(Student student) {
+        if (student.testScores.equals(0)) {
+            System.out.println("No tests taken");
+        }
+            else {
+            System.out.println(student.testScores);
+        }
     }
+
 
     /**
      * This function should add the grade in the correct position in the testScores array.
@@ -78,8 +64,23 @@ public class Student {
      * @param score
      * @return A boolean based on if the operation worked or not.
      */
-    public boolean takeExam(int score) {
-        return false;
+
+    public int takeExam(Student student, int score, int examNum) {
+        int grade = 0;
+        if (examNum > 2) {
+        System.out.println("This exam is not valid");
+        }
+        else if (score < 0 || score > 100){
+            System.out.println("This score is invalid");
+        }
+        else {
+            grade = student.testScores.indexOf(examNum);
+            grade = score;
+        }
+        return grade;
+//        int examScore = student.testScores.indexOf(examNum);
+//        //exam score will equal the index of the exam number
+//        return examScore;
     }
 
     /**
@@ -90,8 +91,17 @@ public class Student {
      * @param newScore What we want to change it to.
      * @return A boolean based on if the operation worked or not.
      */
-    public boolean changeScoreForExam(int examNum, int newScore){
-        return false;
+    public int changeScoreForExam(Student student, int examNum, int newScore){
+        int grade = 0;
+        if (examNum > 2) {
+            System.out.println("This exam is not valid");
+        }
+        else if (newScore < 0 || newScore > 100){
+
+            System.out.println("This score is invalid");
+        }
+        int grade = student.testScores.indexOf(examNum);
+        return grade;
     }
 
     /**
@@ -99,7 +109,11 @@ public class Student {
      * If they haven't taken any, be nice and give them 100.0.
      * @return The average for all the exams a student has taken.
      */
-    public double getAverage() {
-        return 100.0;
+    public double getAverage(Student student) {
+        int x = 0;
+        for(int i = 0; i <= this.testScores.size(); i++){
+           x += i;
+        }
+        return x / this.testScores.size();
     }
 }
