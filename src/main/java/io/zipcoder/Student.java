@@ -9,7 +9,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private Double[] testScores;
-    private ArrayList<Double> examScores;
+    public ArrayList<Double> examScores;
 
 
     public Student(String firstName, String lastName, Double[] testScores){
