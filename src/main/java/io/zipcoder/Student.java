@@ -2,6 +2,7 @@ package io.zipcoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Formatter;
 
 public class Student {
 
@@ -41,13 +42,54 @@ public class Student {
     }
 
     public int getNumberofExamsTaken() {
-        //.size returns number of elements in an array
+        //.size returns number of elements in an arraylist
         return examScores.size();
     }
 
 
+    public String getExamScores() {
+    //take an array list and transform it into a string
+        StringBuilder listScores = new StringBuilder();
+        Formatter prettyPrint = new Formatter(listScores);
+        // Append all doubles in StringBuilder to the StringBuilder.
+        for(Double studentScore : this.examScores){
+            prettyPrint.format("Exam %d: %.2f%n", (this.examScores.indexOf(studentScore))+1, studentScore);
+        }
+        //trim removes whitespace at end
+        return listScores.toString().trim();
+    }
+
+    public void addExamScore(double examScore) {
+        //add new test score to the list using .add method
+            this.examScores.add(examScore);
+
+    }
 
 
+    public void setExamScore(int examNum, double updateScore) {
+        //updates an existing score using index and .set method
+        this.examScores.set(examNum-1, updateScore);
+    }
+
+
+    public double getAverageExamScore() {
+        //Gets average of all exam Scores for a student
+        double sum = 0.00;
+        for(Double studentScore : this.examScores){
+            sum += studentScore;
+        }
+        return Math.round(sum/this.examScores.size());
+
+    }
+
+    @Override
+  public String toString(){
+         StringBuilder studentRecord = new StringBuilder();
+         Formatter prettyPrint = new Formatter(studentRecord);
+         prettyPrint.format("Student Name: %s %s%nAverage Score: %s%n%s%n",
+                 this.getFirstName(), this.getLastName(), this.getAverageExamScore(), this.getExamScores());
+
+        return studentRecord.toString().trim();
+         }
 }
-
 
