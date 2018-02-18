@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Created by Luis J. Romero on 2/16/2018
@@ -284,4 +285,56 @@ public class ClassroomTest {
         Assert.assertNull(this.classroom.getStudents()[3]);
     }
 
+    @Test
+    public void getStudentByAverageScorePositiveTest() {
+        // Given
+        String expectedFirstName0 = "Zack";
+        String expectedFirstName1 = "Joseph";
+        String expectedFirstName2 = "Ben";
+        String expectedFirstName3 = "Adam";
+
+        String expectedLastName0 = "Anderson";
+        String expectedLastName1 = "Benjamin";
+        String expectedLastName2 = "Charles";
+        String expectedLastName3 = "Denver";
+
+
+        Double[] expectedDoubleArray0 = { 2.0, 2.0, 2.0 };
+        Double[] expectedDoubleArray1 = { 1.0, 1.0, 1.0 };
+        Double[] expectedDoubleArray2 = { 2.0, 2.0, 2.0 };
+        Double[] expectedDoubleArray3 = { 0.0, 0.0, 0.0 };
+
+        Student[] expectedStudentsArray = { new Student(expectedFirstName0, expectedLastName0, expectedDoubleArray0),
+                                            new Student(expectedFirstName1, expectedLastName1, expectedDoubleArray1),
+                                            new Student(expectedFirstName2, expectedLastName2, expectedDoubleArray2),
+                                            new Student(expectedFirstName3, expectedLastName3, expectedDoubleArray3) };
+
+        this.classroom = new Classroom(expectedStudentsArray);
+//        System.out.println("original array: ");
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+//        System.out.println("+++++++++++++++++++++");
+
+        // After calling getStudentsByAverageScore
+        this.classroom.getStudentsbyAverageScore();
+//        System.out.println("sorted new Comparator: ");
+//        System.out.println(Arrays.toString(this.classroom.getStudents()));
+
+        // When
+        String actualFirstElementFirstName = this.classroom.getStudentsbyAverageScore()[0].getFirstName();
+        String actualSecondElementFirstName = this.classroom.getStudentsbyAverageScore()[1].getFirstName();
+        String actualThirdElementFirstName = this.classroom.getStudentsbyAverageScore()[2].getFirstName();
+        String actualFourthElementFirstName = this.classroom.getStudentsbyAverageScore()[3].getFirstName();
+
+        // Then (in expected order, from first element to last element):
+//        String expectedFirstName2 = "Ben";
+//        String expectedFirstName0 = "Zack";
+//        String expectedFirstName1 = "Joseph";
+//        String expectedFirstName3 = "Adam";
+
+        Assert.assertEquals(expectedFirstName2, actualFirstElementFirstName);
+        Assert.assertEquals(expectedFirstName0, actualSecondElementFirstName);
+        Assert.assertEquals(expectedFirstName1, actualThirdElementFirstName);
+        Assert.assertEquals(expectedFirstName3, actualFourthElementFirstName);
+
+    }
 }

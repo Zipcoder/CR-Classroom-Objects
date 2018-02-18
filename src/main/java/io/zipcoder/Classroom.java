@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Classroom {
 
@@ -67,6 +68,25 @@ public class Classroom {
                 this.studentsArray[i] = null;
             }
         }
+    }
+
+    /**
+     * I understand that "ByScore" actually means "ByAverageScore" of each student
+     */
+    public Student[] getStudentsbyAverageScore() {
+
+        Arrays.sort(this.studentsArray, new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                if (o1.getStudentAverageExamScore() == o2.getStudentAverageExamScore()) {
+                    return o1.getFirstName().compareTo(o2.getFirstName()); // natural order
+                } else if (o1.getStudentAverageExamScore() > o2.getStudentAverageExamScore()) {
+                    return -1; // to get int from double values; descending average (o2... - o1...)
+                } else return 1;
+            }
+        });
+
+        return this.studentsArray;
     }
 
 

@@ -143,10 +143,10 @@ public class StudentTest {
         String expectedFirstName = "Bob";
         String expectedLastName = "Berkshire";
         String expectedExamScores = "Exam Scores:\n" +
-                                    " \tExam 1 -> 100\n" +
-                                    " \tExam 2 -> 95\n" +
-                                    " \tExam 3 -> 123\n" +
-                                    " \tExam 4 -> 96";
+                                    " \tExam 1 -> 100.0\n" +
+                                    " \tExam 2 -> 95.0\n" +
+                                    " \tExam 3 -> 123.0\n" +
+                                    " \tExam 4 -> 96.0";
         Double[] expectedDoubleArray = { 100.0, 95.0, 123.0, 96.0 };
         ArrayList<Double> expectedDoubleArrayList = new ArrayList<Double>(Arrays.asList(expectedDoubleArray));
         this.student = new Student(expectedFirstName, expectedLastName, expectedDoubleArray);
@@ -228,10 +228,10 @@ public class StudentTest {
         String expectedFinalToString = " Student Name: Bob Berkshire\n" +
                                        " > Average Score: 103.5\n" +
                                        " > Exam Scores:\n" +
-                                       " \tExam 1 -> 100\n" +
-                                       " \tExam 2 -> 95\n" +
-                                       " \tExam 3 -> 123\n" +
-                                       " \tExam 4 -> 96";
+                                       " \tExam 1 -> 100.0\n" +
+                                       " \tExam 2 -> 95.0\n" +
+                                       " \tExam 3 -> 123.0\n" +
+                                       " \tExam 4 -> 96.0";
 
         // When
         String actualFinalToString = this.student.toString();
