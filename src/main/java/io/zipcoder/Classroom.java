@@ -180,6 +180,11 @@ public class Classroom {
             }
         }
         //listSorter(inputArrayList);
+        sortInputArray(inputArray);
+
+    }
+
+    private void sortInputArray(Student[] inputArray) {
         Arrays.sort(inputArray, studentComparator);
         int index = 0;
         for (Student sortedStudent:inputArray) {
@@ -187,7 +192,6 @@ public class Classroom {
             System.out.println(sortedStudent.getFirstName());
             index++;
         }
-
     }
 
 //    private void listSorter(ArrayList<Student> inputArrayList) {
@@ -205,7 +209,7 @@ public class Classroom {
         public int compare(Student o1, Student o2) {
             double difference = o2.getAverage() - o1.getAverage();
             if (difference == 0.0){
-                difference = o2.getLastName().compareTo(o1.getLastName());
+                difference = o1.getLastName().compareTo(o2.getLastName());
             }
             return ((int) difference);
         }

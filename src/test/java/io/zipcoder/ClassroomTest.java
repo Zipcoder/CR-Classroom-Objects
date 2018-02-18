@@ -110,4 +110,22 @@ public class ClassroomTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void sortStudentsTieBreakTest(){
+        Double[] testscores1 = {100.0, 100.0, 100.0};
+        Double[] testscores2 = {80.0, 80.0, 80.0};
+        Double[] testscores3 = {80.0, 80.0, 80.0};
+        Double[] testscores4 = {70.0, 70.0, 70.0};
+        Student gary = new Student("gary", "gartin", testscores2);
+        Student mary = new Student("mary", "martin", testscores1);
+        Student steve = new Student("steve", "steve", testscores4);
+        Student susan = new Student("susan", "aaronson", testscores3);
+        Student[] temp = {mary, steve, gary, susan};
+        testRoom = new Classroom(temp);
+        Student[] expected = {mary, susan, gary, steve, null, null, null, null, null, null};
+        testRoom.sortStudentsByScore();
+        Student[] actual = testRoom.getStudents();
+        Assert.assertEquals(expected, actual);
+    }
+
 }
