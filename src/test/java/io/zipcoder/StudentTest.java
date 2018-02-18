@@ -5,10 +5,11 @@ import org.junit.Assert;
 
 
 public class StudentTest {
-public static Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76.00, 100.00});
+
+public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76.00, 100.00});
 
 
-    //getFirstName()
+
 
     @Test
     public void testGetFirstName() {
@@ -65,12 +66,20 @@ public static Student dummyStudent = new Student("John", "Smith",new Double[]{65
 
     }
 
-    
+    @Test
+    public void testGetNumberOfExamsTaken() {
+        // Given
+        Integer expected = 3;
 
-    //setFirstName()
+        // When
+        Student dummyStudent = new Student("John", "Smith", new Double[]{65.00, 75.00, 100.00});
 
-    //getLastName()
-    //setLastName()
+        // Then
+        Integer actual = dummyStudent.getNumberOfExamsTaken();
+        Assert.assertEquals(expected, actual);
+    }
+
+
 
     //getNumberOfExamsTaken
 

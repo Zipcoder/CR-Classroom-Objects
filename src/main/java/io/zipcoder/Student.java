@@ -7,7 +7,7 @@ public class Student {
     private String lastName;
     private ArrayList<Double> examScores;        //?
     private Double[] testScores;                 //?
-    private int numberOfExamsTaken;
+  //  private int numberOfExamsTaken = testScores.length;
 
 //Constructors
     public Student (){};
@@ -23,6 +23,7 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.testScores = testScores;
+       // this.numberOfExamsTaken = testScores.length;
     }
 
 
@@ -35,11 +36,11 @@ public class Student {
 
     public void setLastName(String lastName) {this.lastName = lastName;}
 
+    public Integer getNumberOfExamsTaken(){ return testScores.length;}
 
 
 
 
-    //getNumberOfExamsTaken
 
     //addExamScores(double examScore)  add this to the arraylist of examScores
 
