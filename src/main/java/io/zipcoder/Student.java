@@ -1,105 +1,79 @@
 package io.zipcoder;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Comparator;
+
 public class Student {
     private String firstName;
     private String lastName;
-    private int[] testScores;
-    // These are helper methods to assist us with array operations.
-    private int totalExams;
-    private int examsTaken;
+    private List<Double> testScores;
 
-    /**
-     * Constructor for a student with just their first and last name.
-     * You must make a default amount of tests here.
-     * @param firstName
-     * @param lastName
-     */
-    public Student(String firstName, String lastName) {
-
-    }
-
-    /**
-     * How we're going to construct our students when we know how many tests they're going to take
-     * @param firstName
-     * @param lastName
-     * @param totalExams
-     */
-    public Student(String firstName, String lastName, int totalExams) {
-
+    public Student(String firstName, String lastName, Double[] examScore) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.testScores = new LinkedList<>(Arrays.asList(examScore));
     }
 
     public String getFirstName() {
-        return null;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-
-    }
-
-    public int getTotalExams() {
-        return 0;
-    }
-
-    public void setTotalExams(int totalExams) {
-
+        this.lastName = lastName;
     }
 
     public int getExamsTaken() {
-        return 0;
+        return testScores.size();
     }
 
-
-    /**
-     * What we want here is a string that, if a student hasn't taken any tests, returns a `no tests taken` string.
-     * Otherwise, we want to return something kind of like:
-     * Test Scores:
-     * Test 1 -> 100
-     * Test 2 -> 89
-     * Test 3 -> 54
-     * @return The test scores in a nice string representation.
-     */
     public String printExamScores() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        DecimalFormat df = new DecimalFormat("###");
+        Object[] tempArray = testScores.toArray();
+        for (int i = 0; i < tempArray.length; i++) {
+            sb.append("Exam " + (i + 1) + " -> " + df.format(tempArray[i]) + "\n");
+        }
+        sb.setLength(sb.length() - 1);
+        return sb.toString();
     }
 
-    /**
-     * This function should add the grade in the correct position in the testScores array.
-     * Make sure the score is between 0 and 100, and that the student isn't taking more tests than they're supposed to.
-     * If there is a problem, print an error message and return false.
-     * Otherwise, return true and put the score in the right spot.
-     * @param score
-     * @return A boolean based on if the operation worked or not.
-     */
-    public boolean takeExam(int score) {
-        return false;
+    public void addExamScore(double score) {
+        this.testScores.add(score);
     }
 
-    /**
-     * Change the score for one of the students tests.
-     * Be aware that the new score must be between 0 and 100, and that they have already taken that test
-     * since it doesn't make sense to change the grade on an exam that they haven't taken it.
-     * @param examNum Which test the we want to change.
-     * @param newScore What we want to change it to.
-     * @return A boolean based on if the operation worked or not.
-     */
-    public boolean changeScoreForExam(int examNum, int newScore){
-        return false;
+    public void changeScoreForExam(int examNum, double newScore){
+        this.testScores.set(examNum, newScore);
     }
 
-    /**
-     * Return the average for all of the exams that the student has taken.
-     * If they haven't taken any, be nice and give them 100.0.
-     * @return The average for all the exams a student has taken.
-     */
     public double getAverage() {
-        return 100.0;
+        return (testScores.stream().mapToDouble(i -> i).sum())/testScores.size();
     }
+
+    @Override
+    public String toString() {
+        String formattedOutput = "Student Name: " + this.firstName + " " + this.lastName +
+                "\n> Average Score: " + new Double(this.getAverage()).intValue() +
+                "\n" + this.printExamScores();
+        return formattedOutput;
+    }
+
+    public static Comparator<Student> averageGradeComparator = new Comparator<Student>() {
+        public int compare(Student student1, Student student2) {
+            int firstAverage = new Double(student1.getAverage()).intValue();
+            int secondAverage = new Double(student2.getAverage()).intValue();
+            return secondAverage - firstAverage;
+        }
+    };
+
 }

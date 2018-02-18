@@ -1,112 +1,99 @@
 package io.zipcoder;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Classroom {
     private Student[] students;
     // Helper fields
     private int studentsEnrolled;
     private int maxStudents;
 
-    /**
-     * Empty constructor.  You get to decide what max students should default to.
-     */
     public Classroom() {
-
+        this(30);
     }
 
-    /**
-     * Constructor where the caller defines wht maxStudents is.
-     * @param maxStudents
-     */
     public Classroom(int maxStudents) {
-
+        this.students = new Student[maxStudents];
     }
 
-    /**
-     * Constructor that builds a class from an existing Student array.
-     * @param students
-     */
     public Classroom(Student[] students) {
-
+        this.students = students;
     }
 
-    /**
-     * Adds a student to the class, and returns true.
-     * If you cannot add any more students, then return false and print an error statement.
-     * @param student
-     * @return
-     */
     public boolean addStudent(Student student) {
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] == null) {
+                students[i] = student;
+                return true;
+            }
+        }
         return false;
     }
 
-    /**
-     * Returns the student with the firstName and lastName, and removes them from the array.
-     * If there is no student, return null.
-     * NOTE: You're going to want to move some students around in the array so that there are no empty spaces in the
-     * middle.
-     * @param firstName
-     * @param lastName
-     * @return
-     */
     public Student removeStudent(String firstName, String lastName) {
+        for (int i = 0; i < students.length; i++) {
+            if ((students[i].getFirstName() == firstName) && (students[i].getLastName() == lastName)) {
+                Student studentToBeRemoved = students[i];
+                students[i] = null;
+                return studentToBeRemoved;
+            }
+        }
         return null;
     }
 
-    /**
-     * Return the average score of all of the student's average scores.
-     */
     public double getClassAverage(){
-        return 100.0;
+        DecimalFormat decimalFormat = new DecimalFormat("###.#");
+        double sumOfAllAverages = 0;
+        int count = 0;
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] != null) {
+                sumOfAllAverages += students[i].getAverage();
+                count++;
+            }
+        }
+        return Double.parseDouble(decimalFormat.format(sumOfAllAverages/count));
     }
 
-    /**
-     * Return a string of student names and their averages, like.
-     *
-     * Students:
-     * Bart Simpson -> 72.4
-     * Homer Simpson -> 0.1
-     * Lisa Simpson -> 100.0
-     * Milhouse Van Houten -> 87.6
-     *
-     * If there are no students in the array, return No Students.
-     *
-     * @return
-     */
-    public String getClassScores(){
-        return null;
+    public String listStudentsByScore() {
+        ArrayList<Student> noEmptySpaces = new ArrayList<>();
+        for (int i = 0; i < this.students.length; i++) {
+            if (this.students[i] != null) {
+                noEmptySpaces.add(this.students[i]);
+            }
+        }
+        Collections.sort(noEmptySpaces, Student.averageGradeComparator.thenComparing(Student::getLastName));
+        return noEmptySpaces.toString();
     }
 
-    /**
-     * Sorts the Students array from highest average to lowest, and ties are broken alphabetically.
-     */
-    public void sortStudentsByScore() {
-
+    public ArrayList<Student> getOrderedStudentsAsList() {
+        ArrayList<Student> noEmptySpaces = new ArrayList<>();
+        for (int i = 0; i < this.students.length; i++) {
+            if (this.students[i] != null) {
+                noEmptySpaces.add(this.students[i]);
+            }
+        }
+        Collections.sort(noEmptySpaces, Student.averageGradeComparator.thenComparing(Student::getLastName));
+        return noEmptySpaces;
     }
 
-    /**
-     * CHALLENGE METHOD: Don't stress on this.  It's just a little something to challenge you.
-     * Must return a string like in `getClassScore`, except it should look like this:
-     * Grades:
-     * Lisa Simpson -> A
-     * Milhouse Van Houten -> B
-     * Bart Simpson -> C
-     * Homer Simpson -> F
-     *
-     * And if there are no student's, just return No students.
-     *
-     * The way the grading is done is by a bell curve where, ideally, the grades should be distributed like this:
-     * 10% get A
-     * 25% get B
-     * 30% get C
-     * 25% get D
-     * 10% get F
-     *
-     * Don't stress too much on the grading, but show that you can separate students into those
-     * sections and then print that out.
-     *
-     * @return
-     */
     public String gradeClass() {
-        return null;
+        ArrayList<Student> OrderedListOfStudents = this.getOrderedStudentsAsList();
+        StringBuilder gradedStudents = new StringBuilder();
+        for (int index = 0; index < OrderedListOfStudents.size(); index++) {
+            if ((int) Math.ceil(OrderedListOfStudents.size() * .1) >= index + 1) {
+                gradedStudents.append(OrderedListOfStudents.get(index).getFirstName() + " " + OrderedListOfStudents.get(index).getLastName() + " : A\n");
+            } else if ((int) Math.ceil(OrderedListOfStudents.size() * .29) >= index + 1) {
+                gradedStudents.append(OrderedListOfStudents.get(index).getFirstName() + " " + OrderedListOfStudents.get(index).getLastName() + " : B\n");
+            } else if ((int) Math.ceil(OrderedListOfStudents.size() * .5) >= index + 1) {
+                gradedStudents.append(OrderedListOfStudents.get(index).getFirstName() + " " + OrderedListOfStudents.get(index).getLastName() + " : C\n");
+            } else if ((int) Math.ceil(OrderedListOfStudents.size() * .89) >= index + 1) {
+                gradedStudents.append(OrderedListOfStudents.get(index).getFirstName() + " " + OrderedListOfStudents.get(index).getLastName() + " : D\n");
+            } else if ((int) Math.ceil(OrderedListOfStudents.size() * .89) <= index + 1){
+                gradedStudents.append(OrderedListOfStudents.get(index).getFirstName() + " " +OrderedListOfStudents.get(index).getLastName() + " : F\n");
+            }
+        }
+        return gradedStudents.toString();
     }
 }
