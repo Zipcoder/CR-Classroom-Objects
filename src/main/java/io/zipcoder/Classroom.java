@@ -75,7 +75,7 @@ public class Classroom {
         double d = (.9*sortedArray.length)-1;
 
         for (int i =0; i <sortedArray.length; i++) {
-            
+
         }
         return letterGradeSort;
     }
