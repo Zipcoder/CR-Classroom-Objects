@@ -38,12 +38,39 @@ public class Classroom {
     }
 
     public void addStudent(Student student) {
-
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] == null) {
+                students[i] = student;
+                break;
+            }
+        }
 
     }
 
-    public String removeStudent(String firstName, String lastName) {
-        return null;
+    public void removeStudent(String firstName, String lastName) {
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].getFirstName().equals(firstName) && students[i].getLastName().equals(lastName)) {
+                students[i] = null;
+                break;
+            }
+        }
+
+    }
+
+    public void sortArrayWithNullValuesToEnd() {
+
+        Student[] tempStudentArray = Arrays.copyOf(this.students, this.students.length);
+
+        int remaining = 0;
+         for (int i = 0; i < this.students.length; i++) {
+           if (this.students[i] != null) {
+            tempStudentArray[remaining] = this.students[i];
+            remaining++;
+            }
+         }
+            tempStudentArray[tempStudentArray.length - 1] = null;
+            this.students = tempStudentArray;
+
     }
 
     public String getStudentsByScore() {

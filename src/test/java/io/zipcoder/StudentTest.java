@@ -128,7 +128,7 @@ public class StudentTest {
     public void toStringTest() {
         // Given
         //Student student = new Student();
-        String expected = "Student Name: Luke Williams\n> Average Score: 94.0\n> Exam Scores:\n\tExam 1 -> 89.5\n\tExam 2 -> 100.0\n\tExam 3 -> 93.5";
+        String expected = "Student Name: Luke Williams\n> Average Score: 94.0\n> Exam Scores:\n\tExam 1 -> 89.5\n\tExam 2 -> 100.0\n\tExam 3 -> 93.5\n";
 
         // When
         //student.addExamScore(expected);

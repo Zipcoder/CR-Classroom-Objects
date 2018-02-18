@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -89,24 +90,43 @@ public class ClassroomTestTest {
         Assert.assertEquals(expected, actual,.1);
    }
 
+    @Test
+    public void addStudentTest() {
+        int maxNumberOfStudents = 1;
+        Classroom testClassroom = new Classroom(maxNumberOfStudents);
+        Double[] testScores = {98.0, 54.0, 40.0};
+        Student student1 = new Student("Clark", "Smith", testScores);
 
-//    @Test
-//
-//    public void getStudentTest() {
-//        Double[] testScores = {98.0, 54.0, 40.0};
-//        Student student1 = new Student("Clark", "Griswald", testScores);
-//
-//        Student[] testStudents = {student1};
-//        Classroom testClassroom = new Classroom(testStudents);
-//
-//        String expected = "[Student Name: Clark Griswald\n> Average Score: 84.0\n> Exam Scores:\n\tExam 1 -> 98.0\n\tExam 2 -> 54.0\n\tExam 3 -> 100.0]";
-//        String actual = testClassroom.getStudents();
-//
-//        Assert.assertEquals(expected, actual);
-//
-//    }
+        testClassroom.addStudent(student1);
 
+        String expected = "[Student Name: Clark Smith\n> Average Score: 64.0\n> Exam Scores:\n\tExam 1 -> 98.0\n\tExam 2 -> 54.0\n\tExam 3 -> 40.0]";
+        String actual = Arrays.toString(testClassroom.getStudents());
+        Assert.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void removeStudentTest() {
+
+        Classroom testClassroom = new Classroom(2);
+        Double[] testScores = {98.0, 54.0, 40.0};
+        Student student1 = new Student("Clark", "Smith", testScores);
+        Double[] testScores2 = {98.0, 54.0, 40.0};
+        Student student2 = new Student("Rusty", "Smith", testScores);
+        testClassroom.addStudent(student1);
+        testClassroom.addStudent(student2);
+        testClassroom.removeStudent("Clark", "Smith");
+        testClassroom.sortArrayWithNullValuesToEnd();
+
+
+        String expected = "[Student Name: Rusty Smith\n> Average Score: 64.0\n> Exam Scores:\n\tExam 1 -> 98.0\n\tExam 2 -> 54.0\n\tExam 3 -> 40.0\n" + ", null]";
+        String actual = Arrays.toString(testClassroom.getStudents());
+        Assert.assertEquals(expected, actual);
+    }
 
 
 
 }
+
+
+

@@ -58,6 +58,7 @@ public class Student {
     }
 
     public void addExamScore(Double examScore){
+
         examScores.add(examScore);
     }
 
@@ -79,7 +80,7 @@ public class Student {
         StringBuilder studentFile = new StringBuilder();
         studentFile.append("Student Name: " + getFirstName() + " " + getLastName() +"\n");
         studentFile.append("> Average Score: " + getAverageExamScore() + "\n");
-        studentFile.append("> " + getExamScores());
+        studentFile.append("> " + getExamScores() + "\n");
         return studentFile.toString();
     }
 
