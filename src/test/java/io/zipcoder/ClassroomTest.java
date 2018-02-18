@@ -104,6 +104,29 @@ public class ClassroomTest {
     }
 
     @Test
+    public void addStudentTest2(){
+        //Given
+        Classroom toBeAddedTo = new Classroom(1);
+        Student lazyLeon = new Student("Lazy", "Leon", new Double[]{0.0, 50.0, 100.0});
+
+
+
+        //When
+        toBeAddedTo.addStudent(lazyLeon);
+        String expected =
+                "[Student Name: Lazy Leon\n"+
+                        "Average Score = 50.0\n"+
+                        "Exam Scores:\n"+
+                        "\tExam 1 => 0\n" +
+                        "\tExam 2 => 50\n" +
+                        "\tExam 3 => 100\n]";
+        String actual = Arrays.toString(toBeAddedTo.getStudents());
+
+        //Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void removeStudentTest(){
         //Given
         //Classroom test
@@ -219,8 +242,132 @@ public class ClassroomTest {
     }
 
     @Test
-    public void reverseSortTest(){
+    public void calculatePercentileThresholdTest(){
         //Given
+        double [] testValues = {99,99,98,96,95,93,89,88,87,85,79,78,77,72,71,70,69,69,68,66,62,61,56,54,43};
+
+        //When
+        double percentile = .9;
+        double expectedThreshold = 98;
+        double actualThreshold = Classroom.calculatePercentileThreshold(testValues, .9);
+
+        //Then
+        Assert.assertEquals(expectedThreshold, actualThreshold, 0.01);
+
+    }
+
+    @Test
+    public void calculatePercentileThresholdTest2(){
+        //Given
+        double [] testValues = {99,99,98,96,95,93,89,88,87,85,79,78,77,72,71,70,69,69,68,66,62,61,56,54,43};
+
+        //When
+        double percentile = .2;
+        double expectedThreshold = 64;
+        double actualThreshold = Classroom.calculatePercentileThreshold(testValues, .2);
+
+        //Then
+        Assert.assertEquals(expectedThreshold, actualThreshold, 0.01);
+
+    }
+
+    @Test
+    public void getAllAveragesTest(){
+        //Given
+        //Classroom test
+
+        //When
+        double[] expected = {59,97,83,67,100};
+        double[] actual = test.getAllAverages();
+
+        //Then
+        Assert.assertTrue(Arrays.equals(expected,actual));
+    }
+
+    @Test
+    public void containsANullTest(){
+        //Given
+        Classroom nullTest = new Classroom();
+
+        //When
+        boolean expected = true;
+        boolean actual = nullTest.containsANull();
+
+        //Then
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
+    public void containsANullTest2(){
+        //Given
+        //Classroom test
+
+        //When
+        boolean expected = false;
+        boolean actual = test.containsANull();
+
+        //Then
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
+    public void getGradeBookTest(){
+        //Given
+        //Classroom test
+        Student noName55 = new Student("No", "Name55", new Double[]{55.0});
+        Student noName50 = new Student("No", "Name50", new Double[]{50.0});
+        Student noName49 = new Student("No", "Name49", new Double[]{49.0});
+        Student noName45 = new Student("No", "Name45", new Double[]{45.0});
+        Student noName25 = new Student("No", "Name25", new Double[]{25.0});
+        test.addStudent(noName55);
+        test.addStudent(noName50);
+        test.addStudent(noName49);
+        test.addStudent(noName45);
+        test.addStudent(noName25);
+
+
+        //When
+        String expected =
+                "Terrible Tariq : A\n"+
+                        "Smelly Peter : B\n"+
+                        "Sugary Sam : B\n"+
+                        "Juicy Joe : C\n"+
+                        "Stinky Pete : C\n"+
+                        "No Name55 : D\n"+
+                        "No Name50 : D\n"+
+                        "No Name49 : D\n"+
+                        "No Name45 : D\n"+
+                        "No Name25 : F\n";
+
+        String actual = test.getGradeBook();
+
+        //Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void getLetterGradeTest(){
+        //Given
+        //Classroom test
+        Student noName55 = new Student("No", "Name55", new Double[]{55.0});
+        Student noName50 = new Student("No", "Name50", new Double[]{50.0});
+        Student noName49 = new Student("No", "Name49", new Double[]{49.0});
+        Student noName45 = new Student("No", "Name45", new Double[]{45.0});
+        Student noName25 = new Student("No", "Name25", new Double[]{25.0});
+        test.addStudent(noName55);
+        test.addStudent(noName50);
+        test.addStudent(noName49);
+        test.addStudent(noName45);
+        test.addStudent(noName25);
+
+        //When
+        char expected = 'C';
+        char actual = test.getLetterGrade(juicyJoe);
+
+        //Then
+        Assert.assertEquals(expected,actual);
 
     }
 

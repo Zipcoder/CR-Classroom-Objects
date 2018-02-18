@@ -35,8 +35,18 @@ public class Classroom {
     }
 
     public void addStudent(Student newStudent) {
-        this.students = Arrays.copyOf(this.students, this.students.length + 1);
-        this.students[students.length - 1] = newStudent;
+        if(this.containsANull()){
+            for(int i = 0; i < this.students.length; i++){
+                if(this.students[i] == null){
+                    this.students[i] = newStudent;
+                    break;
+                }
+            }
+        }
+        else{
+            this.students = Arrays.copyOf(this.students, this.students.length + 1);
+            this.students[students.length - 1] = newStudent;
+        }
     }
 
     public void removeStudent(String firstName, String lastName) {
@@ -52,8 +62,23 @@ public class Classroom {
         return this.students;
     }
 
-    public Student[] getGradeBook() {
-        return null;
+    public String getGradeBook() {
+        Arrays.sort(this.students, byAverageScoreThenByName);
+        StringBuilder builder = new StringBuilder();
+        for(Student s : this.students){
+            builder.append(s.getFirstName() + " " + s.getLastName() + " : " + this.getLetterGrade(s) + "\n");
+        }
+
+        return builder.toString();
+    }
+
+    public boolean containsANull(){
+        for(Student s : this.students){
+            if(s == null){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Student identifyStudent(String firstName, String lastName) {
@@ -75,7 +100,7 @@ public class Classroom {
     }
 
     public void moveNullToEnd() {
-        Student[] temp = Arrays.copyOf(this.students, this.students.length);
+        Student[] temp = new Student[this.students.length];
         int counter = 0;
         for (int i = 0; i < this.students.length; i++) {
             if (this.students[i] != null) {
@@ -86,6 +111,63 @@ public class Classroom {
         temp[temp.length - 1] = null;
         this.students = temp;
     }
+
+    public static double calculatePercentileThreshold(double [] values, double percentile){
+        if(percentile * values.length == (int) (percentile*values.length) ){
+            int index = (int) (percentile * values.length);
+            return (values[values.length-index] + values[values.length-(index+1)])/2;
+        }
+
+        int index = (int) Math.ceil(percentile * values.length);
+        return values[values.length-index];
+    }
+
+    public char getLetterGrade(Student student){
+        Arrays.sort(this.students, byAverageScoreThenByName);
+        double[] allAverages = this.getAllAverages();
+        if(student.getAverageExamScore()>= calculatePercentileThreshold(allAverages,.9)){
+            return 'A';
+        }
+        else if(student.getAverageExamScore()>= calculatePercentileThreshold(allAverages,.71)){
+            return 'B';
+        }
+        else if(student.getAverageExamScore()>= calculatePercentileThreshold(allAverages,.5)){
+            return 'C';
+        }
+        else if(student.getAverageExamScore()>= calculatePercentileThreshold(allAverages,.11)){
+            return 'D';
+        }
+        else{
+            return 'F';
+        }
+    }
+
+    public double[] getAllAverages(){
+        double[] output = new double[this.students.length];
+        for(int i = 0; i < this.students.length; i++){
+            output[i] = this.students[i].getAverageExamScore();
+        }
+        return output;
+    }
+
+    public static Comparator<Student> byAverageScoreThenByName = new Comparator<Student>() {
+
+        @Override
+        public int compare(Student s1, Student s2){
+            if (s1.getAverageExamScore() < s2.getAverageExamScore()) {
+                return 1;
+            }
+            else if (s1.getAverageExamScore() > s2.getAverageExamScore()) {
+                return -1;
+            }
+            else {
+                if(s1.getLastName().equals(s2.getLastName())){
+                    return sortByFirstName(s1,s2);
+                }
+                return sortByLastName(s1,s2);
+            }
+        }
+    };
 
     public static int sortByFirstName (Student s1, Student s2){
         int longerFirstName = s1.getFirstName().length() >= s2.getFirstName().length() ?
@@ -112,25 +194,6 @@ public class Classroom {
         }
         return 0;
     }
-
-    public static Comparator<Student> byAverageScoreThenByName = new Comparator<Student>() {
-
-        @Override
-        public int compare(Student s1, Student s2){
-            if (s1.getAverageExamScore() < s2.getAverageExamScore()) {
-                return 1;
-            }
-            else if (s1.getAverageExamScore() > s2.getAverageExamScore()) {
-                return -1;
-            }
-            else {
-                if(s1.getLastName().equals(s2.getLastName())){
-                    return sortByFirstName(s1,s2);
-                }
-                return sortByLastName(s1,s2);
-            }
-        }
-    };
 }
 
 
