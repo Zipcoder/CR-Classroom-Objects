@@ -11,14 +11,12 @@ public class Student {
     private Double[] testScores;
     public ArrayList<Double> examScores;
 
-
     public Student(String firstName, String lastName, Double[] testScores){
         this.firstName = firstName;
         this.lastName = lastName;
         this.testScores = testScores;
         this.examScores = new ArrayList();
         this.examScores.addAll(Arrays.asList(testScores));
-
     }
 
     public String getFirstName() {
@@ -58,7 +56,6 @@ public class Student {
         this.examScores.add(score);
     }
 
-
     public void setExamScore(int examNumber, double newScore){
         int indexOfExam = examNumber - 1;
         this.examScores.set(indexOfExam, newScore);
@@ -72,9 +69,7 @@ public class Student {
         }
 
         double tempAverageExamScore = examsTotalSum / this.examScores.size();
-
         String averageExamScore = df.format(tempAverageExamScore);
-
         return averageExamScore;
     }
 
@@ -83,9 +78,6 @@ public class Student {
         String studentAverageAndScores="Student Name: " + getFirstName() + " " + getLastName() + "\n" +
                 "> Average Score: " + getAverageExamScore() + "\n" + "> Exam Scores:\n" + getExamScores();
 
-        //for(int i = 0; i < this.examScores.size(); i++) {
-       //     listExamScores += "Exam " + count++ + " -> " + examScores.get(i) + "\n";
-        //}
         return studentAverageAndScores;
     }
 

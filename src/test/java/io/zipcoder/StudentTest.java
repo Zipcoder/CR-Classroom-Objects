@@ -44,6 +44,7 @@ public class StudentTest {
         // Then
         Assert.assertEquals(expectedDoubleLength, actualDoubleLength);
     }
+
     @Test
     public void getExamScoresTest(){
         // Given
@@ -59,6 +60,7 @@ public class StudentTest {
         // Then
         Assert.assertEquals(expectedGetExamScores, actualGetExamScores);
     }
+
     @Test
     public void addExamScoreTest() {
         // Given
@@ -68,16 +70,13 @@ public class StudentTest {
         Student student = new Student(expectedFirstName, expectedLastName, expectedDouble);
 
         // When
-
         student.addExamScore(50.0);
         System.out.println(student.getExamScores());
         String actualAddExamScore = student.getExamScores();
         String expectedAddExamScore = "Exam 1 -> 44.5\nExam 2 -> 50.0";
 
-
         // Then
         Assert.assertEquals(expectedAddExamScore, actualAddExamScore);
-
     }
 
     @Test
@@ -127,9 +126,8 @@ public class StudentTest {
 
         // Then
         Assert.assertEquals(expectedToStringTest, actualToStringTest);
-
-
         }
+
     }
 
 

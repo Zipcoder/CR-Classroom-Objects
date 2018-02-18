@@ -27,9 +27,8 @@ public class ClassroomTest {
         // Then
         System.out.println(classroom.getAverageExamScore());
         Assert.assertEquals(actualAverageExamScore, expectedAverageExamScore, 0.1);
-
-
     }
+
     @Test
     public void addStudentTest() {
         // : Given
@@ -67,6 +66,28 @@ public class ClassroomTest {
         // Then
         //System.out.println(classroom.getStudent(0));
         Assert.assertEquals(expectedRemoveStudent, actualRemoveStudent);
+    }
+
+    @Test
+    public void getStudentByScoreTest(){
+        // : Given
+        Double[] examScores1 = {100.0, 150.0, 250.0};
+        Double[] examScores2 ={100.0, 50.0, 25.0};
+        Student student1 = new Student("Tom", "Fantana", examScores1);
+        Student student2 = new Student("Bob", "Smith", examScores2);
+        Student[] students={student1, student2};
+        Classroom classroom=new Classroom(students);
+
+        // When
+
+        Student [] expectedArray ={student1, student2};
+        Student[] actualArray = classroom.getStudentsByScore();
+
+        // Then
+
+        Assert.assertEquals(expectedArray, actualArray);
 
     }
+    
+
 }

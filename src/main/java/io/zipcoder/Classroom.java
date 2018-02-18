@@ -1,8 +1,7 @@
 package io.zipcoder;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Classroom {
 
@@ -23,7 +22,6 @@ public class Classroom {
 
 
     public Student[] getStudents(){
-
         return students;
     }
 
@@ -33,10 +31,9 @@ public class Classroom {
 
         for(int i = 0; i < students.length; i++){
             totalScore += Double.parseDouble(students[i].getAverageExamScore());
-
         }
-        averageScore = totalScore/students.length;
 
+        averageScore = totalScore/students.length;
         return averageScore;
     }
 
@@ -50,6 +47,7 @@ public class Classroom {
             studentList = new ArrayList<>(Arrays.asList(this.students));
             studentList.add(student);
         }
+
         this.students = studentList.toArray(this.students);
     }
 
@@ -64,10 +62,43 @@ public class Classroom {
         }
 
         this.students=studentList.toArray(this.students);
-
-
-
     }
+
+    public Student[] getStudentsByScore(){
+        TreeMap<Double, Student> studentsByAverageScore = new TreeMap<Double, Student>(Collections.reverseOrder());
+        ArrayList<Student> studentListByAverage;
+        studentListByAverage = new ArrayList<>();
+            for(Student student: this.students){
+                studentsByAverageScore.put(Double.parseDouble(student.getAverageExamScore()), student);
+            }
+        for(Map.Entry<Double,Student> entry : studentsByAverageScore.entrySet()) {
+            Student value = entry.getValue();
+
+            studentListByAverage.add(value);
+        }
+        this.students=studentListByAverage.toArray(this.students);
+
+            return this.students;
+    }
+
+//    public void TreeMap<String, Student> getGradeBook() {
+//        TreeMap<Double, Student> studentsByAverageScore = new TreeMap<Double, Student>(Collections.reverseOrder());
+//        ArrayList<Student> studentListByAverage;
+//        studentListByAverage = new ArrayList<>();
+//        for (Student student : this.students) {
+//            studentsByAverageScore.put(Double.parseDouble(student.getAverageExamScore()), student);
+//        }
+//        for (Map.Entry<Double, Student> entry : studentsByAverageScore.entrySet()) {
+//            Student value = entry.getValue();
+//
+//            studentListByAverage.add(value);
+//
+//
+//        }
+//
+//    }
+
+
 
 
 
