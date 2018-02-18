@@ -92,10 +92,9 @@ public class ClassroomTest {
 
         Classroom testClassroom = new Classroom(students);
 
-        for (Student student : students) {
-            boolean outcome = testClassroom.isStudentEnrolled(student1.getFullName());
-            Assert.assertTrue(outcome);
-        }
+        boolean outcome = testClassroom.isStudentEnrolled(student1.getFullName());
+        Assert.assertTrue(outcome);
+
     }
 
     @Test

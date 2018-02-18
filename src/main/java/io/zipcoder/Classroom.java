@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.text.Collator;
 import java.util.*;
 
 public class Classroom {
@@ -105,32 +106,23 @@ public class Classroom {
 
 
     public Student[] getStudentsByScore() {
-        TreeMap<Double, TreeMap<String, Student>> sortedStudentMap = new TreeMap<>(Collections.reverseOrder());
+        List<Student> studentsByScore = Arrays.asList(students);
 
-        for (Student student : students) {
-            double classAverage = student.getAverageExamScore();
+        Collections.sort(studentsByScore, (s1, s2) -> {
 
-            if (sortedStudentMap.containsKey(classAverage)) {
-                TreeMap<String, Student> studentWithSameClassAvg = sortedStudentMap.get(classAverage);
-                studentWithSameClassAvg.put(student.getFullName(), student);
-                sortedStudentMap.put(classAverage, studentWithSameClassAvg);
-            } else {
-                TreeMap<String, Student> studentWithUniqueScore = new TreeMap<>();
-                studentWithUniqueScore.put(student.getFullName(), student);
-                sortedStudentMap.put(classAverage, studentWithUniqueScore);
-            }
-        }
+                    if (s1.getAverageExamScore() > s2.getAverageExamScore()) {
+                        return -1;
+                    } else if (s1.getAverageExamScore() < s2.getAverageExamScore()) {
+                        return 1;
+                    } else {
+                        return s1.getFullName().compareTo(s2.getFullName());
+                    }
+                });
 
-        Student[] sortedResult = new Student[students.length];
-        int count = 0;
+        Student[] result = new Student[studentsByScore.size()];
+        result = studentsByScore.toArray(result);
 
-        for (TreeMap<String, Student> sameScoreMap : sortedStudentMap.values()) {
-            for (Student student : sameScoreMap.values()) {
-                sortedResult[count] = student;
-                count++;
-            }
-        }
-        return sortedResult;
+        return result;
     }
 
 
@@ -157,7 +149,7 @@ public class Classroom {
        HashMap<String, List<Student>> gradeBook = new HashMap<>();
 
        List<Student> aStudents = Arrays.asList(Arrays.copyOfRange(studentScores, 0, gradeA));
-        gradeBook.put("A", aStudents);
+       gradeBook.put("A", aStudents);
 
         List<Student> bStudents = Arrays.asList(Arrays.copyOfRange(studentScores, gradeA, gradeB));
         gradeBook.put("B", bStudents);

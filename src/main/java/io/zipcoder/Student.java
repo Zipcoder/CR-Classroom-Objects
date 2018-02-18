@@ -2,6 +2,7 @@ package io.zipcoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 public class Student {
@@ -91,13 +92,11 @@ public class Student {
         double sum = 0;
 
         if (!examScores.isEmpty()) {
-
             for (double score : examScores) {
                 sum += score;
             }
             averageScore = sum / examScores.size();
         }
-
         return averageScore;
     }
 
