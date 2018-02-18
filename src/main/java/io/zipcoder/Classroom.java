@@ -8,6 +8,7 @@ public class Classroom {
 
     private Student[] students;
 
+
     public Classroom(int maxNumberOfStudents){
 
         this.students = new Student[maxNumberOfStudents];
@@ -34,7 +35,6 @@ public class Classroom {
 
         for (Student student : this.students){
             total += student.getAverageExamScore();
-
         }
 
         return total / students.length;
@@ -55,24 +55,25 @@ public class Classroom {
         for(int i = 0; i < students.length; i++) {
             if (students[i].getFirstName().equals(firstName) && students[i].getFirstName().equals(firstName)) {
                 students[i] = null;
+                this.sortArrayAfterRemoveStudent();
                 break;
             }
         }
     }
 
     // Method called with removeStudentTest //
-    public void sortArrayIfNull(){
-        Student[] tempArray = Arrays.copyOf(this.students, this.students.length);
+    public void sortArrayAfterRemoveStudent(){
+        Student[] sortedStudents = Arrays.copyOf(this.students, this.students.length);
 
         int counter = 0;
         for(int i = 0; i < this.students.length; i++){
             if(students[i] != null){
-                tempArray[counter] = students[i];
+                sortedStudents[counter] = students[i];
                 counter++;
             }
         }
-        tempArray[students.length - 1] = null;
-        this.students = tempArray;
+        sortedStudents[students.length - 1] = null;
+        this.students = sortedStudents;
     }
 
     public String getStudentsByScore(){
