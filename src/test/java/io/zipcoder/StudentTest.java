@@ -9,14 +9,15 @@ import java.util.Arrays;
 public class StudentTest {
 
 
+    ArrayList<Double> examScores = new ArrayList<Double>();
+    Student student = new Student("Sarah","Blanding", examScores);
+
     @Test
     public void testConstructor() {
         //Given
         String expectedFirstName = "Sarah";
         String expectedLastName = "Blanding";
-        //When
-        ArrayList<Double> examScores = new ArrayList<Double>(Arrays.asList(150.0,200.0));
-        Student student = new Student("Sarah","Blanding", examScores);
+        examScores.add(200.0);
         //Then
         String actualFirstName = student.getFirstName();
         String actualLastName = student.getLastName();
@@ -27,71 +28,50 @@ public class StudentTest {
 
     @Test
     public void testGetFirstName() {
-        //Given
         String expectedFirstName = "Sarah";
-        //When
-        ArrayList<Double> examScores = new ArrayList<Double>(Arrays.asList(150.0, 200.0));
-        Student student = new Student("Sarah","Blanding", examScores);
-        //Then
         String actualFirstName = student.getFirstName();
-
         Assert.assertEquals(expectedFirstName, actualFirstName);
     }
 
     @Test
     public void testGetLastName() {
-        //Given
         String expectedLastName = "Blanding";
-        //When
-        String firstName = "Sarah";
-        String lastName = "Blanding";
-        ArrayList<Double> examScores = new ArrayList<Double>(Arrays.asList(150.0,200.0));
-        Student student = new Student(firstName,lastName, examScores);
-        //Then
         String actualLastName = student.getLastName();
-
         Assert.assertEquals(expectedLastName, actualLastName);
     }
 
     @Test
     public void testGetNumberOfExamsTaken() {
-        //Given
         int expectedNumberOfExams = 2;
-        //When
-        String firstName = "Sarah";
-        String lastName = "Blanding";
-        ArrayList<Double> examScores = new ArrayList<Double>(Arrays.asList(150.0,200.0));
-        Student student = new Student(firstName,lastName, examScores);
-        //Then
-        int actualNumberofExams = student.getNumberOfExamsTaken(examScores);
-
-        Assert.assertEquals(expectedNumberOfExams, actualNumberofExams);
+        examScores.add(100.0);
+        examScores.add(99.0);
+        int actualNumberOfExams = student.getNumberOfExamsTaken();
+        Assert.assertEquals(expectedNumberOfExams, actualNumberOfExams);
     }
 
     @Test
     public void testGetExamScores() {
-        //Given
         String expectedExamScores = "Exam Scores:\n\tExam 1 -> 150\n\tExam 2 -> 200\n\tExam 3 -> 175";
-        //When
-        String firstName = "Ben";
-        String lastName = "Messick";
-        ArrayList<Double> examScores = new ArrayList<Double>(Arrays.asList(150.0, 200.0, 175.0));
-        Student student = new Student(firstName,lastName, examScores);
-        //Then
+        examScores.add(150.0);
+        examScores.add(200.0);
+        examScores.add(175.0);
         String actualExamScores = student.getExamScores();
-
         Assert.assertEquals(expectedExamScores, actualExamScores);
     }
 
+/*    @Test
+    public void testAccessExamsScoreTotal(){
+        //Given
+        examScores.add(100.0);
+        examScores.add(150.0);
+        examScores.add(200.0);
+
+   } */
+
     @Test
     public void testAddExamScores() {
-        //Given
-        ArrayList<Double> exam = new ArrayList<>();
-        Student student = new Student("Sarah", "Messick", exam);
-        //When
         student.addExamScore(150.0);
         String output = student.getExamScores();
-        //Then
         System.out.println(output);
     }
 
@@ -99,24 +79,37 @@ public class StudentTest {
     public void testSetExamScores() {
         //Given
         ArrayList<Double> exam = new ArrayList<>(Arrays.asList(150.0));
-        Student student = new Student("Sarah", "Messick", exam);
-        String originalTestScore = student.getExamScores();
+        Student student2 = new Student("Ben", "Messick", exam);
+        String originalTestScore = student2.getExamScores();
         //When
-        student.setExamScore(1,130.0);
-        String changedTestScore = student.getExamScores();
+        student2.setExamScore(1,130.0);
+        String changedTestScore = student2.getExamScores();
         //Then
         System.out.println(originalTestScore + "\n" + changedTestScore);
     }
+    @Test
+    public void testAccessTotalExamScores() {
+        //Given
+        double expectedTotal = 150.0 + 100.0 + 50.0 + 100.0;
+        //When
+        ArrayList<Double> exam = new ArrayList<>(Arrays.asList(150.0, 100.0, 50.0, 100.0));
+        Student student = new Student("Ben", "Messick", exam);
+        //Then
+        double actualTotal = student.accessTotalExamsScore();
+
+        Assert.assertEquals(expectedTotal, actualTotal, 0.0);
+    }
+
 
     @Test
     public void testGetAverageExamScore() {
         //Given
-        int expectedAverage = 100;
+        long expectedAverage = 100;
         //When
         ArrayList<Double> exam = new ArrayList<>(Arrays.asList(150.0, 100.0, 50.0, 100.0));
-        Student student = new Student("Sarah", "Messick", exam);
+        Student student = new Student("Ben", "Messick", exam);
         //Then
-        int actualAverage = student.getAverageExamScore();
+        long actualAverage = student.getAverageExamScore();
 
         Assert.assertEquals(expectedAverage, actualAverage);
     }
@@ -125,9 +118,9 @@ public class StudentTest {
     public void testToString() {
         //Given
         ArrayList<Double> exam = new ArrayList<>(Arrays.asList(150.0, 100.0, 50.0, 100.0));
-        Student student = new Student("Sarah", "Messick", exam);
+        Student student2 = new Student("Ben", "Messick", exam);
         //When
-        String output = student.toString();
+        String output = student2.toString();
         //Then
         System.out.println(output);
     }

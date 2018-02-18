@@ -13,6 +13,13 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.examScores = new ArrayList<Double>(examScores);
+        this.examScores = examScores;
+    }
+    public Student(){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.examScores = new ArrayList<Double>(examScores);
+        this.examScores = examScores;
     }
 
     public void setFirstName(String firstName) {
@@ -31,8 +38,8 @@ public class Student {
         return lastName;
     }
 
-    public int getNumberOfExamsTaken(ArrayList<Double> examScores) {
-        return examScores.size();
+    public int getNumberOfExamsTaken() {
+        return this.examScores.size();
     }
 
     public String getExamScores() {
@@ -46,6 +53,8 @@ public class Student {
         return scores.toString();
     }
 
+
+
     public void addExamScore(double examScore) {
         this.examScores.add(examScore);
     }
@@ -54,17 +63,29 @@ public class Student {
         this.examScores.set(test-1, examScore);
     }
 
-    public int getAverageExamScore() {
-       int average = 0;
-        for(int i = 0; i<this.examScores.size(); i++) {
-            average += this.examScores.get(i);
+    //for use in getAverageExamScore and also Classroom method getAverageExamScores
+    public double accessTotalExamsScore() {
+        double totalScore = 0.0;
+        for(int i = 0; i < examScores.size(); i++) {
+            totalScore += this.examScores.get(i);
         }
-        return Math.round(average / this.examScores.size());
+        return totalScore;
+    }
+
+
+    public int getAverageExamScore() {
+        double totalScore = 0.0;
+        for(int i = 0; i < examScores.size(); i++) {
+            totalScore += this.examScores.get(i);
+        }
+        int average = (int) Math.round(totalScore / examScores.size());
+        return average;
     }
 
     @Override
     public String toString() {
-        return "Student Name: " + this.firstName + " " + this.lastName + "\nAverage Score: " + this.getAverageExamScore()
+        return "Student Name: " + this.firstName + " "
+                + this.lastName + "\nAverage Score: " + this.getAverageExamScore()
                 + "\n" + this.getExamScores();
     }
 }

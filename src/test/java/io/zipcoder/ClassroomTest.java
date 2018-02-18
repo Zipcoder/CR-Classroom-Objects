@@ -1,5 +1,141 @@
 package io.zipcoder;
 
+import org.junit.Test;
+import org.junit.Assert;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
 public class ClassroomTest {
+    ArrayList<Double> examScoresOne = new ArrayList<>(Arrays.asList(85.0, 90.0));
+    Student studentOne = new Student("Emily","Blanding", examScoresOne);
+    ArrayList<Double> examScoresTwo = new ArrayList<>(Arrays.asList(75.0, 90.0));
+    Student studentTwo = new Student("Ben","Messick", examScoresTwo);
+    ArrayList<Double> examScoresThree = new ArrayList<>(Arrays.asList(100.0, 100.0));
+    Student studentThree = new Student("Elliot", "Journs", examScoresThree);
+
+    @Test
+    public void firstConstructorTest() {
+        Student[] students = {studentOne, studentTwo};
+        Classroom classroom = new Classroom(students);
+        Assert.assertNotNull(classroom);
+    }
+
+    @Test
+    public void secondConstructorTest() {
+        Student[] students = {studentTwo, studentThree};
+        Classroom classroom = new Classroom(students);
+        Assert.assertNotNull(classroom);
+
+    }
+
+    @Test
+    public void thirdConstructorTest() {
+        Student[] students = {studentOne, studentTwo};
+        Classroom classroom = new Classroom(students);
+        Assert.assertNotNull(classroom);
+        System.out.println(students.length);
+    }
+
+    @Test
+    public void getStudents() {
+        Student[] students = {studentOne, studentTwo, studentThree};
+        Classroom classroom = new Classroom(students);
+
+        Student[] expected = {studentOne, studentTwo, studentThree};
+        Student[] actual = classroom.getStudents();
+
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetAverageExamScore() {
+        //Given
+        Student[] students = {studentOne, studentTwo, studentThree};
+        Classroom classroom = new Classroom(students);
+        //When
+        long expected =Math.round((85.0 + 90.0 + 75.0 + 90.0 + 100.0 + 100.0)/6);
+        //That
+        long actual = classroom.getAverageExamScore();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testAddStudent(){
+        //Given
+        Classroom classroom = new Classroom(2);
+        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 95.0, 85.0, 100.0));
+        Student student = new Student ("Samantha", "Pennington", examScores);
+        //When
+        Student[] expectedEnrollment = {student, studentOne};
+        //Then
+        classroom.addStudent(student);
+        classroom.addStudent(studentOne);
+        Student[] actualEnrollment = classroom.getStudents();
+
+        Assert.assertArrayEquals(expectedEnrollment, actualEnrollment);
+    }
+
+    @Test
+    public void removeStudentTest() {
+        Classroom classroom = new Classroom(2);
+        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 95.0, 85.0, 105.0));
+        Student student = new Student ("Samantha", "Pennington", examScores);
+        //When
+        classroom.addStudent(student);
+        classroom.addStudent(studentTwo);
+        Student[] expectedEnrollment = {studentTwo, null};
+        classroom.getStudents();
+        //Then
+        String studentFirstName = student.getFirstName();
+        String studentLastName = student.getLastName();
+        classroom.removeStudent(studentFirstName, studentLastName);
+        Student[] actualEnrollment = classroom.getStudents();
+
+        Assert.assertArrayEquals(expectedEnrollment, actualEnrollment);
+    }
+
+    @Test
+    public void testGetStudentByScore(){
+
+        Classroom classroom = new Classroom(6);
+        //Given
+        ArrayList<Double> examScoresOne = new ArrayList<>(Arrays.asList(85.0, 90.0, 95.0));
+        Student studentOne = new Student("Emily","Blanding", examScoresOne);
+
+        ArrayList<Double> examScoresTwo = new ArrayList<>(Arrays.asList(70.0, 90.0, 80.0));
+        Student studentTwo = new Student("Ben","Messick", examScoresTwo);
+
+        ArrayList<Double> examScoresThree = new ArrayList<>(Arrays.asList(100.0, 100.0, 100.0));
+        Student studentThree = new Student("Elliot", "Journs", examScoresThree);
+
+        ArrayList<Double> examScoresFour = new ArrayList<>(Arrays.asList(65.0, 70.0, 60.0));
+        Student studentFour = new Student("Bob", "Adams", examScoresFour);
+
+        ArrayList<Double> examScoresFive = new ArrayList<>(Arrays.asList(65.0, 70.0, 60.0));
+        Student studentFive = new Student("Samantha", "Pennington", examScoresFive);
+
+        ArrayList<Double> examScoresSix = new ArrayList<>(Arrays.asList(65.0, 55.0, 45.0));
+        Student studentSix = new Student("Andrew","Xavier", examScoresSix);
+        //When
+        Student[] students= {studentOne, studentTwo, studentThree, studentFour, studentFive, studentSix};
+        Student[] expectedOrder = {studentThree, studentOne, studentTwo, studentFour, studentFive, studentSix};
+        classroom.addStudent(studentOne);
+        classroom.addStudent(studentTwo);
+        classroom.addStudent(studentThree);
+        classroom.addStudent(studentFour);
+        classroom.addStudent(studentFive);
+        classroom.addStudent(studentSix);
+        //Then
+        Student[] actualOrder = classroom.getStudentsByScore();
+        Assert.assertArrayEquals(expectedOrder, actualOrder);
+
+    }
 
 }
+
+
+
+
