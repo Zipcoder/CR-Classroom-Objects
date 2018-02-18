@@ -63,7 +63,7 @@ public class Student {
     public String getExamScores() {
         StringBuilder sb = new StringBuilder("Exam Scores:\n");
         for (int i = 0; i < this.examScores.size(); i++) {
-            sb.append(" \tExam " + (i + 1) + " -> " + String.format("%.0f", this.examScores.get(i)) + "\n");
+            sb.append(" \tExam " + (i + 1) + " -> " + String.format("%.1f", this.examScores.get(i)) + "\n");
         }
         sb.deleteCharAt(sb.length()-1);
         return sb.toString();
@@ -78,14 +78,14 @@ public class Student {
         this.examScores.set(indexOfExamNumber, newScore);
     }
 
-    public double getAverageExamScore() {
+    public double getStudentAverageExamScore() {
         double sumOfExamScores = 0.0;
         for (double examScore : this.examScores) {
             sumOfExamScores += examScore;
         }
         double averageExamScore = sumOfExamScores / this.examScores.size();
-
-        return averageExamScore;
+        double roundedAverageExamScore = (double) Math.round(averageExamScore * 10) / 10;
+        return roundedAverageExamScore;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class Student {
 
         StringBuilder sb = new StringBuilder();
         sb.append(" Student Name: " + this.firstName + " " + this.lastName + "\n" +
-                           " > Average Score: " + this.getAverageExamScore() + "\n" +
+                           " > Average Score: " + this.getStudentAverageExamScore() + "\n" +
                            " > ");
 
         sb.append(this.getExamScores());

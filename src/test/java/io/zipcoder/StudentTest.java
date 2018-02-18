@@ -199,7 +199,7 @@ public class StudentTest {
     }
 
     @Test
-    public void getAverageExamScore() {
+    public void getStudentAverageExamScore() {
         // Given
         String expectedFirstName = "Bob";
         String expectedLastName = "Berkshire";
@@ -209,7 +209,7 @@ public class StudentTest {
         double expectedAverageExamScore = 103.5;
 
         // When
-        double actualAverageExamScore = this.student.getAverageExamScore();
+        double actualAverageExamScore = this.student.getStudentAverageExamScore();
 
         // Then
         Assert.assertEquals(expectedAverageExamScore, actualAverageExamScore, 0.001);
