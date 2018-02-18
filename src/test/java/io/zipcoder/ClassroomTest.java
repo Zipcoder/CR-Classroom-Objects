@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 
@@ -313,7 +314,7 @@ public class ClassroomTest {
     }
 
     @Test
-    public void getGradeBookTest(){
+    public void getGradeBookStringTest(){
         //Given
         //Classroom test
         Student noName55 = new Student("No", "Name55", new Double[]{55.0});
@@ -341,7 +342,43 @@ public class ClassroomTest {
                         "No Name45 : D\n"+
                         "No Name25 : F\n";
 
-        String actual = test.getGradeBook();
+        String actual = test.getGradeBookString();
+
+        //Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void getGradeBookMapTest(){
+        //Given
+        //Classroom test
+        Student noName55 = new Student("No", "Name55", new Double[]{55.0});
+        Student noName50 = new Student("No", "Name50", new Double[]{50.0});
+        Student noName49 = new Student("No", "Name49", new Double[]{49.0});
+        Student noName45 = new Student("No", "Name45", new Double[]{45.0});
+        Student noName25 = new Student("No", "Name25", new Double[]{25.0});
+        test.addStudent(noName55);
+        test.addStudent(noName50);
+        test.addStudent(noName49);
+        test.addStudent(noName45);
+        test.addStudent(noName25);
+
+
+        //When
+        HashMap<Student,Character> expected = new HashMap<>(10);
+        expected.put(terribleTariq, 'A');
+        expected.put(smellyPeter, 'B');
+        expected.put(sugarySam, 'B');
+        expected.put(stinkyPete, 'C');
+        expected.put(juicyJoe, 'C');
+        expected.put(noName55, 'D');
+        expected.put(noName50, 'D');
+        expected.put(noName49, 'D');
+        expected.put(noName45, 'D');
+        expected.put(noName25, 'F');
+
+
+        HashMap<Student, Character> actual = test.getGradeBookMap();
 
         //Then
         Assert.assertEquals(expected,actual);

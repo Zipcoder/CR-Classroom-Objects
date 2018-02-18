@@ -1,6 +1,7 @@
 package io.zipcoder;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Classroom {
     private Student[] students;
@@ -62,7 +63,7 @@ public class Classroom {
         return this.students;
     }
 
-    public String getGradeBook() {
+    public String getGradeBookString() {
         Arrays.sort(this.students, byAverageScoreThenByName);
         StringBuilder builder = new StringBuilder();
         for(Student s : this.students){
@@ -70,6 +71,15 @@ public class Classroom {
         }
 
         return builder.toString();
+    }
+
+    public HashMap<Student, Character> getGradeBookMap(){
+        Arrays.sort(this.students, byAverageScoreThenByName);
+        HashMap<Student, Character> gradeBook = new HashMap<>(this.students.length);
+        for(Student s : this.students){
+            gradeBook.put(s, this.getLetterGrade(s));
+        }
+        return gradeBook;
     }
 
     public boolean containsANull(){
@@ -122,7 +132,7 @@ public class Classroom {
         return values[values.length-index];
     }
 
-    public char getLetterGrade(Student student){
+    public Character getLetterGrade(Student student){
         Arrays.sort(this.students, byAverageScoreThenByName);
         double[] allAverages = this.getAllAverages();
         if(student.getAverageExamScore()>= calculatePercentileThreshold(allAverages,.9)){
