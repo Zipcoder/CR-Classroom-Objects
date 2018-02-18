@@ -144,13 +144,44 @@ public class ClassroomTest {
         Classroom aDifferentTestClassroom = new Classroom(maxNumberOfStudents);
         aDifferentTestClassroom.addStudent("Marky", "Maple", new Double[]{92.5, 88.0, 90.0});
         aDifferentTestClassroom.addStudent("Danny", "Doughnuts", new Double[]{88.5, 86.0, 92.0});
-        aDifferentTestClassroom.removeStudent();
-        String expected = "Still here";
+        aDifferentTestClassroom.addStudent("Timmy", "Tuna", new Double[]{60.5, 70.0, 80.0});
+        aDifferentTestClassroom.removeStudent("Danny", "Doughnuts");
+        String expected = "[Student Name: Marky Maple\n" +
+                "> Average Score: 90.17\n" +
+                "> Exam Scores:\n\tExam 1 -> 92.5\n\tExam 2 -> 88.0\n\tExam 3 -> 90.0\n" +
+                ", Student Name: Timmy Tuna\n" +
+                "> Average Score: 70.17\n" +
+                "> Exam Scores:\n\tExam 1 -> 60.5\n\tExam 2 -> 70.0\n\tExam 3 -> 80.0\n" +
+                ", null]";
         String actual = Arrays.toString(aDifferentTestClassroom.getStudents());
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void getStudentsByScoreTest() {
+        int maxNumberOfStudents = 2;
+        Classroom aDifferentTestClassroom = new Classroom(maxNumberOfStudents);
+        aDifferentTestClassroom.addStudent("Danny", "Doughnuts", new Double[]{88.5, 86.0, 92.0});
+        aDifferentTestClassroom.addStudent("Marky", "Maple", new Double[]{92.5, 88.0, 90.0});
+        aDifferentTestClassroom.addStudent("Timmy", "Tuna", new Double[]{60.5, 70.0, 80.0});
+        aDifferentTestClassroom.addStudent("Benny", "Burrito", new Double[]{88.83});
 
+        String expected = "[Student Name: Marky Maple\n" +
+                "> Average Score: 90.17\n" +
+                "> Exam Scores:\n\tExam 1 -> 92.5\n\tExam 2 -> 88.0\n\tExam 3 -> 90.0\n" +
+                ", Student Name: Benny Burrito\n" +
+                "> Average Score: 88.83\n" +
+                "> Exam Scores:\n\tExam 1 -> 88.83\n" +
+                ", Student Name: Danny Doughnuts\n" +
+                "> Average Score: 88.83\n" +
+                "> Exam Scores:\n\tExam 1 -> 88.5\n\tExam 2 -> 86.0\n\tExam 3 -> 92.0\n" +
+                ", Student Name: Timmy Tuna\n" +
+                "> Average Score: 70.17\n" +
+                "> Exam Scores:\n\tExam 1 -> 60.5\n\tExam 2 -> 70.0\n\tExam 3 -> 80.0\n" +
+                "]";
+        String actual = Arrays.toString(aDifferentTestClassroom.getStudentsByScore());
+        Assert.assertEquals(expected, actual);
+    }
 
     @Test
     public void emptySeatTest1() {
@@ -167,6 +198,27 @@ public class ClassroomTest {
         anotherTestStudentArray = new Student[]{russRussell};
         Classroom aDifferentTestClassroom = new Classroom(anotherTestStudentArray);
         Assert.assertFalse(aDifferentTestClassroom.isThereAnEmptySeat());
+    }
+
+    @Test
+    public void sortNullValuesToEndTest() {
+        Student russRussell;
+        Student philPhillips;
+        Student[] anotherTestStudentArray;
+        russRussell = new Student("Russ", "Russell", new Double[]{83.5});
+        philPhillips = new Student("Phil", "Phillips", new Double[]{88.0});
+        anotherTestStudentArray = new Student[]{russRussell, null, philPhillips};
+        Classroom aDifferentTestClassroom = new Classroom(anotherTestStudentArray);
+        aDifferentTestClassroom.sortNullValuesToEnd();
+        String expected = "[Student Name: Russ Russell\n" +
+                "> Average Score: 83.5\n" +
+                "> Exam Scores:\n\tExam 1 -> 83.5\n" +
+                ", Student Name: Phil Phillips\n" +
+                "> Average Score: 88.0\n" +
+                "> Exam Scores:\n\tExam 1 -> 88.0\n" +
+                ", null]";
+        String actual = Arrays.toString(aDifferentTestClassroom.getStudents());
+        Assert.assertEquals(expected, actual);
     }
 
 
