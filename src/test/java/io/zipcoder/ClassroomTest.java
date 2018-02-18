@@ -1,20 +1,18 @@
 package io.zipcoder;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
 
 import java.util.ArrayList;
 
 public class ClassroomTest {
-    public Classroom classroom;
-    public ArrayList<Student> students;
+    private volatile Classroom classroom;
 
     @Before
     public void setup() {
         // Given:
         classroom = new Classroom();
-        students = new ArrayList<>();
 
         Double[] scores1 = {100.0, 67.7, 98.0};
         Double[] scores2 = {88.0, 33.1, 110.0};
@@ -31,15 +29,15 @@ public class ClassroomTest {
 
     @Test
     public void testAddStudent() {
-        String expected = "Nichelle Nichols : 0.0 \n" +
-                "DeForest Kelly : 40.0 \n" +
-                "William Shatner : 77.0 \n" +
+        String expected = "William Riker : 89.0 \n" +
                 "Leonard Nimoy : 82.0 \n" +
-                "William Riker : 89.0 \n";
+                "William Shatner : 77.0 \n" +
+                "DeForest Kelly : 40.0 \n" +
+                "Nichelle Nichols : 0.0 \n";
         classroom.addStudent(new Student("Nichelle", "Nichols"));
 
         String actual = classroom.getStudentsByScore();
-
+        System.out.println(actual);
         Assert.assertEquals(expected, actual);
     }
 
@@ -59,6 +57,67 @@ public class ClassroomTest {
         classroom.addStudent(new Student("Khan", "Noonian Singh", tests));
         Double actual = classroom.getStudentByName("Khan", "Noonian Singh").getAverage();
 
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetClassAverage() {
+        Double expected = 72.0;
+        Double actual = classroom.getClassAverage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testRemoveStudentDupeFirstName() {
+        String expected = "Leonard Nimoy : 82.0 \n" +
+                "William Shatner : 77.0 \n" +
+                "DeForest Kelly : 40.0 \n";
+        classroom.removeStudent("William", "Riker");
+        String actual = classroom.getStudentsByScore();
+        System.out.println(actual);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testUpdateExamScoreFound() {
+        String expected = "[90.2, 666.0, 99.0]";
+        Student s = classroom.getStudentByName("Leonard", "Nimoy");
+
+        s.updateExamScore(2, 666.0);
+        String actual = s.getExamScores().toString();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testUpdateExamScoreNotFound() {
+        String expected = "[90.2, 56.2, 99.0, 666.0]";
+        Student s = classroom.getStudentByName("Leonard", "Nimoy");
+
+        s.updateExamScore(4, 666.0);
+        String actual = s.getExamScores().toString();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testTakeExam() {
+        String expected = "[90.2, 56.2, 99.0, 666.0]";
+        Student s = classroom.getStudentByName("Leonard", "Nimoy");
+
+        s.takeExam(666.0);
+        String actual = s.getExamScores().toString();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGradeClass() {
+        String expected = "";
+        String actual = classroom.gradeClass();
+        System.out.println(actual);
         Assert.assertEquals(expected, actual);
     }
 }

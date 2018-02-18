@@ -27,16 +27,23 @@ public class Student implements Comparable<Student> {
         return lastName;
     }
 
+    public ArrayList<Double> getExamScores() {
+        return examScores;
+    }
+
     public int numberOfExamsTaken() {
         return examScores.size();
     }
 
-    public void takeExam(int score) {
-
+    public void takeExam(double score) {
+        examScores.add(score);
     }
 
-    public void updateExamScore(int oldScore, int newScore) {
-
+    public void updateExamScore(int examNumber, double newScore) {
+        if (examScores.size() < examNumber)
+            examScores.add(newScore);
+        else
+            examScores.set(examNumber - 1, newScore);
     }
 
     /**
