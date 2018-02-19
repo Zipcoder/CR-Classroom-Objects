@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.TreeMap;
 
 public class ClassroomTest{
@@ -190,41 +191,37 @@ public class ClassroomTest{
     }
 
     @Test
-    public void sortFoundStudents() {
-
-    }
-
-    @Test
-    public void compare() {
+    public void sortFoundStudentsTest() {
         int maxNumberOfStudents = 2;
         Classroom classroom = new Classroom(maxNumberOfStudents);
-        Double[] examScoresJoe = {90.0, 150.0, 100.0, 150.0};
-        Double[] examScoresPax = {90.0, 150.0, 100.0, 150.0};
+        Double[] student1score = {100.0, 100.0, 250.0};
+        Double[] student2score = {100.0, 100.0, 250.0};
         // When
-        Student JoeFen = new Student("Joe", "Fen", examScoresJoe);
-        Student PaxFen = new Student("Pax", "Fen", examScoresPax);
+        Student student1 = new Student("Zack", "Alpha", student1score);
+        Student student2 = new Student("Annie", "Betical", student2score);
 
-        classroom.addStudent(JoeFen);
-        classroom.addStudent(PaxFen);
-        
-        String expected = "Joe Fen";
-        String actual = "Joe Fen";
-        
-        Assert.assertEquals(expected, actual);
-    }
+        List<Student> unsorted = new ArrayList<Student>();
+        unsorted.add(student1);
+        unsorted.add(student2);
 
-    @Test
-    public void compareLexigraphically() {
-        int maxNumberOfStudents = 2;
-        Classroom classroom = new Classroom(maxNumberOfStudents);
-        Double[] examScoresJoe = {92.0, 150.0, 250.0, 0.0};
-        Double[] examScoresPax = {250.0, 100.0, 100.0, 150.0};
-        // When
-        Student JoeFen = new Student("Joe", "Fen", examScoresJoe);
-        Student PaxFen = new Student("Pax", "Fen", examScoresPax);
+        String expected = "[Student Name: Annie Betical\n" +
+                "> Average Score: 150.0\n" +
+                "> Exam Scores: \n" +
+                "\t   Exam 1 -> 100.0\n" +
+                "\t   Exam 2 -> 100.0\n" +
+                "\t   Exam 3 -> 250.0\n" +
+                ", Student Name: Zack Alpha\n" +
+                "> Average Score: 150.0\n" +
+                "> Exam Scores: \n" +
+                "\t   Exam 1 -> 100.0\n" +
+                "\t   Exam 2 -> 100.0\n" +
+                "\t   Exam 3 -> 250.0\n" +
+                "]";
 
-        classroom.addStudent(JoeFen);
-        classroom.addStudent(PaxFen);
+
+        List<Student> actual = classroom.sortFoundStudents(unsorted);
+
+        Assert.assertEquals(expected, actual.toString());
     }
 
     @Test
@@ -288,5 +285,7 @@ public class ClassroomTest{
         //Then
         Assert.assertEquals(expected, actual.toString());
     }
+
+
 }
 

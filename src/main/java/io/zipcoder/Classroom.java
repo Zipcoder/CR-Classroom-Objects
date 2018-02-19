@@ -85,7 +85,7 @@ public class Classroom {
         return studentScore.toArray(new Student[0]);
     }
 
-    private List<Student> sortFoundStudents(List<Student> studentScore) {
+    public List<Student> sortFoundStudents(List<Student> studentScore) {
         Collections.sort(studentScore, new StudentComparator());
         return studentScore;
     }
