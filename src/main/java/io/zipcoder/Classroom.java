@@ -1,69 +1,51 @@
 package io.zipcoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.TreeMap;
+import java.util.Map;
+import java.util.Comparator;
 
-public class Classroom {
-    private Student[] students;
+
+public class Classroom{
+    private Student []students;
     // Helper fields
     private int studentsEnrolled;
     private int maxStudents;
     private int numOfExams = 3;
 
-    public Classroom(Student[] students, int studentsEnrolled, int maxStudents) {
+    public Classroom(Student students[], int studentsEnrolled, int maxStudents) {
         this.students = students;
         this.studentsEnrolled = studentsEnrolled;
         this.maxStudents = maxStudents;
     }
 
-    /**
-     * Empty constructor.  You get to decide what max students should default to.
-     */
+    public boolean addStudent(Student student) {
+        if(students.length >= 10){
+            return false;
+        }
+        else return true;
+    }
 
-    /**
-     * Constructor where the caller defines wht maxStudents is.
-     * @param maxStudents
-     */
-    public Classroom(int maxStudents) {
-        for(int i = maxStudents; i<= maxStudents; i++){
-            Student student = new Student("Billy", "Bob", new int[3]);
+    public Student[] removeStudent(String firstName, String lastName) {
+        Student student = new Student(firstName, lastName, new ArrayList<Double>(Arrays.asList(90.00)));
+            String nameToRemove = firstName + " " + lastName;
+            Student[] kid = new Student[students.length];
+            int seat = 0;
+            for (int i = 0; i < students.length; i++) {
+                if (students[i].equals(student)) {
+                    kid[seat] = students[i];
+                    seat++;
+                }
+            }
+            return kid;
         }
 
-    }
-
-    /**
-     * Constructor that builds a class from an existing Student array.
-     * @param students
-     */
-    public Classroom(Student[] students) {
-
-    }
-
-    /**
-     * Adds a student to the class, and returns true.
-     * If you cannot add any more students, then return false and print an error statement.
-     * @param student
-     * @return
-     */
-    public boolean addStudent(Student student) {
-        return false;
-    }
-
-    /**
-     * Returns the student with the firstName and lastName, and removes them from the array.
-     * If there is no student, return null.
-     * NOTE: You're going to want to move some students around in the array so that there are no empty spaces in the
-     * middle.
-     * @param firstName
-     * @param lastName
-     * @return
-     */
-    public Student removeStudent(String firstName, String lastName) {
-        return null;
-    }
-
-    /**
-     * Return the average score of all of the student's average scores.
-     */
     public double getClassAverage(){
-        return 100.0;
+        double total = 0;
+        for(Student student: students){
+            student.getTestScores(student).add(total);
+        }
+        return total / students.length;
     }
 
     /**
@@ -79,16 +61,38 @@ public class Classroom {
      *
      * @return
      */
-    public String getClassScores(){
-        return null;
+    public void getClassScores(){
+        for(Student student: students){
+            System.out.println(student.getTestScores(student));
+        }
     }
 
     /**
      * Sorts the Students array from highest average to lowest, and ties are broken alphabetically.
      */
-    public void sortStudentsByScore() {
+    //this method takes an arguement of an array of students (kids)
+    //Looping through the array, each student will be put into a TreeMap
+    // the for loop gets the Test score for a specific exam for each student and the students name
+    // Then I wanted to use the comparator class to sort the scores of the students into chronological order based on score
+    //Students would be ordered by their names through an if else statement for matching scores
+    // if(2 values == each other, sort by name lexogically)
+    public void sortStudentsByScore(Student[] kids) {
+        TreeMap<Double, String> map = new TreeMap<Double, String>();
+        for(Student student: students) {
+            student.getTestScores(student);
+            map.put(student.getTestScore(student), student.getFirstName(student));
+            return Double.compare(map, treeMap);
+        }
+        System.out.println("Sorted Map......By Key");
+                new Comparator<Double>() {
+                     Double compare(Double a , Double b) {
+                        return (double) a.compareTo(b);
+                    }
+                };
+        }
+//not even 100% of the syntax involved here but I want to return the double (scores) of students in order via treemap after comparing the score from greatest to least.
 
-    }
+
 
     /**
      * CHALLENGE METHOD: Don't stress on this.  It's just a little something to challenge you.
@@ -114,6 +118,6 @@ public class Classroom {
      * @return
      */
     public String gradeClass() {
-        return null;
+
     }
 }

@@ -8,13 +8,9 @@ public class Student {
     private String lastName;
     private ArrayList<Double> testScores;
     private int examsTaken;
+    private double examNum;
 // These are helper methods to assist us with array operations.
-    /**
-     * Constructor for a student with just their first and last name.
-     * You must make a default amount of tests here.
-     * @param firstName
-     * @param lastName
-     */
+
     //my student constructor
     //this creates a student object that will be inserted into the class array
     public Student(String firstName, String lastName, ArrayList<Double> testScores) {
@@ -35,16 +31,10 @@ public class Student {
         return this.lastName;
     }
 
+    public Double getTestScore(Student student){
+        return Double.valueOf(student.testScores.indexOf(examNum));
+    }
 
-    /**
-     * What we want here is a string that, if a student hasn't taken any tests, returns a `no tests taken` string.
-     * Otherwise, we want to return something kind of like:
-     * Test Scores:
-     * Test 1 -> 100
-     * Test 2 -> 89
-     * Test 3 -> 54
-     * @return The test scores in a nice string representation.
-     */
     //printing the scores of the student and verifying if a test was taken at all
     public void printExamScores(Student student) {
         if (student.testScores.equals(0)) {
@@ -83,32 +73,24 @@ public class Student {
 //        return examScore;
     }
 
-    /**
-     * Change the score for one of the students tests.
-     * Be aware that the new score must be between 0 and 100, and that they have already taken that test
-     * since it doesn't make sense to change the grade on an exam that they haven't taken it.
-     * @param examNum Which test the we want to change.
-     * @param newScore What we want to change it to.
-     * @return A boolean based on if the operation worked or not.
-     */
-    public int changeScoreForExam(Student student, int examNum, int newScore){
+    public int changeScoreForExam(Student student, int examNum, int newScore) {
         int grade = 0;
         if (examNum > 2) {
             System.out.println("This exam is not valid");
-        }
-        else if (newScore < 0 || newScore > 100){
-
+        } else if (newScore < 0 || newScore > 100) {
             System.out.println("This score is invalid");
         }
-        int grade = student.testScores.indexOf(examNum);
+        else if (0 == student.testScores.indexOf(examNum)) {
+            System.out.println("This exam has not been taken");
+        }
+        else {
+            grade = student.testScores.indexOf(examNum);
+        grade = newScore;
+    }
+
         return grade;
     }
 
-    /**
-     * Return the average for all of the exams that the student has taken.
-     * If they haven't taken any, be nice and give them 100.0.
-     * @return The average for all the exams a student has taken.
-     */
     public double getAverage(Student student) {
         int x = 0;
         for(int i = 0; i <= this.testScores.size(); i++){
