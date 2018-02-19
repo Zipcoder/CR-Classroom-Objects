@@ -1,14 +1,14 @@
 package io.zipcoder;
 
-import com.sun.xml.internal.fastinfoset.util.StringArray;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
-public class Classroom {
+
+public class Classroom{
 
     private Student[] students;
+    //private Student student;
 
     public Classroom(int maxNumberOfStudents) {
 
@@ -84,8 +84,25 @@ public class Classroom {
 
     public Student[] getStudentsByScore() {
 
-        return null;
+        Arrays.sort(this.students, sortScoreAndLastName);
+
+        return this.students;
     }
+
+
+    public static Comparator<Student> sortScoreAndLastName = new Comparator<Student>() {
+        @Override
+        public int compare(Student student1, Student student2) {
+
+            if (student1.getAverageExamScore() == student2.getAverageExamScore()) {
+                return student1.getLastName().compareTo(student2.getLastName());
+            }else if (student1.getAverageExamScore() < student2.getAverageExamScore()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    };
 
     public String getGradeBook() {
 

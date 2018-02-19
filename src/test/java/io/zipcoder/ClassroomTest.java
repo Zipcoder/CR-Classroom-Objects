@@ -308,24 +308,63 @@ public class ClassroomTest {
         testClassroom.sortArrayAfterRemoveStudent();
         Student [] expected = {student1, student2, null};
         Student [] actual = testClassroom.getStudents();
-
         //Then
+
         Assert.assertEquals(expected,actual);
     }
 
     @Test
-    public void getGradeBookTest1(){
+    public void getStudentsByScore() {
         //Given
-        int maxNumberofStudents = 3;
-        Classroom testClassroom = new Classroom(maxNumberofStudents);
+        Double[] examScores1 = {75.0, 89.0, 91.0};
+        Double[] examScores2 = {75.0, 89.0, 91.0};
+        Double[] examScores3 = {94.0, 95.0, 96.0};
+        Double[] examScores4 = {60.0, 50.0, 55.0};
+        Student student1 = new Student("Betty", "Bop", examScores1);
+        Student student2 = new Student("Bill", "Burr", examScores2);
+        Student student3 = new Student("Zeke", "Blanket", examScores3);
+        Student student4 = new Student("Jake", "Zibbles", examScores4);
 
-        //When
-        String expected = null;
-        String actual = testClassroom.getGradeBook();
+        Student[] studentsArray = {student1,student2, student3, student4};
+        Classroom testClassroom = new Classroom(studentsArray);
 
-        //Then
+        Student[] expected = {student3, student1, student2, student4ls};
+        System.out.println(Arrays.toString(expected));
+        Student[] actual = testClassroom.getStudentsByScore();
+        System.out.println(Arrays.toString(actual));
+
         Assert.assertEquals(expected, actual);
     }
-}
+
+    @Test
+        public void sortScoreAndLastNameTest() {
+        int maxNumberOfStudents = 2;
+        Classroom testClassroom = new Classroom(maxNumberOfStudents);
+        Double[] s1Scores = {95.0, 95.0};
+        Double[] s2Scores = {95.0, 95.0};
+        Student student1 = new Student("Charlie", "Chews", s1Scores);
+        Student student2 = new Student("Becky", "Barley", s2Scores);
+
+        int expected = 1;
+        int actual = testClassroom.sortScoreAndLastName.compare(student1, student2);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+        @Test
+        public void getGradeBookTest1 () {
+            //Given
+            int maxNumberofStudents = 3;
+            Classroom testClassroom = new Classroom(maxNumberofStudents);
+
+            //When
+            String expected = null;
+            String actual = testClassroom.getGradeBook();
+
+            //Then
+            Assert.assertEquals(expected, actual);
+        }
+    }
+
 
 
