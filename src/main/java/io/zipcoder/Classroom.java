@@ -73,8 +73,9 @@ public class Classroom {
 
     }
 
-    public String getStudentsByScore() {
-        return null;
+    public Student[] getStudentsByScore() {
+        Arrays.sort(students);
+        return students;
     }
 
     public String getGradeBook() {
