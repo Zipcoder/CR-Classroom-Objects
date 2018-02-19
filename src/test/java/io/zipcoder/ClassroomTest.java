@@ -82,12 +82,58 @@ public class ClassroomTest {
         double expected = 61.0;
         double actual = classroom.getAverageExamScore();
         //Assert
+        Assert.assertEquals(expected, actual, 0);
+    }
+
+    @Test
+    public void testRemoveStudent_NoStudent(){
+        Double[] student1Scores = { 65.0, 65.0 };
+        Double[] student2Scores = { 75.0, 80.0 };
+        Double[] student3Scores = { 75.0, 80.0 };
+        Student student1 = new Student("Mel", "Hammer", student1Scores);
+        Student student2 = new Student("Kyle", "Ant", student2Scores);
+        Student student3 = new Student("Katrina", "High", student3Scores);
+        Student[] students = {student1, student2, student3};
+        Classroom testClassroom = new Classroom(students);
+
+        Boolean actual = testClassroom.removeStudent("Linda", "Lou");
+
+        Assert.assertFalse(actual);
+    }
+
+    @Test
+    public void getStudentsByScoreTest_SameScore(){
+        Double[] student1Scores = { 65.0, 65.0 };
+        Double[] student2Scores = { 75.0, 80.0 };
+        Double[] student3Scores = { 75.0, 80.0 };
+        Student student1 = new Student("Mel", "Hammer", student1Scores);
+        Student student2 = new Student("Kyle", "Ant", student2Scores);
+        Student student3 = new Student("Katrina", "High", student3Scores);
+        Student[] students = {student1, student2, student3};
+        Classroom testClassroom = new Classroom(students);
+
+        Student[] expected = {student2, student3, student1};
+        Student[] actual = testClassroom.getStudentsByScore();
+
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void getStudentsByScoreTest_SameName(){
+        Double[] student1Scores = { 65.0, 65.0 };
+        Double[] student2Scores = { 75.0, 80.0 };
+        Double[] student3Scores = { 100.0, 1000.0 };
+        Student student1 = new Student("Mel", "Hammer", student1Scores);
+        Student student2 = new Student("Kyle", "Ant", student2Scores);
+        Student student3 = new Student("Katrina", "Ant", student3Scores);
+        Student[] students = {student1, student2, student3};
+        Classroom testClassroom = new Classroom(students);
+
+        Student[] expected = {student3, student2, student1};
+        Student[] actual = testClassroom.getStudentsByScore();
+
+        Assert.assertEquals(expected, actual);
+    }
+
 }
-
-
-
-
-
 

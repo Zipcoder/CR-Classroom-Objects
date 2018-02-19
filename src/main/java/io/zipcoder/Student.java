@@ -98,11 +98,11 @@ public class Student implements Comparable<Student> {
     @Override
     public int compareTo(Student s) {
         //-1 means whats on left is less than whats on right(our comparing value)
-        if(this.getAverageExamScore() < s.getAverageExamScore()){
+        if(this.getAverageExamScore() > s.getAverageExamScore()){
             return -1;
         }
         //1 means whats on left is greater than whats on rigth(our comparing value)
-        if(this.getAverageExamScore() > s.getAverageExamScore()){
+        if(this.getAverageExamScore() < s.getAverageExamScore()){
             return 1;
         }
         //we cant compare any more cus equal so we let it fall through and do a string comparison

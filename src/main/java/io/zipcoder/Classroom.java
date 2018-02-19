@@ -1,14 +1,12 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Collections;
+import java.util.*;
 
 public class Classroom {
 
     private Student[] students;
+
+    HashMap<Student, String> gradeBook = new HashMap<>();
 
     //take an argument of int which holds max number of students
     public Classroom(int maxNumberOfStudents) {
@@ -90,11 +88,13 @@ public class Classroom {
         return true;
     }
 
-    /**returns an array representation of Student objects sorted in descending order by averagescore
-    If two students have the same class average, order them aphabetically by last name.
-     Use a compartor interface, define what it means to be greater then the other, so it sorts them thats
-     how it figures them out*/
-    public Student[] getStudentsByScore(){
+    /**
+     * returns an array representation of Student objects sorted in descending order by averagescore
+     * If two students have the same class average, order them aphabetically by last name.
+     * Use a compartor interface, define what it means to be greater then the other, so it sorts them thats
+     * how it figures them out
+     */
+    public Student[] getStudentsByScore() {
         //covert students to arraylist
         ArrayList<Student> studentsList = new ArrayList<>(Arrays.asList(this.students));
         //call collections.sort
@@ -103,39 +103,17 @@ public class Classroom {
         return studentsList.toArray(this.students);
     }
 
+    //letter grade determined by creating grading curve
+    //returns mapping of Student objects to letter grade
+    //letter grade determined by creating grading curve
+    //I can get students by total average scores
+    //sort everyone by score then return top 10 percent as an a
+    public HashMap<Student, String> getGradeBook() {
+        //
 
+        return null;
+    }
 
 
 }
 
-
-/*
-
-    public String getStudentsByScore() {
-          ArrayList<Student> studentsArrayList = new ArrayList<>(Arrays.asList(this.students));
-           Collections.sort(studentsArrayList, Student.AverageTestScoreComparator.thenComparing(Student::getLastName));
-
-           return Arrays.toString(studentsArrayList.toArray(this.students));
-          }
-
-
- +    public Student[] getStudentsByScore() {
-        +        List<Student> studentsByScore = Arrays.asList(students);
-        +
-        +        Collections.sort(studentsByScore, (s1, s2) -> {
-        +
-        +                    if (s1.getAverageExamScore() > s2.getAverageExamScore()) {
-        +                        return -1;
-        +                    } else if (s1.getAverageExamScore() < s2.getAverageExamScore()) {
-        +                        return 1;
-        +                    } else {
-        +                        return s1.getFullName().compareTo(s2.getFullName());
-        +                    }
-        +                });
-        +
-        +        Student[] result = new Student[studentsByScore.size()];
-        +        result = studentsByScore.toArray(result);
-        +
-        +        return result;
-        +    }
- */
