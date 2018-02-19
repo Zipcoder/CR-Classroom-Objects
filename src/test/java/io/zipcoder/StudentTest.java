@@ -9,8 +9,6 @@ public class StudentTest {
 public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76.00, 100.00});
 
 
-
-
     @Test
     public void testGetFirstName() {
         // Given
@@ -79,9 +77,41 @@ public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testShowExamScores() {
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScoresArr = {100.0, 95.0, 123.0, 96.0};
+        Student dummyStudent = new Student(firstName, lastName, examScoresArr);
+
+        // When
+        String output = dummyStudent.showExamScores();
+
+        // Then
+        System.out.println(output);
+    }
 
 
-    //getNumberOfExamsTaken
+    @Test
+    public void testAddExamScores(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScoresArr = { };
+        Student dummyStudent = new Student(firstName, lastName, examScoresArr);
+
+        // When
+        dummyStudent.addExamScore(100.0);
+        String output = dummyStudent.showExamScores();
+        // Then
+        System.out.println(output);
+    }
+
+
+}
+
+
 
     //addExamScores(double examScore)  add this to the arraylist of examScores
 
@@ -93,4 +123,3 @@ public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76
     //toString() - returns all student info (first name, last name, etc)
 
 
-}
