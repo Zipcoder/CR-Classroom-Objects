@@ -59,14 +59,6 @@ public class StudentTest {
         Assert.assertEquals(expectedExamScores, actualExamScores);
     }
 
-/*    @Test
-    public void testAccessExamsScoreTotal(){
-        //Given
-        examScores.add(100.0);
-        examScores.add(150.0);
-        examScores.add(200.0);
-
-   } */
 
     @Test
     public void testAddExamScores() {
@@ -87,6 +79,7 @@ public class StudentTest {
         //Then
         System.out.println(originalTestScore + "\n" + changedTestScore);
     }
+
     @Test
     public void testAccessTotalExamScores() {
         //Given
@@ -120,7 +113,7 @@ public class StudentTest {
         ArrayList<Double> exam = new ArrayList<>(Arrays.asList(150.0, 100.0, 50.0, 100.0));
         Student student2 = new Student("Ben", "Messick", exam);
         //When
-        String output = student2.toString();
+        String output = student2.toString() + student.toString();
         //Then
         System.out.println(output);
     }

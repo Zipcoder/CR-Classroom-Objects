@@ -11,7 +11,6 @@ import static java.util.Arrays.sort;
 public class Classroom{
 
     private Student[] students;
-    private Student student;
 
 
     public Classroom(int maxNumberOfStudents) {
@@ -27,12 +26,10 @@ public class Classroom{
 
     }
 
-    public void setStudents(Student[] students) {
-        this.students = students;
-    }
     public Student[] getStudents() {
         return students;
     }
+
 
     public long getAverageExamScore() {
         int counter = 0;
@@ -71,12 +68,13 @@ public class Classroom{
         }
     }
 
+
     public Student[] getStudentsByScore() {
         Arrays.sort(students, sortByScoreThenName);
         return students;
     }
 
-
+    //student name, test score average, individual test scores, and final grade
     public LinkedHashMap<Student,String> getGradeBook(){
         LinkedHashMap<Student, String> gradeBook = new LinkedHashMap<>();
         Classroom classroom = new Classroom(students);
@@ -89,19 +87,48 @@ public class Classroom{
 
         for(int i = 0; i<classMap.length; i++) {
             if(i <= a) {
-                gradeBook.put(classMap[i], "A");
+                gradeBook.put(classMap[i], "\nFinal grade: A");
             } else if (i <= b) {
-                gradeBook.put(classMap[i], "B");
+                gradeBook.put(classMap[i], "\nFinal grade: B");
             } else if (i <= c) {
-                gradeBook.put(classMap[i], "C");
+                gradeBook.put(classMap[i], "\nFinal grade: C");
             } else if (i <= d) {
-                gradeBook.put(classMap[i], "D");
+                gradeBook.put(classMap[i], "\nFinal grade: D");
             }  else {
-                gradeBook.put(classMap[i], "F");
+                gradeBook.put(classMap[i], "\nFinal grade: F");
             }
         }
         return gradeBook;
     }
+
+    //just student name and final grade
+    public LinkedHashMap<String,String> getGradeBookNameAndFinalGrade(){
+        LinkedHashMap<String, String> gradeBookNameAndGrade = new LinkedHashMap<>();
+        Classroom classroom = new Classroom(students);
+        classroom.getStudentsByScore();
+        Student [] classMap = classroom.getStudentsByScore();
+        int a = (int)Math.round(.1*classMap.length)-1;
+        int b = (int)Math.round(.3*classMap.length)-1;
+        int c = (int)Math.round(.5*classMap.length)-1;
+        int d = (int)Math.round(.9*classMap.length)-1;
+
+        for(int i = 0; i<classMap.length; i++) {
+            String firstAndLast = classMap[i].getFirstName() + " " + classMap[i].getLastName();
+            if(i <= a) {
+                gradeBookNameAndGrade.put(firstAndLast, " A\n");
+            } else if (i <= b) {
+                gradeBookNameAndGrade.put(firstAndLast, " B\n");
+            } else if (i <= c) {
+                gradeBookNameAndGrade.put(firstAndLast, " C\n");
+            } else if (i <= d) {
+                gradeBookNameAndGrade.put(firstAndLast, " D\n");
+            }  else {
+                gradeBookNameAndGrade.put(firstAndLast, " F\n");
+            }
+        }
+        return gradeBookNameAndGrade;
+    }
+
 
     //for getStudentsByScore
     public static Comparator<Student> sortByScoreThenName = new Comparator<Student>() {
@@ -130,14 +157,3 @@ public class Classroom{
 
 
 }
-
-
-/*    TreeMap<Student, Integer> mapScores = new TreeMap<>();
-        for(int i = 0; i<students.length; i++) {
-        mapScores.put(students[i],students[i].getAverageExamScore());
-        }
-        for(Map.Entry<Student, Integer> entry: mapScores.entrySet()){
-
-        }
-        */
-

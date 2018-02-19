@@ -53,8 +53,6 @@ public class Student {
         return scores.toString();
     }
 
-
-
     public void addExamScore(double examScore) {
         this.examScores.add(examScore);
     }
@@ -84,7 +82,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student Name: " + this.firstName + " "
+        return "\nStudent Name: " + this.firstName + " "
                 + this.lastName + "\nAverage Score: " + this.getAverageExamScore()
                 + "\n" + this.getExamScores();
     }
