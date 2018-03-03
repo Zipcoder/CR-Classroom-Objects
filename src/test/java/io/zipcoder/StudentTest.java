@@ -2,101 +2,137 @@ package io.zipcoder;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.Before;
-
-import java.util.ArrayList;
 
 public class StudentTest {
 
-    private Student student;
-    private Student studentTest;
-    private String firstName;
-    private String lastName;
-    private ArrayList<Double> testScores;
-    private int numberOfExamsTaken;
+    @Test
+    public void getFirstName(){
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
 
-    @Before
-    public void setup(){
-        studentTest = new Student(firstName, lastName, testScores);
-
+        String expected = "Hope";
+        String actual = student.getFirstName();
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testSetFirstName(){
-        //Given
-        String expectedFirstName = "Leon";
-        //When
-        studentTest.setFirstName(expectedFirstName);
-        //Actual
-        String actual = studentTest.getFirstName();
-        Assert.assertEquals(expectedFirstName, actual);
+    public void setFirstName() {
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
 
+        student.setFirstName("Hope");
+        String expected = "Hope";
+        String actual = student.getFirstName();
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testSetLastName(){
-        //Given
-        String expectedLastName = "Brown";
-        //When
-        studentTest.setLastName(expectedLastName);
-        //Actual
-        String actual = studentTest.getLastName();
-        Assert.assertEquals(expectedLastName, actual);
+    public void getLastName() {
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
 
+        String expected = "Full";
+        String actual = student.getLastName();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setLastName() {
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
+
+        student.setLastName("Full");
+        String expected = "Full";
+        String actual = student.getLastName();
+        Assert.assertEquals(expected, actual);
+    }
+
+
+
+    @Test
+    public void testAddExamScore(){
+        //Given
+        Double[] testScores = {98.5, 100.0};
+        Student student = new Student("Hope", "Full", testScores);
+
+        double testScore = 98.5;
+        //When
+
+        student.addExamScore(testScore);
+        int expected = 3;
+        int actual = student.getNumberOfExamsTaken();
+        //Then
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void testGetExamScores(){
         //Given
-        String firstName = "Leon";
-        String lastName = "Brown";
-        ArrayList<Double> testScores= new ArrayList<Double>();
-        studentTest = new Student("Leon", "Brown", testScores);
-        testScores.add(100.00);
-        testScores.add(75.00);
-        testScores.add(110.0);
-        //When
-        // "\n" is used to generate new line and \t\ is for horizontal tab
-        String expected = "Exam Scores:\n\t\tExam 1 -> 100.0\n\t\tExam 2 -> 75.00\n\t\tExam 3 -> 110.00\n";
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
 
-        //Actual
-        String actual = studentTest.getExamScores();
+        //When
+        String output = student.getExamScores();
+        String expected = "\tExam 1 -> 98.5\n\tExam 2 -> 100.0\n\tExam 3 -> 98.5\n";
+        String actual = student.getExamScores();
+
+        //Then
+        System.out.println(output);
         Assert.assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void setNumberOfExamsTaken(){
-//        //Given
-//        testScores.add(100.00);
-//        testScores.add(75.00);
-//        testScores.add(110.0);
-//        testScores.add(45.00);
-//        Integer expected = 4;
-//        //When
-//        studentTest.setNumberOfExamsTaken(expected);
-//        //Actual
-//        Integer actual = studentTest.getNumberOfExamsTaken();
-//        Assert.assertEquals(expected, actual);
-//    }
+    @Test
+    public void testSetExamScore(){
+        //Given
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
+
+        int examNumber = 1;
+        double newScore = 150.0;
+
+        //When
+        student.setExamScore(1, 150.0);
+        String output = student.getExamScores();
+        String expected = "\tExam 1 -> 150.0\n\tExam 2 -> 100.0\n\tExam 3 -> 98.5\n";
+        String actual = student.getExamScores();
+        //Then
+        System.out.println(output);
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testGetAverageExamScore(){
+        //Given
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
 
 
-//
-//    @Test
-//    public void getExamScores(){
-//        //Given
-//        String expectedFirstName = "Leon";
-//        String expectedLastName = "Brown";
-//        Double[] examScores = { 100.00, 75.00, 110.00, 45.00 };
-//        Student student = new Student(expectedFirstName, expectedLastName, testScores);
-//
-//        //When
-//        String output = student.getExamScores();
-//
-//        //Then
-//        System.out.println(output);
-//        Assert.assertEquals(expectedFirstName, expectedLastName, examScores);
-//
-//    }
+        //When
+        Double expected = 99.0;
+
+
+        //Then
+        Double actual = student.getAverageExamScore();
+        Assert.assertEquals(expected, actual, 0.01);
+
+    }
+
+    @Test
+    public void testToString(){
+        //Given
+        Double[] testScores = {98.5, 100.0, 98.5};
+        Student student = new Student("Hope", "Full", testScores);
+
+        //When
+        //Then
+        String expected = "Student Name: Hope Full\n> Average Score: 99.0\n> Exam Scores:\n" +
+                "\tExam 1 -> 98.5\n" +
+                                "\tExam 2 -> 100.0\n" +
+                                "\tExam 3 -> 98.5\n";
+        String actual = student.toString();
+        Assert.assertEquals(expected, actual);
+    }
 
 
 }
