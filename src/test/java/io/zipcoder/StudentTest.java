@@ -3,10 +3,12 @@ package io.zipcoder;
 import org.junit.Test;
 import org.junit.Assert;
 
+import java.util.List;
+
 
 public class StudentTest {
 
-public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76.00, 100.00});
+    public Student dummyStudent = new Student("John", "Smith", new Double[]{65.00, 76.00, 100.00});
 
 
     @Test
@@ -15,7 +17,7 @@ public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76
         String expected = "John";
 
         // When
-         Student dummyStudent = new Student("John", "Smith", new Double[]{65.00, 75.00, 100.00});
+        Student dummyStudent = new Student("John", "Smith", new Double[]{65.00, 75.00, 100.00});
 
         // Then
         String actual = dummyStudent.getFirstName();
@@ -86,7 +88,7 @@ public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76
         Student dummyStudent = new Student(firstName, lastName, examScoresArr);
 
         // When
-        String output = dummyStudent.showExamScores();
+        String output = dummyStudent.getExamScores();
 
         // Then
         System.out.println(output);
@@ -94,32 +96,68 @@ public Student dummyStudent = new Student("John", "Smith",new Double[]{65.00, 76
 
 
     @Test
-    public void testAddExamScores(){
+    public void testAddExamScores() {
         // : Given
+        int expected = 1;
         String firstName = "Leon";
         String lastName = "Hunter";
-        Double[] examScoresArr = { };
+        Double[] examScoresArr = {};
         Student dummyStudent = new Student(firstName, lastName, examScoresArr);
 
         // When
         dummyStudent.addExamScore(100.0);
-        String output = dummyStudent.showExamScores();
+        String output = dummyStudent.getExamScores();
+
+        //Then
+        System.out.println(output);
+
+    }
+
+    @Test
+    public void testSetExamScores() {
+        //Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScoresArr = {100.0, 95.0, 123.0, 96.0};
+        Student dummyStudent = new Student(firstName, lastName, examScoresArr);
+
+        // When
+        dummyStudent.setExamScores(2, 100.0);
+        String output = dummyStudent.getExamScores();
+
         // Then
         System.out.println(output);
     }
 
+    @Test
+    public void testGetExamAverage() {
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScores = {100.0, 150.0, 250.0, 0.0};
+        Student student = new Student(firstName, lastName, examScores);
 
+        // When
+        double output = student.getAverageExamScore();
+
+        // Then
+        System.out.println(output);
+
+    }
+
+
+    @Test
+    public void testToString() {
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScores = {100.0, 150.0, 250.0, 0.0};
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        String output = student.toString();
+
+        // Then
+        System.out.println(output);
+    }
 }
-
-
-
-    //addExamScores(double examScore)  add this to the arraylist of examScores
-
-    //setExamScore(int examID, double changedExamScore)  identify
-
-    //getAverageExamScore() returns sum of Scores / number of exams
-
-    //@Override
-    //toString() - returns all student info (first name, last name, etc)
-
-

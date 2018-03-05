@@ -4,16 +4,13 @@ import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Student {
     private String firstName;
     private String lastName;
-    private ArrayList<Double> examScoresList;
-    private Double[] examScoresArr;
-    private Double oneExam;
+    private ArrayList<Double> examScores;
 
-    public String results;
-    public String output;
 //Constructors
     public Student (){};
 
@@ -24,12 +21,12 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public Student(String firstName, String lastName, Double[] examScoresArr) {
+    public Student(String firstName, String lastName, Double[] testScores) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.examScoresArr = examScoresArr;
-        //this.oneExam = oneExam;
+        this.examScores = new ArrayList(Arrays.asList(testScores));
     }
+
 
 //Methods
     public String getFirstName(){ return firstName;}
@@ -40,41 +37,47 @@ public class Student {
 
     public void setLastName(String lastName) {this.lastName = lastName;}
 
-    public Integer getNumberOfExamsTaken(){ return examScoresArr.length;}
+    public Integer getNumberOfExamsTaken(){ return examScores.size();}
 
-    public String showExamScores(){
-
+    public String getExamScores() {
         StringBuilder output = new StringBuilder();
-            for (int i = 0; i < examScoresArr.length; i++){
-               output.append("Exam" + (i+1) + "->" + examScoresArr[i]+ "\n");
-            }
-        System.out.println("Exam Scores:");
-           return output.toString();
+        output.append("Exam Scores: \n");
+        for (int i = 0; i < examScores.size(); i++) {
+            int count = (i + 1);
+            double score = examScores.get(i);
+            double newScore = score;
+            output.append("\t   Exam " + count + " -> " + newScore + "\n");
         }
-
+        return output.toString();
+    }
 
     public void addExamScore(Double oneExam){
-        ArrayList<Double> examScoresList = new ArrayList<>(Arrays.asList(examScoresArr));   //Convert Array into ArrayList
-         examScoresList.add(oneExam);                                                             //Add new Exam
-         Double [] examScoresArr = examScoresList.toArray(new Double[examScoresList.size()]);    //Convert ArrayList back to Array
+        examScores.add(oneExam);
 
     }
 
+    public void setExamScores(int examNumber, Double newScore){
+        examScores.set(examNumber -1, newScore);
+    }
 
+    public double getAverageExamScore(){
+        double totalScore = 0;
+
+        for (int i = 0; i < examScores.size(); i++){
+            totalScore += examScores.get(i);
+        }
+        return (totalScore / examScores.size());
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder info = new StringBuilder();
+            info.append("Student Name: " + firstName + " " + lastName + "\n");
+            info.append("> Average Score: " + getAverageExamScore() + "\n");
+            info.append("> " + getExamScores());
+            String infoResult = info.toString();
+            return infoResult;
+    }
 
 
 }
-
-
-
-
-    //addExamScores(double examScore)  add this to the arraylist of examScores
-
-    //setExamScore(int examID, double changedExamScore)  identify
-
-    //getAverageExamScore() returns sum of Scores / number of exams
-
-    //@Override
-    //toString() - returns all student info (first name, last name, etc)
-
-
