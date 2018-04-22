@@ -1,11 +1,5 @@
 package io.zipcoder;
-import io.zipcoder.Student.*;
-import java.sql.Array;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-
-import static java.util.Arrays.sort;
+import java.util.*;
 
 
 public class Classroom{
@@ -34,10 +28,9 @@ public class Classroom{
     public long getAverageExamScore() {
         int counter = 0;
         double scores = 0.0;
-        for (int i = 0; i < this.students.length; i++) {
-            Student one = this.students[i];
-            scores += one.accessTotalExamsScore();
-            counter += one.getNumberOfExamsTaken();
+        for (Student student: students) {
+            scores += student.accessTotalExamsScore();
+            counter += student.getNumberOfExamsTaken();
         }
         return Math.round(scores / counter);
     }
@@ -68,11 +61,6 @@ public class Classroom{
         }
     }
 
-
-    public Student[] getStudentsByScore() {
-        Arrays.sort(students, sortByScoreThenName);
-        return students;
-    }
 
     //student name, test score average, individual test scores, and final grade
     public LinkedHashMap<Student,String> getGradeBook(){
@@ -130,30 +118,10 @@ public class Classroom{
     }
 
 
-    //for getStudentsByScore
-    public static Comparator<Student> sortByScoreThenName = new Comparator<Student>() {
-        @Override
-        public int compare(Student studentOne, Student studentTwo) {
-            int isGreaterOrLess = 0;
-            if (studentOne.getAverageExamScore() < studentTwo.getAverageExamScore()) {
-
-                isGreaterOrLess = 1;
-            } else if (studentOne.getAverageExamScore() > studentTwo.getAverageExamScore()) {
-                isGreaterOrLess = -1;
-            } else if (studentOne.getAverageExamScore() == studentTwo.getAverageExamScore()) {
-                char first = studentOne.getLastName().charAt(0);
-                char second = studentTwo.getLastName().charAt(0);
-                if (first > second) {
-                    isGreaterOrLess = 1;
-                } else if (studentOne.getAverageExamScore() < studentTwo.getAverageExamScore()) {
-                    isGreaterOrLess = -1;
-                    ;
-                }
-                return isGreaterOrLess;
-            }
-            return isGreaterOrLess;
-        }
-    };
-
+    public Student[] getStudentsByScore() {
+        ArrayList<Student> student1and2 = new ArrayList<>(Arrays.asList(students));
+        Collections.sort(student1and2, Comparator.comparing(Student::getAverageExamScore).reversed().thenComparing(Student::getLastName));
+        return student1and2.toArray(new Student[]{});
+    }
 
 }

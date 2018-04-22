@@ -1,6 +1,5 @@
 package io.zipcoder;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Student {
@@ -12,14 +11,13 @@ public class Student {
     public Student(String firstName, String lastName, ArrayList<Double> examScores) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.examScores = new ArrayList<Double>(examScores);
         this.examScores = examScores;
     }
     public Student(){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.examScores = new ArrayList<Double>(examScores);
-        this.examScores = examScores;
+        this.firstName = "";
+        this.lastName = "";
+        this.examScores = new ArrayList<>(examScores);
+
     }
 
     public void setFirstName(String firstName) {
@@ -64,8 +62,8 @@ public class Student {
     //for use in getAverageExamScore and also Classroom method getAverageExamScores
     public double accessTotalExamsScore() {
         double totalScore = 0.0;
-        for(int i = 0; i < examScores.size(); i++) {
-            totalScore += this.examScores.get(i);
+        for(Double exam: examScores) {
+            totalScore += exam;
         }
         return totalScore;
     }
@@ -73,11 +71,10 @@ public class Student {
 
     public int getAverageExamScore() {
         double totalScore = 0.0;
-        for(int i = 0; i < examScores.size(); i++) {
-            totalScore += this.examScores.get(i);
+        for(Double exam: examScores) {
+            totalScore += exam;
         }
-        int average = (int) Math.round(totalScore / examScores.size());
-        return average;
+        return (int) Math.round(totalScore / examScores.size());
     }
 
     @Override
