@@ -59,6 +59,9 @@ public class Classroom{
                 students[p + 1] = null;
             }
         }
+        if(students[students.length-1].getLastName().equals(lastName) && students[students.length-1].getFirstName().equals(firstName)){
+            students[students.length-1]= null;
+        }
     }
 
 

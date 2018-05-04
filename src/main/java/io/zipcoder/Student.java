@@ -17,7 +17,6 @@ public class Student {
         this.firstName = "";
         this.lastName = "";
         this.examScores = new ArrayList<>(examScores);
-
     }
 
     public void setFirstName(String firstName) {

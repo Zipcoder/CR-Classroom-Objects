@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -89,17 +88,16 @@ public class ClassroomTest {
 
     @Test
     public void testRemoveStudent() {
-        Classroom classroom = new Classroom(2);
-        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 95.0, 85.0, 105.0));
-        Student student = new Student ("Samantha", "Pennington", examScores);
+        Classroom classroom = new Classroom(3);
         //When
-        classroom.addStudent(student);
+        classroom.addStudent(studentOne);
         classroom.addStudent(studentTwo);
-        Student[] expectedEnrollment = {studentTwo, null};
+        classroom.addStudent(studentThree);
+        Student[] expectedEnrollment = {studentOne, studentTwo, null};
         classroom.getStudents();
         //Then
-        String studentFirstName = student.getFirstName();
-        String studentLastName = student.getLastName();
+        String studentFirstName = studentThree.getFirstName();
+        String studentLastName = studentThree.getLastName();
         classroom.removeStudent(studentFirstName, studentLastName);
         Student[] actualEnrollment = classroom.getStudents();
 
