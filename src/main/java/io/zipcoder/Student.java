@@ -25,6 +25,29 @@ public class Student {
         return output;
     }
 
+    public void addExamScore(Double score){
+        examScores.add(score);
+    }
+
+    public void setExamScores(int examNumber, double newScore){
+        examScores.set(examNumber, newScore);
+    }
+
+    public Double getAverageExamScore(){
+        Double average = 0.0;
+        for(int i = 0; i < examScores.size(); i++){
+            average += examScores.get(i);
+        }
+        return average/examScores.size();
+
+    }
+
+    @Override
+    public String toString(){
+        return "Student Name: " + getFirstName() + " " + getLastName() + "\n" + "> Average Score: " + getAverageExamScore() + "\n" + "> " + getExamScores();
+    }
+
+
 
     public String getFirstName() {
         return firstName;
