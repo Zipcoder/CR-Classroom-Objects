@@ -69,4 +69,61 @@ public class ClassroomTest {
         System.out.println("===========================");
         System.out.println(postEnrollmentAsString);
     }
+    @Test
+    public void removeStudentTest() {
+        // : Given
+        int maxNumberOfStudents = 1;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        ArrayList<Double>  s2Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0, 225.0, 25.0));
+        Student s2 = new Student("Leon", "Hunter", s2Scores);
+
+        // When
+        Student[] preEnrollment = classroom.getStudents();
+        classroom.addStudent(s2);
+        Student[] postEnrollment = classroom.getStudents();
+
+        // Then
+        String preEnrollmentAsString = Arrays.toString(preEnrollment);
+        String postEnrollmentAsString = Arrays.toString(postEnrollment);
+
+        System.out.println("===========================");
+        System.out.println(preEnrollmentAsString);
+        System.out.println("===========================");
+        System.out.println(postEnrollmentAsString);
+    }
+
+    @Test
+    public void getStudentsByScore() {
+        // : Given
+        ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
+        ArrayList<Double> s2Scores = new ArrayList<Double>(Arrays.asList(225.0, 25.0));
+        ArrayList<Double> s3Scores = new ArrayList<Double>(Arrays.asList( 100.0, 88.0 ));
+        ArrayList<Double> s4Scores = new ArrayList<Double>(Arrays.asList( 77.0, 64.0 ));
+
+
+        Student s1 = new Student("King", "King", s2Scores);
+        Student s2 = new Student("Valerie", "Fragier", s1Scores);
+        Student s3 = new Student("Ryan", "Miller", s3Scores);
+        Student s4 = new Student("Mike", "Gray", s4Scores);
+
+        Student[] students = {s1, s2, s3, s4};
+        Classroom classroom = new Classroom(students);
+
+        // When
+        Student[] preEnrollment = classroom.getStudents();
+
+
+        // Then
+        String preEnrollmentAsString = Arrays.toString(preEnrollment);
+
+
+        System.out.println("===========================");
+        System.out.println(preEnrollmentAsString);
+        System.out.println("===========================");
+        Student[] postEnrollment = classroom.getStudentsByScore();
+        String postEnrollmentAsString = Arrays.toString(postEnrollment);
+        System.out.println(postEnrollmentAsString);
+    }
+
+
 }

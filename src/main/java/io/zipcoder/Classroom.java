@@ -1,8 +1,12 @@
 package io.zipcoder;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Classroom {
     Student[] students;
     int MaxNumberOfStudents;
+
 
     public Classroom(int MaxNumberOfStudent){
         MaxNumberOfStudents = MaxNumberOfStudent;
@@ -18,6 +22,7 @@ public class Classroom {
     }
 
     public Student[] getStudents() {
+
         return students;
     }
 
@@ -38,4 +43,27 @@ public class Classroom {
         }
 
     }
+
+    public void removeStudent(String firstName, String lastName){
+        students = new Student[MaxNumberOfStudents];
+        for(int i = 0; i < students.length; i++){
+            for (int j = 0; j < students.length-i-1; j++) {
+                if(students[i].equals(students[i].getFirstName()) && students[i].equals(students[i].getLastName())) {
+                    students[i] = null;
+                    if(students[i] == null){
+
+                    }
+    
+                }
+            }
+        }
+    }
+
+    public Student[] getStudentsByScore() {
+
+        //order from largest to smallest.
+        Arrays.sort(students, Collections.reverseOrder());
+        return students;
+    }
+
 }
