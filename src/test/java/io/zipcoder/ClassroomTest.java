@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 public class ClassroomTest {
     @Test
@@ -76,10 +77,10 @@ public class ClassroomTest {
         Classroom classroom = new Classroom(maxNumberOfStudents);
         ArrayList<Double>  s2Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0, 225.0, 25.0));
         Student s2 = new Student("Leon", "Hunter", s2Scores);
-
+        classroom.addStudent(s2);
         // When
         Student[] preEnrollment = classroom.getStudents();
-        classroom.addStudent(s2);
+        classroom.removeStudent("Leon", "Hunter");
         Student[] postEnrollment = classroom.getStudents();
 
         // Then
@@ -100,7 +101,6 @@ public class ClassroomTest {
         ArrayList<Double> s3Scores = new ArrayList<Double>(Arrays.asList( 100.0, 88.0 ));
         ArrayList<Double> s4Scores = new ArrayList<Double>(Arrays.asList( 77.0, 64.0 ));
 
-
         Student s1 = new Student("King", "King", s2Scores);
         Student s2 = new Student("Valerie", "Fragier", s1Scores);
         Student s3 = new Student("Ryan", "Miller", s3Scores);
@@ -111,7 +111,6 @@ public class ClassroomTest {
 
         // When
         Student[] preEnrollment = classroom.getStudents();
-
 
         // Then
         String preEnrollmentAsString = Arrays.toString(preEnrollment);
@@ -126,4 +125,27 @@ public class ClassroomTest {
     }
 
 
+    @Test
+    public void getGradeBook() {
+        // : Given
+        ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
+        ArrayList<Double> s2Scores = new ArrayList<Double>(Arrays.asList(90.0, 75.0));
+        ArrayList<Double> s3Scores = new ArrayList<Double>(Arrays.asList( 25.0, 88.0 ));
+        ArrayList<Double> s4Scores = new ArrayList<Double>(Arrays.asList( 77.0, 64.0 ));
+        ArrayList<Double> s5Scores = new ArrayList<Double>(Arrays.asList( 60.0, 64.0 ));
+
+        Student s1 = new Student("King", "King", s1Scores);
+        Student s2 = new Student("Valerie", "Fragier", s2Scores);
+        Student s3 = new Student("Ryan", "Miller", s3Scores);
+        Student s4 = new Student("Mike", "Gray", s4Scores);
+        Student s5 = new Student("Kendra", "Ng", s5Scores);
+
+        Student[] students = {s1, s2, s3, s4, s5};
+        Classroom classroom = new Classroom(students);
+
+        System.out.println("===========================");
+        Map preEnrollment = classroom.getGradeBook();
+        System.out.println("===========================");
+
+    }
 }

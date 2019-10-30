@@ -1,7 +1,6 @@
 package io.zipcoder;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 public class Classroom {
     Student[] students;
@@ -35,7 +34,7 @@ public class Classroom {
     }
     public void addStudent(Student student){
         students = new Student[MaxNumberOfStudents];
-        for(int i = 0; i < students.length; i++){
+        for(int i = 0; i < students.length-1; i++){
             if(students[i] == null){
                 students[i] = student;
                 break;
@@ -45,18 +44,12 @@ public class Classroom {
     }
 
     public void removeStudent(String firstName, String lastName){
-        students = new Student[MaxNumberOfStudents];
         for(int i = 0; i < students.length; i++){
-            for (int j = 0; j < students.length-i-1; j++) {
-                if(students[i].equals(students[i].getFirstName()) && students[i].equals(students[i].getLastName())) {
-                    students[i] = null;
-                    if(students[i] == null){
-
-                    }
-    
-                }
-            }
+            if(!(students[i].firstName + students[i].lastName).equals(firstName + lastName));
+            students[i] = null;
+            break;
         }
+
     }
 
     public Student[] getStudentsByScore() {
@@ -64,6 +57,33 @@ public class Classroom {
         //order from largest to smallest.
         Arrays.sort(students, Collections.reverseOrder());
         return students;
+    }
+
+    public Map getGradeBook(){
+        Map<String, String> book = new TreeMap<String, String>();
+        for(int i = 0; i < students.length; i++){
+            if(students[i].getAverageExamScore() >= 90){
+                book.put(students[i].firstName, "A");
+            }
+            else if(students[i].getAverageExamScore() >= 80){
+                book.put(students[i].firstName, "B");
+            }
+            else if(students[i].getAverageExamScore() >= 70){
+                book.put(students[i].firstName, "C");
+            }
+            else if(students[i].getAverageExamScore() >= 60){
+                book.put(students[i].firstName, "D");
+            }
+            else{
+                book.put(students[i].firstName, "F");
+            }
+
+        }
+        for(Map.Entry g: book.entrySet()){
+            System.out.println(g);
+        }
+        return book;
+
     }
 
 }
