@@ -9,10 +9,10 @@ public class Student {
     ArrayList<Double> examScores = new ArrayList<>();
 
 
-    public Student(String firstName, String lastName, ArrayList<Double> examScores) {
+    public Student(String firstName, String lastName, Double[] testSccores) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.examScores = examScores;
+
     }
 
 
@@ -30,5 +30,25 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Integer getNumberOfExamsTaken(){
+        return examScores.size();
+    }
+
+    public void getExamScores(ArrayList<Double> examScores){
+        System.out.println("Exam Scores : \n");
+        for(int i = 0; i < examScores.size();i++){
+            System.out.println("Exam " + i+1 + " -> " + examScores.get(i));
+        }
+    }
+
+    public void addExamScore(Double examScore){
+        examScores.add(examScore);
+    }
+
+    public void setExamScores(int examNumber, double newScore){
+        examScores.set(examNumber,newScore);
+
     }
 }
