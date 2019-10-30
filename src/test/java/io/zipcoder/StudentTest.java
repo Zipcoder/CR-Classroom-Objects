@@ -3,15 +3,19 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.sql.Array;
+import java.sql.SQLOutput;
+import java.util.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class StudentTest {
 
     @Test
     public void TestStudentConstructor(){
+
         Student someStudent = new Student("Bilbo", "Baggins", null);
 
         String expectedName = "Bilbo";
@@ -40,19 +44,40 @@ public class StudentTest {
         Assert.assertEquals(expectedLastName,actualLastName);
     }
 
+
 //    @Test
 //    public void SetExamScore(){
-//        Student someStudent = new Student (null,null,null);
+//        String firstName = "Bilbo";
+//        String lastName = "Baggins";
+//        Double[] testScores= { 100.0, 95.0, 123.0, 96.0};
+//        List<Double> examScores = new ArrayList<>();
+//        Student someStudent = new Student(firstName, lastName, testScores);
 //
-//        Double score = 10.6;
-//        someStudent.addExamScore(20.);
-//        someStudent.setExamScores(0,score);
+//        examScores = Arrays.asList(examScores);
+//        System.out.println();
 //
-//        Double expected = 10.6;
-//        Double actual = someStudent.getExamScores();
-//
-//
+//    //        Assert.assertEquals(expected, actual);
 //    }
 
+//    @Test
+//    public void TestGetExamScores(){
+//        Student someStudent = new Student("Bilbo","Baggins",null);
+////        someStudent.examScores.add(0.0);
+////        System.out.println(someStudent.examScores.size());
+//        someStudent.addExamScore(0.);
+//        someStudent.addExamScore(1.0);
+//        someStudent.addExamScore(500.);
+//        System.out.println(someStudent.egetExamScores());
+//    }
 
+    @Test
+    public void TestAddExamScore(){
+        Student someStudent = new Student("Bilbo", "Baggins",null);
+        someStudent.addExamScore(13.);
+        someStudent.setExamScores(1,13.);
+        Double expected = 13.;
+
+        System.out.println(someStudent.getExamScores());
+//        Assert.assertEquals(expected, actual);
+    }
 }
