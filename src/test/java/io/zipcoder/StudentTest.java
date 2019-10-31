@@ -142,8 +142,8 @@ public class StudentTest {
         ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(90D, 87D, 99D));
         Student testStudent = new Student("Mike", "Doe", actualScores);
         Double actual = testStudent.getAverageExamScore(actualScores);
-        double expected =92;
-        Assert.assertEquals(java.util.Optional.of(expected),actual);
+        Double expected =92.0;
+        Assert.assertEquals(expected,actual);
         System.out.println(actual);
     }
 

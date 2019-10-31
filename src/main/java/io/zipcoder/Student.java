@@ -80,20 +80,29 @@ public class Student {
     }
 
     public Double getAverageExamScore (ArrayList <Double> examScores){
-//        Long sum = Long.valueOf(0);
-//        Long result = Long.valueOf(0);
-//        Long numOfScores = Long.valueOf(examScores.size());
+        Double sum = 0.0;
+        Double result = 0.0;
+        Double numOfScores = getNumOfExamsTaken()*1.0;
 
-        double sum = 0;
-        double numOfScores = examScores.size();
-        double result =0;
+//        double sum = 0;
+//        double numOfScores = examScores.size();
+//        double result = 0;
 
         for (int i = 0; i < examScores.size(); i++) {
             sum += examScores.get(i);
         }
-         result = Math.round(sum / numOfScores);
+        result = (sum / numOfScores);
+        System.out.println(result);
         return result;
+
     }
+     public String printToString(){
+         StringBuilder sb= new StringBuilder();
+         //sb.append("Student Name: %s %s\n", firstName, lastName);
+return "";
+     }
+   // }
+
 
 
 }
