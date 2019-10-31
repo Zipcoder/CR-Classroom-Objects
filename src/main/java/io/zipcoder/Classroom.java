@@ -34,7 +34,7 @@ public class Classroom {
     }
     public void addStudent(Student student){
         students = new Student[MaxNumberOfStudents];
-        for(int i = 0; i < students.length-1; i++){
+        for(int i = 0; i < students.length; i++){
             if(students[i] == null){
                 students[i] = student;
                 break;
@@ -45,8 +45,12 @@ public class Classroom {
 
     public void removeStudent(String firstName, String lastName){
         for(int i = 0; i < students.length; i++){
-            if(!(students[i].firstName + students[i].lastName).equals(firstName + lastName));
-            students[i] = null;
+            if((students[i].firstName + students[i].lastName).equals(firstName + lastName));
+            Student temp = students[i];
+            for(int j = i; j < students.length-1; j++){
+                students[j] = students[j+1];
+            }
+            students[students.length-1] = null;
             break;
         }
 

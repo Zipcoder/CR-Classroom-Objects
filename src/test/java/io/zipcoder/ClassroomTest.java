@@ -78,19 +78,17 @@ public class ClassroomTest {
         ArrayList<Double>  s2Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0, 225.0, 25.0));
         Student s2 = new Student("Leon", "Hunter", s2Scores);
         classroom.addStudent(s2);
+
+        int actual = classroom.getStudents().length;
+
         // When
-        Student[] preEnrollment = classroom.getStudents();
         classroom.removeStudent("Leon", "Hunter");
-        Student[] postEnrollment = classroom.getStudents();
 
-        // Then
-        String preEnrollmentAsString = Arrays.toString(preEnrollment);
-        String postEnrollmentAsString = Arrays.toString(postEnrollment);
-
-        System.out.println("===========================");
-        System.out.println(preEnrollmentAsString);
-        System.out.println("===========================");
-        System.out.println(postEnrollmentAsString);
+        Assert.assertEquals(maxNumberOfStudents, actual);
+       System.out.println("===========================");
+       System.out.println(maxNumberOfStudents);
+       System.out.println("===========================");
+       System.out.println(actual);
     }
 
     @Test
