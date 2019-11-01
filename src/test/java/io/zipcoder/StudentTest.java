@@ -43,41 +43,40 @@ public class StudentTest {
         Assert.assertEquals(expectedName,actualName);
         Assert.assertEquals(expectedLastName,actualLastName);
     }
+    @Test
+    public void TestGetExamScore() {
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        List<Double> examScores = new ArrayList<>();
+        Student student = new Student(firstName, lastName, examScores);
+        student.addExamScore(1.3);
+        String output = student.getExamScores();
 
-
-//    @Test
-//    public void SetExamScore(){
-//        String firstName = "Bilbo";
-//        String lastName = "Baggins";
-//        Double[] testScores= { 100.0, 95.0, 123.0, 96.0};
-//        List<Double> examScores = new ArrayList<>();
-//        Student someStudent = new Student(firstName, lastName, testScores);
-//
-//        examScores = Arrays.asList(examScores);
-//        System.out.println();
-//
-//    //        Assert.assertEquals(expected, actual);
-//    }
-
-//    @Test
-//    public void TestGetExamScores(){
-//        Student someStudent = new Student("Bilbo","Baggins",null);
-////        someStudent.examScores.add(0.0);
-////        System.out.println(someStudent.examScores.size());
-//        someStudent.addExamScore(0.);
-//        someStudent.addExamScore(1.0);
-//        someStudent.addExamScore(500.);
-//        System.out.println(someStudent.egetExamScores());
-//    }
+        System.out.println(output);
+    }
 
     @Test
-    public void TestAddExamScore(){
-        Student someStudent = new Student("Bilbo", "Baggins",null);
-        someStudent.addExamScore(13.);
-        someStudent.setExamScores(1,13.);
-        Double expected = 13.;
+    public void setExamScores() {
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        List<Double> examScores = new ArrayList<>();
+        Student student = new Student(firstName, lastName, examScores);
+        student.addExamScore(1.3);
+        student.addExamScore(99.);
+        String output = student.getExamScores();
 
-        System.out.println(someStudent.getExamScores());
-//        Assert.assertEquals(expected, actual);
+        System.out.println(output);
+    }
+
+    @Test
+    public void testToString() {
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        List<Double> examScores = new ArrayList<>();
+        Student student = new Student(firstName, lastName, examScores);
+        student.addExamScore(1.3);
+        student.addExamScore(99.);
+
+        System.out.println(student.toString());
     }
 }

@@ -7,9 +7,9 @@ import java.util.List;
 public class Student {
     private String firstName;
     private String lastName;
-    private List<Double> examScores = new ArrayList<>();
+     List<Double> examScores = new ArrayList<>();
 
-
+    public Student(){}
 
     public Student(String firstName, String lastName, List<Double> examScores) {
         this.firstName = firstName;
@@ -41,9 +41,9 @@ public class Student {
         StringBuilder sbScores = new StringBuilder();
 
         System.out.println("Exam Scores : \n");
-        for(int i = 0; i < getNumberOfExamsTaken();i++){
-//            System.out.println("Exam " + i+1 + " -> " + examScores.get(i));
-            sbScores.append("Exam " + i+1 + " -> " + examScores.get(i));
+        for(int i = 0; i < examScores.size();i++){
+
+            sbScores.append("Exam " + (i + 1) + " -> " + examScores.get(i) + "\n");
         }
         return sbScores.toString();
     }
@@ -54,19 +54,21 @@ public class Student {
 
     public void setExamScores(int examNumber, double newScore){
         examScores.set(examNumber,newScore);
+
     }
 
-    public Double getAverageExamScore(){
+    public  Double getAverageExamScore(){
         Double total = 0.0 ;
         for(int i =0; i < getNumberOfExamsTaken();i++){
             total += examScores.get(i);
         }
         return total/examScores.size();
     }
+
     public String toString(){
         String nameLine = "Student Name : " + getFirstName()  + " " + getLastName() + "\n";
         String avgLine = "Average Score : " + getAverageExamScore() + "\n";
-        String examLines = getExamScores();
+        String examLines = getExamScores() + "\n";
 
         return nameLine + avgLine + examLines;
     }
