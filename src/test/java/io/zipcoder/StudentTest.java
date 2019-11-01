@@ -8,6 +8,37 @@ import java.util.Arrays;
 
 public class StudentTest {
     @Test
+    public void getFirstName() {
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        ArrayList<Double> examScores = new ArrayList<Double>(Arrays.asList(100.0, 95.0, 123.0, 96.0));
+        Student student = new Student(firstName, lastName, examScores);
+
+        String expected = "Leon";
+        String actual = student.getFirstName();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+        System.out.println(actual);
+    }
+
+    @Test
+    public void getLastName() {
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        ArrayList<Double> examScores = new ArrayList<Double>(Arrays.asList(100.0, 95.0, 123.0, 96.0));
+        Student student = new Student(firstName, lastName, examScores);
+
+        String expected = "Hunter";
+        String actual = student.getLastName();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+        System.out.println(actual);
+    }
+
+
+    @Test
     public void getExamScoresTest() {
         // : Given
         String firstName = "Leon";
@@ -109,6 +140,4 @@ public class StudentTest {
         Assert.assertEquals(expected, actual);
         System.out.print(actual);
     }
-
-
 }
