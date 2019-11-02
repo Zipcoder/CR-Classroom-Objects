@@ -48,15 +48,23 @@ public class Classroom {
         return totalExamScores / numOfStudents;
     }
 
-    public String addStudent (Student studentToAdd){
-        StringBuilder sb = new StringBuilder();
+    public void addStudent (Student studentToAdd){
+        //StringBuilder sb = new StringBuilder();
         students.add(studentToAdd);
-        sb.append("\n========================================\n");
-        sb.append(studentToAdd.printToString());
-        sb.append("========================================");
-        return sb.toString();
+//        sb.append("\n========================================\n");
+//        sb.append(studentToAdd.printToString());
+//        sb.append("========================================");
+        //return sb.toString();
     }
 
+    public void removeStudent (String firstName, String lastName){
+        for (int i = 0; i < students.size(); i++) {
+             if(students.get(i).equals(firstName) && students.get(i).equals(lastName)){
+                 students.remove(i);
+            }
+        }
+
+    }
 
 }
 

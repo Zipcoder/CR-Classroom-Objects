@@ -60,7 +60,7 @@ public class Student {
 
 //get exam scores method
 
-    public String getExamScores(ArrayList<Double> examScores) {
+    public String getExamScores() {
 
         StringBuilder sb = new StringBuilder();
         sb.append("Exam Scores:\n");
@@ -71,16 +71,16 @@ public class Student {
         return sb.toString();
     }
 
-    public String addExamScore(Double examScore, ArrayList<Double> examScores)
+    public String addExamScore(Double examScore)
     {
         examScores.add(examScore);
         //StringBuilder sb = new StringBuilder();
-        return getExamScores(examScores);
+        return getExamScores();
     }
 
-    public String setExamScore(Integer examNumber, Double newScore, ArrayList<Double> examScores){
+    public String setExamScore(Integer examNumber, Double newScore){
         examScores.set(examNumber-1, newScore);
-        return getExamScores(examScores);
+        return getExamScores();
     }
 
     public Double getAverageExamScore (){
@@ -105,7 +105,7 @@ public class Student {
          StringBuilder sb= new StringBuilder();
          sb.append(String.format("Student Name: %s %s\n", firstName, lastName));
          sb.append(String.format("Average Score: %.1f\n", getAverageExamScore()));
-         sb.append(getExamScores(examScores));
+         sb.append(getExamScores());
             return sb.toString();
      }
 

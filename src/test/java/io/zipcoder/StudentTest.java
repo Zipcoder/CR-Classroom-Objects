@@ -111,7 +111,7 @@ public class StudentTest {
     public void getExamScoresTest(){
         ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(90D, 87D, 99D));
         Student testStudent = new Student("Mike", "Doe", actualScores);
-        String actual = testStudent.getExamScores(actualScores);
+        String actual = testStudent.getExamScores();
         String expected =("Exam Scores:\n" + "\tExam 1 -> 90.0\n" + "\tExam 2 -> 87.0\n" + "\tExam 3 -> 99.0\n");
         Assert.assertEquals(expected, actual);
         //System.out.println(actual);
@@ -121,7 +121,7 @@ public class StudentTest {
     public void addExamScoreTest(){
         ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(90D, 87D, 99D));
         Student testStudent = new Student("Mike", "Doe", actualScores);
-        String actual = testStudent.addExamScore(95D, actualScores);
+        String actual = testStudent.addExamScore(95D);
         String expected =("Exam Scores:\n" + "\tExam 1 -> 90.0\n" + "\tExam 2 -> 87.0\n" + "\tExam 3 -> 99.0\n" + "\tExam 4 -> 95.0\n");
         Assert.assertEquals(expected,actual);
         //System.out.println(actual);
@@ -131,7 +131,7 @@ public class StudentTest {
     public void setExamScoreTest(){
         ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(90D, 87D, 99D));
         Student testStudent = new Student("Mike", "Doe", actualScores);
-        String actual = testStudent.setExamScore(2, 65D, actualScores);
+        String actual = testStudent.setExamScore(2, 65D);
         String expected =("Exam Scores:\n" + "\tExam 1 -> 90.0\n" + "\tExam 2 -> 65.0\n" + "\tExam 3 -> 99.0\n");
         Assert.assertEquals(expected,actual);
         //System.out.println(actual);

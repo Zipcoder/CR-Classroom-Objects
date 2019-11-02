@@ -9,27 +9,27 @@ import java.util.Arrays;
 public class ClassRoomTest {
 
     @Test
-    public void nullaryConstructorTest(){
-            // Given
-            ArrayList<Student> expectedStudents = new ArrayList<Student>(30);
+    public void nullaryConstructorTest() {
+        // Given
+        ArrayList<Student> expectedStudents = new ArrayList<Student>(30);
 
-            // When
-            Classroom testClass = new Classroom();
+        // When
+        Classroom testClass = new Classroom();
 
-            // Then
-            ArrayList<Student> actualStudents = testClass.getStudents();
+        // Then
+        ArrayList<Student> actualStudents = testClass.getStudents();
 
-            Assert.assertEquals(expectedStudents, actualStudents);
-        }
+        Assert.assertEquals(expectedStudents, actualStudents);
+    }
 
 
     @Test
-    public void maxStudentsConstructorTest(){
+    public void maxStudentsConstructorTest() {
         // Given
         Integer expected = 25;
 
         // When
-        Classroom testClass  = new Classroom(expected);
+        Classroom testClass = new Classroom(expected);
 
         // Then
         Integer actual = testClass.getMaxNumOfStudents();
@@ -38,10 +38,10 @@ public class ClassRoomTest {
     }
 
     @Test
-    public void getStudentsTest(){
-        ArrayList<Double> examScoresTest = new ArrayList(Arrays.asList(85D, 75D, 90D ));
-        ArrayList<Double> examScoresTest2 = new ArrayList(Arrays.asList(88D, 90D, 92D ));
-        ArrayList<Double> examScoresTest3 = new ArrayList(Arrays.asList(88D, 90D, 92D ));
+    public void getStudentsTest() {
+        ArrayList<Double> examScoresTest = new ArrayList(Arrays.asList(85D, 75D, 90D));
+        ArrayList<Double> examScoresTest2 = new ArrayList(Arrays.asList(88D, 90D, 92D));
+        ArrayList<Double> examScoresTest3 = new ArrayList(Arrays.asList(88D, 90D, 92D));
 
         Student testStudent1 = new Student("Peter", "Moogie", examScoresTest);
         Student testStudent2 = new Student("Pope", "John Paul", examScoresTest2);
@@ -51,19 +51,19 @@ public class ClassRoomTest {
 
         Classroom testClass = new Classroom(expectedStudents);
 
-       ArrayList<Student> actual = testClass.getStudents();
+        ArrayList<Student> actual = testClass.getStudents();
 
-       Assert.assertEquals(expectedStudents, actual);
+        Assert.assertEquals(expectedStudents, actual);
 
 
     }
 
     @Test
-    public void studentObjectsConstructorTest(){
+    public void studentObjectsConstructorTest() {
         // Given
-        ArrayList<Double> examScoresTest = new ArrayList(Arrays.asList(85D, 75D, 90D ));
-        ArrayList<Double> examScoresTest2 = new ArrayList(Arrays.asList(88D, 90D, 92D ));
-        ArrayList<Double> examScoresTest3 = new ArrayList(Arrays.asList(88D, 90D, 92D ));
+        ArrayList<Double> examScoresTest = new ArrayList(Arrays.asList(85D, 75D, 90D));
+        ArrayList<Double> examScoresTest2 = new ArrayList(Arrays.asList(88D, 90D, 92D));
+        ArrayList<Double> examScoresTest3 = new ArrayList(Arrays.asList(88D, 90D, 92D));
 
         Student testStudent1 = new Student("Peter", "Moogie", examScoresTest);
         Student testStudent2 = new Student("Pope", "John Paul", examScoresTest2);
@@ -81,7 +81,7 @@ public class ClassRoomTest {
     }
 
     @Test
-    public void getAverageExamScoreTest () {
+    public void getAverageExamScoreTest() {
         // : Given
         ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
         ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
@@ -101,8 +101,8 @@ public class ClassRoomTest {
     }
 
     @Test
-    public void addStudentTest(){
-        Classroom classroom = new Classroom(3);
+    public void addStudentTest() {
+
         ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
         ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
 
@@ -110,17 +110,37 @@ public class ClassRoomTest {
         Student testStudent2 = new Student("Lil", "Jon", s2Scores);
 
         ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1));
+        Classroom classroom = new Classroom(testStudents);
+//        String expected = ("\n========================================\n" + "Student Name: Lil Jon\n" +
+//                "Average Score: 125.0\n" + "Exam Scores:\n" + "\tExam 1 -> 225.0\n" + "\tExam 2 -> 25.0\n"
+//                + "========================================");
 
-        String expected = ("\n========================================\n" + "Student Name: Lil Jon\n" +
-                "Average Score: 125.0\n" + "Exam Scores:\n" + "\tExam 1 -> 225.0\n" + "\tExam 2 -> 25.0\n"
-                + "========================================");
+        //classroom.addStudent(testStudent1);
+        classroom.addStudent(testStudent2);
+        Student actual = classroom.getStudents().get(1);
+        Student expected = testStudent2;
+        System.out.println(actual.getExamScores());
+        //Assert.assertEquals(expected, actual);
 
-        String actual = classroom.addStudent(testStudent2);
-        Assert.assertEquals(expected, actual);
 
         //{ System.out.println(actual);
     }
+//    @Test
+//    public void removeStudentTest(){
+//    StringBuilder sb = new StringBuilder();
+//    Classroom classroom = new Classroom(3);
+//    ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
+//    ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
+//
+//    Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
+//    Student testStudent2 = new Student("Lil", "Jon", s2Scores);
 
+//    ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1));
+//    testStudents.addStudent
+//    testStudents = classroom.addStudent(testStudent2);
+//    String
+//        Assert.assertEquals(expected, actual);
+//}
 
     }
 
