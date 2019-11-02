@@ -14,7 +14,7 @@ public class StudentTest {
         // Given
         String expectedFirstName = "David";
         String expectedLastName = "Trombello";
-       ArrayList<Double> expectedScores = new ArrayList<Double>(Arrays.asList(67D, 98D));
+        ArrayList<Double> expectedScores = new ArrayList<Double>(Arrays.asList(67D, 98D));
 
         // When
         Student testStudent = new Student (expectedFirstName, expectedLastName, expectedScores);
@@ -22,7 +22,7 @@ public class StudentTest {
         // Then
         String actualFirstName = testStudent.getFirstName();
         String actualLastName = testStudent.getLastName();
-        ArrayList<Double> actualScores = new ArrayList<Double>(Arrays.asList(67D,98D));
+        ArrayList<Double> actualScores = testStudent.getUnformatttedExamScores();
 
         Assert.assertEquals(expectedFirstName, actualFirstName);
         Assert.assertEquals(expectedLastName, actualLastName);
@@ -108,7 +108,7 @@ public class StudentTest {
     }
 
     @Test
-    public void printExamScores(){
+    public void getExamScoresTest(){
         ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(90D, 87D, 99D));
         Student testStudent = new Student("Mike", "Doe", actualScores);
         String actual = testStudent.getExamScores(actualScores);
@@ -141,10 +141,31 @@ public class StudentTest {
     public void getAverageExamScoreTest(){
         ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(90D, 87D, 99D));
         Student testStudent = new Student("Mike", "Doe", actualScores);
-        Double actual = testStudent.getAverageExamScore(actualScores);
+        Double actual = testStudent.getAverageExamScore();
         Double expected =92.0;
         Assert.assertEquals(expected,actual);
-        System.out.println(actual);
+        //System.out.println(actual);
     }
+
+    @Test
+    public void getAverageExamScoreTest2(){
+        ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(97D, 87D, 99D));
+        Student testStudent = new Student("Mike", "Doe", actualScores);
+        Double actual = testStudent.getAverageExamScore();
+        Double expected =94.3;
+        Assert.assertEquals(expected,actual);
+        //System.out.println(actual);
+    }
+
+    @Test
+    public void printToStringTest(){
+        ArrayList<Double> actualScores = new ArrayList<>(Arrays.asList(97D, 87D, 99D));
+        Student testStudent = new Student("Mike", "Doe", actualScores);
+        String actual = testStudent.printToString();
+        String expected = ("Student Name: Mike Doe\n" + "Average Score: 94.3\n" + "Exam Scores:\n" + "\tExam 1 -> 97.0\n" + "\tExam 2 -> 87.0\n" + "\tExam 3 -> 99.0\n");
+        Assert.assertEquals(expected, actual);
+        //System.out.println(actual);
+    }
+
 
 }

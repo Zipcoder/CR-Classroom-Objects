@@ -4,7 +4,9 @@ package io.zipcoder;
 
 
 
+import java.lang.instrument.ClassDefinition;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,9 +16,9 @@ import java.util.logging.Logger;
 public class Student {
 
     //***Instance Fields***
-    String firstName;
-    String lastName;
-    ArrayList<Double> examScores;
+    private String firstName;
+    private String lastName;
+    private ArrayList<Double> examScores;
 
 //constructor method
 
@@ -52,7 +54,9 @@ public class Student {
         return examScores.size();
     }
 
-    //public ArrayList<Double> getEx
+    public ArrayList<Double> getUnformatttedExamScores(){
+        return examScores;
+    }
 
 //get exam scores method
 
@@ -79,7 +83,7 @@ public class Student {
         return getExamScores(examScores);
     }
 
-    public Double getAverageExamScore (ArrayList <Double> examScores){
+    public Double getAverageExamScore (){
         Double sum = 0.0;
         Double result = 0.0;
         Double numOfScores = getNumOfExamsTaken()*1.0;
@@ -92,15 +96,20 @@ public class Student {
             sum += examScores.get(i);
         }
         result = (sum / numOfScores);
-        System.out.println(result);
-        return result;
+        DecimalFormat df = new DecimalFormat("#.#");
+
+        return Double.parseDouble(df.format(result));
 
     }
      public String printToString(){
          StringBuilder sb= new StringBuilder();
-         //sb.append("Student Name: %s %s\n", firstName, lastName);
-return "";
+         sb.append(String.format("Student Name: %s %s\n", firstName, lastName));
+         sb.append(String.format("Average Score: %.1f\n", getAverageExamScore()));
+         sb.append(getExamScores(examScores));
+            return sb.toString();
      }
+
+
    // }
 
 
