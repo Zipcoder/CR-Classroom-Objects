@@ -111,36 +111,31 @@ public class ClassRoomTest {
 
         ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1));
         Classroom classroom = new Classroom(testStudents);
-//        String expected = ("\n========================================\n" + "Student Name: Lil Jon\n" +
-//                "Average Score: 125.0\n" + "Exam Scores:\n" + "\tExam 1 -> 225.0\n" + "\tExam 2 -> 25.0\n"
-//                + "========================================");
 
-        //classroom.addStudent(testStudent1);
         classroom.addStudent(testStudent2);
         Student actual = classroom.getStudents().get(1);
         Student expected = testStudent2;
-        System.out.println(actual.getExamScores());
-        //Assert.assertEquals(expected, actual);
-
-
-        //{ System.out.println(actual);
+        //System.out.println(actual.printToString());
+        Assert.assertEquals(expected, actual);
     }
-//    @Test
-//    public void removeStudentTest(){
-//    StringBuilder sb = new StringBuilder();
-//    Classroom classroom = new Classroom(3);
-//    ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
-//    ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
-//
-//    Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
-//    Student testStudent2 = new Student("Lil", "Jon", s2Scores);
 
-//    ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1));
-//    testStudents.addStudent
-//    testStudents = classroom.addStudent(testStudent2);
-//    String
-//        Assert.assertEquals(expected, actual);
-//}
+    @Test
+    public void removeStudentTest(){
+    ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
+    ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
+
+    Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
+    Student testStudent2 = new Student("Lil", "Jon", s2Scores);
+
+    ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1, testStudent2));
+
+    Classroom classroom = new Classroom(testStudents);
+    classroom.removeStudent("Petey", "Pablo");
+    ArrayList<Student> expected = new ArrayList<>(Arrays.asList(testStudent2));
+    ArrayList<Student> actual = classroom.getStudents();
+        //System.out.println(actual);
+        Assert.assertEquals(expected, actual);
+}
 
     }
 

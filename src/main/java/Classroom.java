@@ -1,11 +1,9 @@
 import io.zipcoder.Student;
 
 
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Classroom {
+public class Classroom implements Comparable<Student>{
 
     //instance variables
     private ArrayList<Student> students;
@@ -59,13 +57,25 @@ public class Classroom {
 
     public void removeStudent (String firstName, String lastName){
         for (int i = 0; i < students.size(); i++) {
-             if(students.get(i).equals(firstName) && students.get(i).equals(lastName)){
+             if(students.get(i).getFirstName().equals(firstName) && students.get(i).getLastName().equals(lastName)){
                  students.remove(i);
             }
         }
+    }
+    public ArrayList <Double> getStudentsByScore () {
+        HashMap<Student, Double> studentDoubleHashMap = new HashMap<>();
+        for (int i = 0; i < students.size(); i++) {
+            studentDoubleHashMap.put(students.get(i), students.get(i).getAverageExamScore());
+        }
+        List<Map.Entry<Student, Double>> list = new LinkedList<Map.Entry<Student, Double>> (studentDoubleHashMap.entrySet());
 
+        return null;
     }
 
+    @Override
+    public int compareTo(Student student) {
+        Student.get(this.first)
+    }
 }
 
 
