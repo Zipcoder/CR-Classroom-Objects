@@ -20,6 +20,7 @@ public class Classroom {
     //Constructor with int maxNumberOfStudents
     public Classroom(Integer maxNumberOfStudents) {
         this.maxNumberOfStudents = maxNumberOfStudents;
+        students = new ArrayList<>(maxNumberOfStudents);
     }
 
     //Constructor with the students <list> representative of the collection of student objects this classroom will store.
@@ -48,13 +49,14 @@ public class Classroom {
     }
 
     public String addStudent (Student studentToAdd){
-        students.add(studentToAdd);
         StringBuilder sb = new StringBuilder();
+        students.add(studentToAdd);
         sb.append("\n========================================\n");
         sb.append(studentToAdd.printToString());
-        sb.append("\n========================================");
+        sb.append("========================================");
         return sb.toString();
     }
+
 
 }
 

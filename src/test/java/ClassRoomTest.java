@@ -1,4 +1,5 @@
 import io.zipcoder.Student;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -101,21 +102,23 @@ public class ClassRoomTest {
 
     @Test
     public void addStudentTest(){
+        Classroom classroom = new Classroom(3);
         ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
         ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
 
         Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
         Student testStudent2 = new Student("Lil", "Jon", s2Scores);
 
-        //ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1, testStudent2));
-        Classroom classroom = new Classroom(2);
-        //String expectedResult =
+        ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1));
 
-        classroom.addStudent(testStudent1);
+        String expected = ("\n========================================\n" + "Student Name: Lil Jon\n" +
+                "Average Score: 125.0\n" + "Exam Scores:\n" + "\tExam 1 -> 225.0\n" + "\tExam 2 -> 25.0\n"
+                + "========================================");
 
+        String actual = classroom.addStudent(testStudent2);
+        Assert.assertEquals(expected, actual);
 
-
-
+        //{ System.out.println(actual);
     }
 
 
