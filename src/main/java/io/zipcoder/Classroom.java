@@ -25,14 +25,15 @@ public class Classroom {
         int numberOfExams = 0;
         for (Student student: students) {
             sum += student.getAverageExamScore();
-            numberOfExams += 1;//student.getNumberOfExamsTaken();
+            numberOfExams += 1;
         }
-        return sum / numberOfExams;
+        Integer divisor = (!(numberOfExams > 0) ? 1 : numberOfExams);
+        return sum / divisor;
     }
 
     public void addStudent(Student student) {
         Integer newArraySize;
-        if (students != null){
+        if (students != null) {
             newArraySize = students.length + 1;
         } else {
             newArraySize = 1;
@@ -47,25 +48,12 @@ public class Classroom {
     }
 
     public void removeStudent(String firstName, String lastName) {
-        Integer newArraySize;
-        if (students != null && students.length > 1) {
-            newArraySize = students.length - 1;
-        } else {
-            newArraySize = 1;
-        }
-
-        Student[] newArray = new Student[newArraySize];
-        int idx = 0;
-        for (int i = 0; i < newArraySize; i++) {
-            if (!(students[i].getFirstName().equals(firstName)
-                    && students[i].getLastName().equals(lastName))) {
-                newArray[idx] = students[i];
-                idx += 1;
+        for (Student student : students) {
+            if (firstName.equals(student.getFirstName()) && lastName.equals(student.getLastName())) {
+                student.purgeData();
+                break;
             }
         }
-
-        students = newArray;
-
     }
 
     public Student[] getStudentsByScore() {
@@ -98,8 +86,10 @@ public class Classroom {
     public Map getGradeBook() {
         Map gradeBook = new HashMap<String, String>();
         for (Student student: students) {
-            String fullName = String.format("%s %s", student.getFirstName(), student.getLastName());
-            gradeBook.put(fullName, getPercentile(student));
+            if (student.checkIfValid()) {
+                String fullName = String.format("%s %s", student.getFirstName(), student.getLastName());
+                gradeBook.put(fullName, getPercentile(student));
+            }
         }
         return gradeBook;
     }
@@ -132,7 +122,8 @@ public class Classroom {
     public Integer getNumberOfStudents() {
         int count = 0;
         for (int i = 0; i < students.length; i++) {
-            if (students[i] != null && students[i].getFirstName().length() > 0) {
+            if (students[i] != null
+                    && students[i].checkIfValid()) {
                 count++;
             }
         }

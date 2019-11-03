@@ -298,4 +298,28 @@ public class StudentTest {
                 "\tExam 2 -> 45.23\n";
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void purgeDataTest() {
+        Double[] examScores = { 23.33, 45.23 };
+        Student student = new Student("John","Lakeman", examScores);
+        student.purgeData();
+        Student actual = student;
+        Student expected = new Student("", "", new Double[0]);
+        Assert.assertEquals(expected.toString(), actual.toString());
+    }
+
+    @Test
+    public void checkIfValidTest1() {
+        Double[] examScores = { 23.33, 45.23 };
+        Student student = new Student("John","Lakeman", examScores);
+        Assert.assertTrue(student.checkIfValid());
+    }
+    @Test
+    public void checkIfValidTest2() {
+        Double[] examScores = { 23.33, 45.23 };
+        Student student = new Student("John","Lakeman", examScores);
+        student.purgeData();
+        Assert.assertFalse(student.checkIfValid());
+    }
 }

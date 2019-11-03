@@ -52,10 +52,13 @@ public class Student {
 
     public Double getAverageExamScore() {
         Double sum = 0.0;
-        for (Double score: examScores) {
-            sum += score;
+        if (examScores.size() > 0) {
+            for (Double score : examScores) {
+                sum += score;
+            }
         }
-        return sum / getNumberOfExamsTaken();
+        Integer divisor = (!(getNumberOfExamsTaken() > 0) ? 1 : getNumberOfExamsTaken());
+        return sum / divisor;
     }
 
     @Override
@@ -66,5 +69,16 @@ public class Student {
         output.append("> "+getExamScores());
         System.out.println(output.toString());
         return output.toString();
+    }
+
+    public void purgeData() {
+        this.setFirstName("");
+        this.setLastName("");
+        this.examScores = new ArrayList<>(0);
+    }
+
+    public Boolean checkIfValid() {
+        return (getFirstName().length() > 0
+                && getLastName().length() > 0);
     }
 }
