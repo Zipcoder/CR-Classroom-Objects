@@ -35,7 +35,14 @@ public class Classroom {
         studentsList.add(student1);
     }
 
+    public void removeStudent(Student firstName, Student lastName) {
+        for (int i = 0; i < studentsList.size(); i++) {
+            if(studentsList.get(i).firstName.equals(firstName) && studentsList.get(i).lastName.equals(lastName)){
+                studentsList.remove(i);
+            }
 
+        }
+    }
 
 
 
