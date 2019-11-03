@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // this is a blueprint in case we want multiple students
-public class Student {
+public class Student implements Comparable<Student>{
     // declaring variables
     String firstName;
     String lastName;
@@ -81,4 +81,8 @@ public class Student {
     }
 
 
+    @Override
+    public int compareTo(Student o) {
+        return Double.compare(this.getAverageExamScore(), o.getAverageExamScore());
+    }
 }
