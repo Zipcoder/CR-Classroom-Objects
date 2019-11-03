@@ -8,10 +8,11 @@ public class Student {
     String lastName;
     ArrayList<Double> examScores;
 
-    public Student(String firstName, String lastName, Double[] examScores){
+    public Student(String firstName, String lastName, Double[] testScores){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.examScores = new ArrayList(Arrays.asList(examScores));
+        if (testScores != null)
+        examScores = new ArrayList(Arrays.asList(testScores));
     }
     public String getFirstName(){
         return firstName;
@@ -26,13 +27,35 @@ public class Student {
         lastName = newLastName;
 }
     public Integer getNumberOfExamsTaken(){
-        return examScores.size();
+        return examScores == null ? 0 : examScores.size();
     }
     public String getExamScores(){
-        return "Exam Scores:\n" +
-                "\n\tExam 1 -> " + examScores.get(0) +
-                "\n\tExam 2 -> " + examScores.get(1) +
-                "\n\tExam 3 -> " + examScores.get(2) +
-                "\n\tExam 4 -> " + examScores.get(3);
+        String output = "";
+        Integer examNum = 1;
+        for(Double i : examScores)
+            output += "Exam " + examNum++ + " -> " + i + "\n";
+
+        return output;
+    }
+    public void addExamScore(Double examScore) {
+        if (examScore == null)
+            examScores = new ArrayList<>();
+
+        examScores.add(examScore);
+    }
+    public void setExamScores(Integer nthExam, Double examScore){
+        examScores.set(nthExam - 1, examScore);
+    }
+    public Double getExamScore(Integer nthExam){
+        return examScores.get(nthExam - 1);
+    }
+    public Double getAverageExamScore(){
+        Double sum = 0.0;
+        if (examScores == null)
+            return 0.0;
+
+        for (Double score : examScores)
+            sum += score;
+        return sum / (double) getNumberOfExamsTaken();
     }
 }
