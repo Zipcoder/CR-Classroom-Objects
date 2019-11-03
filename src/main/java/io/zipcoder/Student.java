@@ -39,9 +39,10 @@ public class Student {
     }
     public void addExamScore(Double examScore) {
         if (examScore == null)
-            examScores = new ArrayList<>();
+            examScores = new ArrayList<>(0);
 
-        examScores.add(examScore);
+        else
+            examScores.add(examScore);
     }
     public void setExamScores(Integer nthExam, Double examScore){
         examScores.set(nthExam - 1, examScore);
@@ -57,5 +58,11 @@ public class Student {
         for (Double score : examScores)
             sum += score;
         return sum / (double) getNumberOfExamsTaken();
+    }
+    @Override
+    public String toString(){
+        return String.format("Student Name: %s %s\n"+
+                "> Average Score: %f\n"+
+                "%s", firstName, lastName, getAverageExamScore(), getExamScores());
     }
 }
