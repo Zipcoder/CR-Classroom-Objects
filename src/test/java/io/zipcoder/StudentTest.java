@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StudentTest {
 
@@ -116,6 +117,62 @@ public class StudentTest {
         String actual = leonHunter.firstName;
         //System.out.println(actual);
         Assert.assertEquals("Hunter", actual);
+
+    }
+
+    @Test
+    public void testGetNotExamScores() {
+        String first = "Leon";
+        String last = "Hynter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+
+        Double[] unexpected = scores;
+        ArrayList<Double> actual = leonHunter.examScores;
+
+        Assert.assertNotEquals(unexpected,actual);
+
+    }
+
+    @Test
+    public void testGetExamScores() {
+        String first = "Leon";
+        String last = "Hynter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+
+        ArrayList<Double> expected = new ArrayList<>(Arrays.asList(scores));
+        ArrayList<Double> actual = leonHunter.examScores;
+
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
+    public void testGetNotNumberOfExamsTaken() {
+        String first = "Leon";
+        String last = "Hynter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+        int actual = leonHunter.getNumberOfExamsTaken();
+
+        Assert.assertFalse(actual <= 1);
+
+    }
+
+    @Test
+    public void testGetNumberOfExamsTaken() {
+        String first = "Leon";
+        String last = "Hynter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+        int actual = leonHunter.getNumberOfExamsTaken();
+
+        Assert.assertEquals(4,actual);
 
     }
 
