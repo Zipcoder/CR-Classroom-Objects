@@ -63,4 +63,60 @@ public class StudentTest {
 
     }
 
+    @Test
+    public void testGetNotLastName() {
+        String first = "Leon";
+        String last = "Hynter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+
+        String actual = leonHunter.getLastName();
+        Assert.assertNotEquals("last", actual);
+
+    }
+
+    @Test
+    public void testGetLastName() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+
+        String actual = leonHunter.getLastName();
+        //System.out.println(actual);
+        Assert.assertEquals("Hunter", actual);
+
+    }
+
+    @Test
+    public void testSetNotLastName() {
+        String first = "Leon";
+        String last = "Hynter";
+        Double[] scores = {100.0, 95.0, 123.0, 96.0};
+
+        Student leonHunter = new Student(first, last, scores);
+        leonHunter.setLastName("Hunter");
+
+        String actual = leonHunter.firstName;
+        Assert.assertNotEquals("Hynter", actual);
+
+    }
+
+    @Test
+    public void testSetLastName() {
+        String first = "Lyon";
+        String last = "Hynter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+        leonHunter.setFirstName("Hunter");
+
+        String actual = leonHunter.firstName;
+        //System.out.println(actual);
+        Assert.assertEquals("Hunter", actual);
+
+    }
+
 }
