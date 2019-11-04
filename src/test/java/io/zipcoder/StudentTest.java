@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -123,7 +124,7 @@ public class StudentTest {
     @Test
     public void testGetNotExamScores() {
         String first = "Leon";
-        String last = "Hynter";
+        String last = "Hunter";
         Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
 
         Student leonHunter = new Student(first, last, scores);
@@ -138,7 +139,7 @@ public class StudentTest {
     @Test
     public void testGetExamScores() {
         String first = "Leon";
-        String last = "Hynter";
+        String last = "Hunter";
         Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
 
         Student leonHunter = new Student(first, last, scores);
@@ -153,7 +154,7 @@ public class StudentTest {
     @Test
     public void testGetNotNumberOfExamsTaken() {
         String first = "Leon";
-        String last = "Hynter";
+        String last = "Hunter";
         Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
 
         Student leonHunter = new Student(first, last, scores);
@@ -166,7 +167,7 @@ public class StudentTest {
     @Test
     public void testGetNumberOfExamsTaken() {
         String first = "Leon";
-        String last = "Hynter";
+        String last = "Hunter";
         Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
 
         Student leonHunter = new Student(first, last, scores);
@@ -174,6 +175,66 @@ public class StudentTest {
 
         Assert.assertEquals(4,actual);
 
+    }
+
+    @Test
+    public void testGetExamsTaken() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+        String actual = leonHunter.getExamsTaken();
+
+        System.out.println("Test Of getExamsTaken() Method \n");
+        System.out.println(actual);
+        //This empirically worked as both a negative and a positive unit test
+
+    }
+
+    @Test
+    public void testTakeExamNegative() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = {};
+
+        Student leonHunter = new Student(first, last, scores);
+
+        leonHunter.takeExam(100.0);
+        ArrayList<Double> unexpected = new ArrayList<Double> (Arrays.asList(scores));
+        ArrayList<Double> actual = leonHunter.getExamScores();
+
+        Assert.assertNotEquals(unexpected,actual);
+    }
+
+    @Test
+    public void testTakeExam() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = {};
+
+        Student leonHunter = new Student(first, last, scores);
+
+        leonHunter.takeExam(100.0);
+        ArrayList<Double> expected = new ArrayList<Double>(){{add(100.0);}};
+        ArrayList<Double> actual = leonHunter.getExamScores();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testTakeExamSysOut() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = {};
+
+        Student leonHunter = new Student(first, last, scores);
+
+        leonHunter.takeExam(100.0);
+        String actual = leonHunter.getExamsTaken();
+
+        System.out.println("Test Of takeExam() Method \n");
+        System.out.println(actual);
     }
 
 }

@@ -47,11 +47,15 @@ public class Student {
     // Other Methods
 
     public String getExamsTaken() {
-        String ans = " Exam Scores:";
+        String ans = "Exam Scores:";
         for (int i = 1; i <= examScores.size(); i++) {
-            ans += "\nExam " + i + " -> " + examScores.get(i);
+            ans += "\nExam " + i + " -> " + Math.round(examScores.get(i - 1));
         }
         return ans;
+    }
+
+    public void takeExam(Double newScore) {
+        this.examScores.add(newScore);
     }
 
 
