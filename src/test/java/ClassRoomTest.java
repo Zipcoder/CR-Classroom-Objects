@@ -196,19 +196,37 @@ public class ClassRoomTest {
 
         ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1, testStudent2, testStudent3));
 
-        TreeMap<Student, String> expected = new TreeMap<Student, String>(testStudent2, testStudent3, testStudent1);
+        //TreeMap<Student, String> expected = new TreeMap<Student, String>(testStudent2, testStudent3, testStudent1);
 
         Classroom classroom = new Classroom(testStudents);
 
+        TreeMap<Student, String> expected = new TreeMap<Student, String>();
+            expected.put(testStudent3, " A");
+            expected.put(testStudent1, " B");
+            expected.put(testStudent2, " C");
+
         Map<Student, String> actual = classroom.getGradeBook();
 
-        for(Map.Entry<Student, String> entry : selects.entrySet()) {
-            String key = entry.getKey();
-            HashMap value = entry.getValue();
+        Assert.assertEquals(expected,actual);
 
-        Collection myStuff = actual.entrySet();
+//        for (Map.Entry<Student, String> entry : actual.entrySet()) {
+//            System.out.println("Key: " + entry.getKey().printToString() + ". Value: " + entry.getValue());
+        }
+//        for (Entry<String, String> entry : tree.entrySet()) {
+//            String key = entry.getKey();
+//            String value = entry.getValue();
+//
+//            System.out.printf("%s : %s\n", key, value);
+//        }
+
+
+//        for(Map.Entry<Student, String> entry : selects.entrySet()) {
+//            String key = entry.getKey();
+//            HashMap value = entry.getValue();
+
+        //Collection myStuff = actual.entrySet();
         //Spliterator sit = myStuff.entrySet().spliterator();
-        System.out.println(actual);
+        //System.out.println(actual);
         //actual.forEach((k,v))  hm.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));;
         //Iterator itr = actual.iterator();
 
@@ -216,24 +234,10 @@ public class ClassRoomTest {
         //while (actual.hasNext()){
             //System.out.println(actual.next().printToString());
 
-//        public HashMap<String, String> getGradeBook(){
-//            gradeBookMap = new LinkedHashMap<String, String>();
-//            getStudentsByScore();          // sorts students by grade > lastName > firstName order before inserting into LinkedHashMap
-//            String letterGrade = "I";
-//            for (int i = 0; i < students.size(); i++){
-//                if (students.get(i).getAverageExamScore() <= 100 && students.get(i).getAverageExamScore() >= 90) {letterGrade = "A";}      //possible bug - will not return a letter grade for scores above 100
-//                else if (students.get(i).getAverageExamScore() < 90 && students.get(i).getAverageExamScore() >=71 ) {letterGrade = "B";}
-//                else if (students.get(i).getAverageExamScore() < 71 && students.get(i).getAverageExamScore() >=50 ) {letterGrade = "C";}
-//                else if (students.get(i).getAverageExamScore() < 50 && students.get(i).getAverageExamScore() >=11 ) {letterGrade = "D";}
-//                else if (students.get(i).getAverageExamScore() < 11 && students.get(i).getAverageExamScore() >=0 ) {letterGrade = "F";}
-//                else {letterGrade = "I";}       //sets grade to "I" for "incomplete" if they don't have a grade or if there is an error in their grading
-//                gradeBookMap.put((students.get(i).getFirstName() + " " + students.get(i).getLastName()), letterGrade);
-//            }
-//            return gradeBookMap;
-//        }
+//
      }
 
-}
+
 
 
 
