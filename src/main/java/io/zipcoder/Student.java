@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class Student {
+public class Student implements Comparable <Student>{
 
     //***Instance Fields***
     private String firstName;
@@ -110,7 +110,15 @@ public class Student {
      }
 
 
-   // }
+    @Override
+    public int compareTo(Student other) {
+        //Sort by score in reverse order (high to low)
+        if(this.getAverageExamScore().compareTo(other.getAverageExamScore()) != 0) {return -1 * this.getAverageExamScore().compareTo(other.getAverageExamScore());}
+        //if scores are the same, use last name from a to z as the next check
+        else if (lastName.compareTo(other.lastName) != 0) {return lastName.compareTo(other.lastName);}
+        //if the last names are the same, use first name from a to z
+        else {return firstName.compareTo(other.firstName);}
+    }
 
 
 

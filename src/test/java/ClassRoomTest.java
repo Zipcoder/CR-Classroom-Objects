@@ -3,8 +3,7 @@ import io.zipcoder.Student;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class ClassRoomTest {
 
@@ -120,24 +119,124 @@ public class ClassRoomTest {
     }
 
     @Test
-    public void removeStudentTest(){
-    ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
-    ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
+    public void removeStudentTest() {
+        ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(100.0, 150.0));
+        ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
 
-    Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
-    Student testStudent2 = new Student("Lil", "Jon", s2Scores);
+        Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
+        Student testStudent2 = new Student("Lil", "Jon", s2Scores);
 
-    ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1, testStudent2));
+        ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1, testStudent2));
 
-    Classroom classroom = new Classroom(testStudents);
-    classroom.removeStudent("Petey", "Pablo");
-    ArrayList<Student> expected = new ArrayList<>(Arrays.asList(testStudent2));
-    ArrayList<Student> actual = classroom.getStudents();
+        Classroom classroom = new Classroom(testStudents);
+        classroom.removeStudent("Petey", "Pablo");
+        ArrayList<Student> expected = new ArrayList<>(Arrays.asList(testStudent2));
+        ArrayList<Student> actual = classroom.getStudents();
         //System.out.println(actual);
         Assert.assertEquals(expected, actual);
-}
+    }
+
+    @Test
+    public void getStudentsByScoreTest() {
+        ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(10.0, 150.0));
+        ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(225.0, 25.0));
+        ArrayList<Double> s3scores = new ArrayList<>(Arrays.asList(75.0, 125.0));
+
+        Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
+        Student testStudent2 = new Student("Lil", "Jon", s2Scores);
+        Student testStudent3 = new Student("Anne", "Buttigeg", s3scores);
+
+        ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1, testStudent2, testStudent3));
+
+        ArrayList<Student> expected = new ArrayList<>(Arrays.asList(testStudent2, testStudent3, testStudent1));
+
+        Classroom classroom = new Classroom(testStudents);
+
+        ArrayList <Student> actual = classroom.getStudentsByScore();
+
+//        Iterator<Student> myStudents = testStudents.iterator();
+//        while (myStudents.hasNext()){
+//            System.out.println(myStudents.next().printToString());
+//        }
+
+        Assert.assertEquals(expected, actual);
+
 
     }
+
+    @Test
+    public void getStudentsByScoreTest2() {
+        ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(50.0, 150.0));
+        ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(120.0, 80.0));
+        ArrayList<Double> s3scores = new ArrayList<>(Arrays.asList(200.0, 0.0));
+
+        Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
+        Student testStudent2 = new Student("Lil", "Jon", s2Scores);
+        Student testStudent3 = new Student("Paul", "Bacchas", s3scores);
+
+        ArrayList<Student> expected = new ArrayList<>(Arrays.asList(testStudent2, testStudent3, testStudent1));
+
+        ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent2, testStudent1, testStudent3));
+
+        Classroom classroom = new Classroom(testStudents);
+        ArrayList <Student> actual = classroom.getStudentsByScore();
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void getGradeBooKTest (){
+        ArrayList<Double> s1Scores = new ArrayList<Double>(Arrays.asList(10.0, 150.0));
+        ArrayList<Double> s2Scores = new ArrayList<>(Arrays.asList(70.0, 50.0));
+        ArrayList<Double> s3scores = new ArrayList<>(Arrays.asList(95.0, 95.0));
+
+        Student testStudent1 = new Student("Petey", "Pablo", s1Scores);
+        Student testStudent2 = new Student("Lil", "Jon", s2Scores);
+        Student testStudent3 = new Student("Anne", "Buttigeg", s3scores);
+
+        ArrayList<Student> testStudents = new ArrayList<Student>(Arrays.asList(testStudent1, testStudent2, testStudent3));
+
+        TreeMap<Student, String> expected = new TreeMap<Student, String>(testStudent2, testStudent3, testStudent1);
+
+        Classroom classroom = new Classroom(testStudents);
+
+        Map<Student, String> actual = classroom.getGradeBook();
+
+        for(Map.Entry<Student, String> entry : selects.entrySet()) {
+            String key = entry.getKey();
+            HashMap value = entry.getValue();
+
+        Collection myStuff = actual.entrySet();
+        //Spliterator sit = myStuff.entrySet().spliterator();
+        System.out.println(actual);
+        //actual.forEach((k,v))  hm.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));;
+        //Iterator itr = actual.iterator();
+
+        //Iterator<> myStudents = testStudents.iterator();
+        //while (actual.hasNext()){
+            //System.out.println(actual.next().printToString());
+
+//        public HashMap<String, String> getGradeBook(){
+//            gradeBookMap = new LinkedHashMap<String, String>();
+//            getStudentsByScore();          // sorts students by grade > lastName > firstName order before inserting into LinkedHashMap
+//            String letterGrade = "I";
+//            for (int i = 0; i < students.size(); i++){
+//                if (students.get(i).getAverageExamScore() <= 100 && students.get(i).getAverageExamScore() >= 90) {letterGrade = "A";}      //possible bug - will not return a letter grade for scores above 100
+//                else if (students.get(i).getAverageExamScore() < 90 && students.get(i).getAverageExamScore() >=71 ) {letterGrade = "B";}
+//                else if (students.get(i).getAverageExamScore() < 71 && students.get(i).getAverageExamScore() >=50 ) {letterGrade = "C";}
+//                else if (students.get(i).getAverageExamScore() < 50 && students.get(i).getAverageExamScore() >=11 ) {letterGrade = "D";}
+//                else if (students.get(i).getAverageExamScore() < 11 && students.get(i).getAverageExamScore() >=0 ) {letterGrade = "F";}
+//                else {letterGrade = "I";}       //sets grade to "I" for "incomplete" if they don't have a grade or if there is an error in their grading
+//                gradeBookMap.put((students.get(i).getFirstName() + " " + students.get(i).getLastName()), letterGrade);
+//            }
+//            return gradeBookMap;
+//        }
+     }
+
+}
+
+
+
 
 
 

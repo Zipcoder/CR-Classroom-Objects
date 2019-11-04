@@ -1,13 +1,16 @@
 import io.zipcoder.Student;
 
-
+//import com.google.common.collect;
 import java.util.*;
 
-public class Classroom implements Comparable<Student>{
+public class Classroom {
 
     //instance variables
     private ArrayList<Student> students;
     private Integer maxNumberOfStudents;
+    private static Map<Double, String> limits;
+
+
 
     //Nullary Constructor
     public Classroom() {
@@ -62,21 +65,77 @@ public class Classroom implements Comparable<Student>{
             }
         }
     }
-    public ArrayList <Double> getStudentsByScore () {
-        HashMap<Student, Double> studentDoubleHashMap = new HashMap<>();
-        for (int i = 0; i < students.size(); i++) {
-            studentDoubleHashMap.put(students.get(i), students.get(i).getAverageExamScore());
+    public ArrayList <Student> getStudentsByScore () {
+        Collections.sort(students);
+        return students;
+    }
+//Tried creating some maps and things to sort the student data.  Ended up using a custom comparator to sor the student list
+
+//    for (int i = 0; i < students.size(); i++) {
+//        students.get(i).getAverageExamScore();
+//        students.sort(Comparator.naturalOrder());
+//        HashMap<Student, Double> studentDoubleHashMap = new HashMap<>();
+//        for (int i = 0; i < students.size(); i++) {
+//            studentDoubleHashMap.put(students.get(i), students.get(i).getAverageExamScore());
+//        }
+
+    public Map getGradeBook (){
+        //Integer numOfStudentsInClass = students.size();
+        String letterGrade = "I";
+        //orders students by score
+        getStudentsByScore();
+        //Limits for the tree map
+//        static {
+//        limits = new TreeMap<>();
+//        limits.put(0.0 , "F");
+//        limits.put(students.size()*0.11 , "D");
+//        limits.put(students.size()*0.31, "C");
+//        limits.put(students.size()*0.51, "B");
+//        limits.put(students.size()*0.71, "B");
+//        limits.put(students.size()* 0.9, "A");
+
+        TreeMap<Student, String> gradeMap = new TreeMap<>();
+
+//                gradeMap.put(90.0, "A");
+//                gradeMap.put(71.0, "B");
+//                gradeMap.put(51.0, "C");
+//                gradeMap.put(11.0, "D");
+//                gradeMap.put( 0.0, "F");
+
+    for (int i = 0; i < students.size(); i++ ){
+
+        if ( students.get(i).getAverageExamScore() >= 90){
+            letterGrade = " A";}
+        else if (students.get(i).getAverageExamScore() <= 90 && students.get(i).getAverageExamScore() >= 71){
+            letterGrade = " B";}
+        else if (students.get(i).getAverageExamScore() <= 70 && students.get(i).getAverageExamScore() >= 50){
+            letterGrade= " C";}
+        else if (students.get(i).getAverageExamScore() <= 90 && students.get(i).getAverageExamScore() >= 71){
+            letterGrade = " D";}
+        else {
+            letterGrade = " F";}
+        gradeMap.put(students.get(i), letterGrade);
         }
-        List<Map.Entry<Student, Double>> list = new LinkedList<Map.Entry<Student, Double>> (studentDoubleHashMap.entrySet());
-
-        return null;
+        return gradeMap;
     }
 
-    @Override
-    public int compareTo(Student student) {
-        Student.get(this.first)
     }
-}
+
+    //
+//+ " " + letterGrade
+
+//    students.get(i).getFirstName() + " " + students.get(i).getLastName());
+//    RangeMap<Integer, String> gradeLetter = ImmutableRangeMap.builder()
+//            .put(Range.closed(90, 100), "A")
+//            .put(Range.closed(60, 89), "B")
+//            // ...
+//            .build();
+//
+//    public String getGrade(String studentName) {
+//        int averageScore = getAverageExamGrade(studentName);
+//        return gradeLetter.get(averageScore);
+//    }
+
 
 
 
