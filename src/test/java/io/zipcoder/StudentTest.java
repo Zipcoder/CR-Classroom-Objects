@@ -237,4 +237,33 @@ public class StudentTest {
         System.out.println(actual);
     }
 
+    @Test
+    public void testSetExamNegative() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = { 100.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+
+        leonHunter.setExamScore(1, 150.0);
+        ArrayList<Double> unexpected = new ArrayList<Double> (Arrays.asList(scores));
+        ArrayList<Double> actual = leonHunter.getExamScores();
+
+        Assert.assertNotEquals(unexpected,actual);
+    }
+
+    @Test
+    public void testSetExam() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = { 100.0 };
+
+        Student leonHunter = new Student(first, last, scores);
+
+        leonHunter.setExamScore(1, 150.0);
+        ArrayList<Double> unexpected = new ArrayList<Double> (Arrays.asList(150.0));
+        ArrayList<Double> actual = leonHunter.getExamScores();
+
+        Assert.assertEquals(unexpected,actual);
+    }
 }

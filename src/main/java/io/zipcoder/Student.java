@@ -58,6 +58,10 @@ public class Student {
         this.examScores.add(newScore);
     }
 
+    public void setExamScore(int examNumber, double newScore){
+        this.examScores.set(examNumber - 1, newScore);
+    }
+
 
 
 }
