@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import javax.xml.crypto.dom.DOMCryptoContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -62,6 +63,13 @@ public class Student {
         this.examScores.set(examNumber - 1, newScore);
     }
 
+    public Double getAverageExamScore() {
+        Double sum = 0.0;
+        for (int i = 0; i < examScores.size(); i++) {
+            sum += this.examScores.get(i);
+        }
 
+        return sum/examScores.size();
+    }
 
 }

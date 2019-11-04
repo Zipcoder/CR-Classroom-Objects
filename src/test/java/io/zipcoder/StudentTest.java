@@ -261,9 +261,37 @@ public class StudentTest {
         Student leonHunter = new Student(first, last, scores);
 
         leonHunter.setExamScore(1, 150.0);
-        ArrayList<Double> unexpected = new ArrayList<Double> (Arrays.asList(150.0));
+        ArrayList<Double> expected = new ArrayList<Double> (Arrays.asList(150.0));
         ArrayList<Double> actual = leonHunter.getExamScores();
 
-        Assert.assertEquals(unexpected,actual);
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testGetAverageExamScoreNegative() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = {100.0, 150.0, 250.0, 0.0};
+
+        Student leonHunter = new Student(first, last, scores);
+
+        Double unexpected = 0.0;
+        Double actual = leonHunter.getAverageExamScore();
+
+        Assert.assertNotEquals(unexpected, actual);
+    }
+
+    @Test
+    public void testGetAverageExamScore() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = {100.0, 150.0, 250.0, 0.0};
+
+        Student leonHunter = new Student(first, last, scores);
+
+        Double expected = 125.0;
+        Double actual = leonHunter.getAverageExamScore();
+
+        Assert.assertEquals(expected, actual);
     }
 }
