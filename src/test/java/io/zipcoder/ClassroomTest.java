@@ -32,14 +32,6 @@ public class ClassroomTest {
 
     }
 
-
-
-
-
-
-
-
-
     @Test
     public void getAverageExamScore() {
         int maxNumOfStudents = 2;
