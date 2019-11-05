@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Student {
+public class Student{
     private String firstName;
     private String lastName;
      List<Double> examScores;

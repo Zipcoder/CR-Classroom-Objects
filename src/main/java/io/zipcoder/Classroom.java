@@ -1,13 +1,10 @@
 package io.zipcoder;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Classroom extends Student{
 
-//    Student[]students = new Student[30];
     Student[] students;
 
 
@@ -42,6 +39,29 @@ public class Classroom extends Student{
         return (Student[])studentList.toArray();
   }
   public Student[] getStudentByScore(){
-
+      StudentSorter itemSorter = new StudentSorter(students);
+      Comparator<Student> comparator =  new ScoreComparator();
+      return itemSorter.sort(comparator);
+  }
+//******Correct this to meet requirements ******
+  public Map getGradeBook(){
+        Map<Character, Student> gradeBook= new HashMap<>();
+        Student[] sortedStudents =getStudentByScore();
+        for(int i =0; i < sortedStudents.length; i++){
+            if(sortedStudents[i].getAverageExamScore() <=50){
+                gradeBook.put('F',sortedStudents[i]);
+            }else if(sortedStudents[i].getAverageExamScore() <=60) {
+                gradeBook.put('E', sortedStudents[i]);
+            }else if(sortedStudents[i].getAverageExamScore() <=65) {
+                gradeBook.put('D', sortedStudents[i]);
+            }else if(sortedStudents[i].getAverageExamScore() <=70) {
+                gradeBook.put('C', sortedStudents[i]);
+            }else if(sortedStudents[i].getAverageExamScore() <=90) {
+                gradeBook.put('B', sortedStudents[i]);
+            } else {
+                gradeBook.put('A', sortedStudents[i]);
+            }
+        }
+        return gradeBook;
   }
 }
