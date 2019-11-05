@@ -15,11 +15,11 @@ public class StudentTest {
 
     @Test
     public void TestStudentConstructor(){
-
-        Student someStudent = new Student("Bilbo", "Baggins", null);
-
         String expectedName = "Bilbo";
         String expectedLastName = "Baggins";
+        Double [] testScores = {10.,15.};
+
+        Student someStudent = new Student("Bilbo", "Baggins", testScores);
 
         String actualName = someStudent.getFirstName();
         String actualLastName = someStudent.getLastName();
@@ -29,13 +29,15 @@ public class StudentTest {
     }
     @Test
     public void TestStudentName(){
-        Student someStudent = new Student (null,null,null);
+        String expectedName = "Bilbo";
+        String expectedLastName = "Baggins";
+        Double [] testScores = {10.,15.};
+
+        Student someStudent = new Student(null, null, testScores);
 
         someStudent.setFirstName("Bilbo");
         someStudent.setLastName("Baggins");
 
-        String expectedName = "Bilbo";
-        String expectedLastName = "Baggins";
 
         String actualName = someStudent.getFirstName();
         String actualLastName = someStudent.getLastName();
@@ -47,9 +49,8 @@ public class StudentTest {
     public void TestGetExamScore() {
         String firstName = "Leon";
         String lastName = "Hunter";
-        List<Double> examScores = new ArrayList<>();
+        Double[] examScores ={1.3,1.2};
         Student student = new Student(firstName, lastName, examScores);
-        student.addExamScore(1.3);
         String output = student.getExamScores();
 
         System.out.println(output);
@@ -59,10 +60,9 @@ public class StudentTest {
     public void setExamScores() {
         String firstName = "Leon";
         String lastName = "Hunter";
-        List<Double> examScores = new ArrayList<>();
+        Double[] examScores = {1.3,99.};
         Student student = new Student(firstName, lastName, examScores);
-        student.addExamScore(1.3);
-        student.addExamScore(99.);
+
         String output = student.getExamScores();
 
         System.out.println(output);
@@ -72,10 +72,8 @@ public class StudentTest {
     public void testToString() {
         String firstName = "Leon";
         String lastName = "Hunter";
-        List<Double> examScores = new ArrayList<>();
+        Double[] examScores = {1.3,99.};
         Student student = new Student(firstName, lastName, examScores);
-        student.addExamScore(1.3);
-        student.addExamScore(99.);
 
         System.out.println(student.toString());
     }

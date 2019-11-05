@@ -2,18 +2,22 @@ package io.zipcoder;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Student {
     private String firstName;
     private String lastName;
-     List<Double> examScores = new ArrayList<>();
+     List<Double> examScores;
 
     public Student(){}
 
-    public Student(String firstName, String lastName, List<Double> examScores) {
+
+    public Student (String firstName, String lastName, Double[] testScores  ){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.examScores = new ArrayList<>(Arrays.asList(testScores));
+
     }
 
 
@@ -57,13 +61,15 @@ public class Student {
 
     }
 
-    public  Double getAverageExamScore(){
+    public Double getAverageExamScore(){
         Double total = 0.0 ;
-        for(int i =0; i < getNumberOfExamsTaken();i++){
+        for(int i =0; i < examScores.size();i++){
             total += examScores.get(i);
         }
         return total/examScores.size();
     }
+
+//    public void takeExam(Double examScore){examScores.add(examScore);}
 
     public String toString(){
         String nameLine = "Student Name : " + getFirstName()  + " " + getLastName() + "\n";
