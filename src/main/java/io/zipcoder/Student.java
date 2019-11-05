@@ -50,7 +50,7 @@ public class Student {
     public String getExamsTaken() {
         String ans = "Exam Scores:";
         for (int i = 1; i <= examScores.size(); i++) {
-            ans += "\nExam " + i + " -> " + Math.round(examScores.get(i - 1));
+            ans += "\n      Exam " + i + " -> " + Math.round(examScores.get(i - 1));
         }
         return ans;
     }
@@ -72,4 +72,10 @@ public class Student {
         return sum/examScores.size();
     }
 
+    @Override
+    public String toString(){
+      return  "Student Name: " + firstName + " " + lastName + "\n"
+      +"> Average Score: " + getAverageExamScore() + "\n"
+      +"> " + getExamsTaken();
+    }
 }

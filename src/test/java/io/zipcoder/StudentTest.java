@@ -186,7 +186,7 @@ public class StudentTest {
         Student leonHunter = new Student(first, last, scores);
         String actual = leonHunter.getExamsTaken();
 
-        System.out.println("Test Of getExamsTaken() Method \n");
+        System.out.println("\nTest Of getExamsTaken() Method \n");
         System.out.println(actual);
         //This empirically worked as both a negative and a positive unit test
 
@@ -233,7 +233,7 @@ public class StudentTest {
         leonHunter.takeExam(100.0);
         String actual = leonHunter.getExamsTaken();
 
-        System.out.println("Test Of takeExam() Method \n");
+        System.out.println("\nTest Of takeExam() Method \n");
         System.out.println(actual);
     }
 
@@ -293,5 +293,17 @@ public class StudentTest {
         Double actual = leonHunter.getAverageExamScore();
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testToString() {
+        String first = "Leon";
+        String last = "Hunter";
+        Double[] scores = {100.0, 150.0, 250.0, 0.0};
+
+        Student leonHunter = new Student(first, last, scores);
+
+        System.out.println("\n Test toString() method \n");
+        System.out.println(leonHunter.toString());
     }
 }
