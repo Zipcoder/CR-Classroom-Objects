@@ -101,7 +101,7 @@ public class StudentTest {
         Student leonHunter = new Student(first, last, scores);
         leonHunter.setLastName("Hunter");
 
-        String actual = leonHunter.firstName;
+        String actual = leonHunter.lastName;
         Assert.assertNotEquals("Hynter", actual);
 
     }
@@ -113,9 +113,9 @@ public class StudentTest {
         Double[] scores = { 100.0, 95.0, 123.0, 96.0 };
 
         Student leonHunter = new Student(first, last, scores);
-        leonHunter.setFirstName("Hunter");
+        leonHunter.setLastName("Hunter");
 
-        String actual = leonHunter.firstName;
+        String actual = leonHunter.lastName;
         //System.out.println(actual);
         Assert.assertEquals("Hunter", actual);
 
