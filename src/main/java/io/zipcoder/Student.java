@@ -10,16 +10,7 @@ public class Student {
     private ArrayList<Double> examScores;
 
 
-    //Constructors
-
-    public Student(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Student(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+    //Constructor
 
     public Student(String firstName, String lastName, Double[] examScores) {
         this.firstName = firstName;
@@ -30,6 +21,7 @@ public class Student {
 
 
     //setters and getters
+
     public String getFirstName() {
         return firstName;
     }
@@ -61,12 +53,10 @@ public class Student {
             double score = examScores.get(index);
 
             outputOfScores += ("Exame " + exam + " -> " + score + "\n");
-
         }
 
         return outputOfScores;
     }
-
 
     public void addExamScore(double newScore){
         examScores.add(newScore);
@@ -79,10 +69,8 @@ public class Student {
     public Double getAverageExamScore(){
         double totalScore = 0.00;
 
-        for(int index = 0; index < examScores.size(); index++){
+        for(int index = 0; index < examScores.size(); index++)
             totalScore += examScores.get(index);
-
-        }
 
         return (totalScore/examScores.size());
     }
