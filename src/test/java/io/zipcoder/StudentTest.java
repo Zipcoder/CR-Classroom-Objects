@@ -8,7 +8,38 @@ import static org.junit.Assert.*;
 public class StudentTest {
 
     @Test
-    public void testGetExamsScores(){
+    public void getStudentName(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScores = { 100.0, 98.0 };
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        String output = student.getFirstName();
+        String output2 = student.getLastName();
+
+        // Then
+        System.out.println(String.format("Student's name: %s %s", output, output2));
+    }
+
+    @Test
+    public void getNumberOfExamsTakenTest(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScores = { 100.0, 98.0 };
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        int output = student.getNumberOfExamsTaken();
+
+        // Then
+        System.out.println("Student took: " + output);
+    }
+
+    @Test
+    public void getExamsScoresTest(){
         // : Given
         String firstName = "Leon";
         String lastName = "Hunter";
@@ -23,7 +54,7 @@ public class StudentTest {
     }
 
     @Test()
-        public void testAddExamScore(){
+        public void addExamScoreTest(){
             // : Given
             String firstName = "Leon";
             String lastName = "Hunter";
@@ -85,19 +116,5 @@ public class StudentTest {
             System.out.println(output);
         }
 
-        @Test
-        public void testGetNumberOfExamsTaken(){
-            // : Given
-            String firstName = "Leon";
-            String lastName = "Hunter";
-            Double[] examScores = { 100.0, 98.0 };
-            Student student = new Student(firstName, lastName, examScores);
-
-            // When
-            int output = student.getNumberOfExamsTaken();
-
-            // Then
-            System.out.println("Student took: " + output);
-        }
 }
 
