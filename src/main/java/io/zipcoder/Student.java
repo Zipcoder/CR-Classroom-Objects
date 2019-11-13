@@ -3,11 +3,11 @@ package io.zipcoder;
 import java.util.ArrayList;
 
 public class Student {
-    String firstName;
-    String lastName;
-    ArrayList<Double> examScores;
+    private String firstName;
+    private String lastName;
+    private Double[] examScores;
 
-    public Student(String firstName, String lastName, ArrayList<Double> examScores) {
+    public Student(String firstName, String lastName, Double[] examScores) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.examScores = examScores;
@@ -29,11 +29,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public ArrayList<Double> getExamScores() {
+    public Double[] getExamScores() {
         return examScores;
     }
 
     public int getNumberOfExamsTaken() {
-        return examScores.size();
+        return examScores.length;
     }
 }
