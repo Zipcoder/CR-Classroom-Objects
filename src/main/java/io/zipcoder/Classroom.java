@@ -22,6 +22,14 @@ public class Classroom {
     //Get Methods
     public ArrayList<Student> getStudents(){ return this.students; }
 
+    public String[] getStudentFirstNames(){
+        String[] names = new String[students.size()];
+        for(int i = 0; i < students.size(); i++){
+            names[i] = students.get(i).getFirstName();
+        }
+        return names;
+    }
+
     public Double getAverageExamScore(){
         Double sumScores = 0.0;
         Double sumExams = 0.0;
@@ -32,5 +40,35 @@ public class Classroom {
         }
        return sumScores/sumExams;
     }
+
+    public void addStudent(Student guy){
+        students.add(guy);
+    }
+
+    public void removeStudent(String firstName, String lastName){
+        for (int i = 0; i < students.size(); i++){
+            if (students.get(i).getFirstName().equals(firstName) && students.get(i).getLastName().equals(lastName)){
+               students.remove(i);
+            }
+        }
+    }
+
+    public Student[] getStudentsByScore(){
+        Student[] rankings = students.toArray(new Student[students.size()]);
+        Student placeholder;
+
+        for(int w = 1; w < students.size(); w++){
+            for(int i = 0; i < students.size() - w; i++){
+                if(rankings[i].getAverageExamScore() > rankings[i+1].getAverageExamScore()){
+                    placeholder = rankings[i+1];
+                    rankings[i+1] = rankings[i];
+                    rankings[i] = placeholder;
+                }
+            }
+        }
+
+        return rankings;
+    }
+
 
 }
