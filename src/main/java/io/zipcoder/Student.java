@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Student {
     private String firstName;
     private String lastName;
-    private Double[] examScores;
+    private ArrayList<Double> examScores;
 
-    public Student(String firstName, String lastName, Double[] examScores) {
+    public Student(String firstName, String lastName, ArrayList<Double> examScores) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.examScores = examScores;
@@ -29,11 +29,34 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Double[] getExamScores() {
-        return examScores;
+    public String getExamScores(){
+        String output = "Exam Scores:\n";
+        int counter = 1;
+        for(int i = 0; i <= examScores.size() - 1; i++){
+            output +=" \tExam " + counter + " -> " + examScores.get(i) + "\n";
+            counter++;
+        }
+        return output;
     }
 
     public int getNumberOfExamsTaken() {
-        return examScores.length;
+        return examScores.size();
+    }
+
+    public void addExamScore(Double score){ examScores.add(score); }
+
+    public void setExamScores(int examNumber, double newScore) { examScores.set(examNumber, newScore); }
+
+    public Double getAverageExamScore(){
+        Double average = 0.0;
+        for(int i = 0; i < examScores.size(); i++){
+            average += examScores.get(i);
+        }
+        return average/examScores.size();
+    }
+
+    @Override
+    public String toString(){
+        return "Student: " + getFirstName() + " " + getLastName() + ", Average Scores: " + getAverageExamScore() + getExamScores();
     }
 }
