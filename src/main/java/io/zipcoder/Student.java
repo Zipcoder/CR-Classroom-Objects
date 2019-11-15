@@ -1,11 +1,12 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Student {
-    private String firstName;
-    private String lastName;
-    private ArrayList<Double> examScores;
+    String firstName;
+    String lastName;
+    ArrayList<Double> examScores;
 
     public Student(String firstName, String lastName, ArrayList<Double> examScores) {
         this.firstName = firstName;
@@ -57,6 +58,6 @@ public class Student {
 
     @Override
     public String toString(){
-        return "Student: " + getFirstName() + " " + getLastName() + ", Average Scores: " + getAverageExamScore() + getExamScores();
+        return "Student: " + getFirstName() + getLastName() + ", Average Scores: " + getAverageExamScore() + getExamScores();
     }
 }
