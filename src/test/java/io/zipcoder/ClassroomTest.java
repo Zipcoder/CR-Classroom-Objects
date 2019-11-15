@@ -30,8 +30,8 @@ public class ClassroomTest {
     public void testAddStudent() {
         int maxNumberOfStudents = 1;
         Classroom classroom = new Classroom(maxNumberOfStudents);
-        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 150.0, 250.0, 0.0));
-        Student student = new Student("Leon", "Hunter", examScores);
+        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 85.0, 76.0, 0.0));
+        Student student = new Student("Kai", "Shields", examScores);
 
         Student[] preEnrollment = classroom.getStudents();
         classroom.addStudent(student);
@@ -39,11 +39,6 @@ public class ClassroomTest {
 
         String preEnrollmentAsString = Arrays.toString(preEnrollment);
         String postEnrollmentAsString = Arrays.toString(postEnrollment);
-
-        System.out.println("===========================");
-        System.out.println(preEnrollmentAsString);
-        System.out.println("===========================");
-        System.out.println(postEnrollmentAsString);
     }
 
     @Test
