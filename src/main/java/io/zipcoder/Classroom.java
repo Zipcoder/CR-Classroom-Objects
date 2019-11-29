@@ -3,25 +3,36 @@ package io.zipcoder;
 import javax.sound.midi.Soundbank;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Classroom {
     public Student[] students;
+    private Integer maxNumberOfStudents;
 
-    public Classroom(int maxNumberOfStudents) {
+    public Classroom(Integer maxNumberOfStudents) {
+        this.students = new Student[maxNumberOfStudents];
+        this.maxNumberOfStudents = maxNumberOfStudents;
 
     }
 
-    public Classroom(Student[] students) {
+    public Classroom(Student[]students) {
+        this.students = students;
 
     }
 
     public Classroom() {
-        Student[] students = new Student[30];
+        this.students = new Student[30];
 
     }
 
     public Student[] getStudents() {
-        return students;
+        List<Student> studentList = new ArrayList<>();
+        for (Student student: students) {
+            if (student != null)
+                studentList.add(student);
+        }
+           return studentList.toArray(new Student[studentList.size()]);
+
     }
 
     public double getAverageExamScores() {
@@ -36,20 +47,12 @@ public class Classroom {
     }
 
     public void addStudent(Student student) {
-        Student[] temp = new Student[students.length + 1];
         for (int i = 0; i < students.length; i++) {
-            if (students[i].getFirstName().length() > 0) {
-                temp[i] = students[i];
-            } else {
-                temp[i] = student;
-                break;
+            if (students[i] == null) {
+                students[i] = student;
             }
+            i++;
         }
-        Student[]students = new Student[temp.length];
-        for (int i = 0; i < students.length; i++){
-            students[i] = temp[i];
-        }
-        System.out.println(students);
     }
 
         public int getNumberOfStudents () {
@@ -61,6 +64,30 @@ public class Classroom {
                 }
             }
             return count;
+        }
+
+        public void removeStudent(String firstName, String lastName) {
+
+
+            List<Student> studentList = new ArrayList<>();
+            for (int i = 0; i < students.length; i++) {
+                studentList.add(students[i]);
+            }
+            for (Student i : getStudents()) {
+                if (i.getFirstName().equals(firstName) && (i.getLastName().equals(lastName))) {
+                    studentList.remove(i);
+                }
+            }
+            students = studentList.toArray(new Student[0]);
+        }
+
+
+
+
+
+        public String getGradeBook(){
+
+        return null;
         }
     }
 
