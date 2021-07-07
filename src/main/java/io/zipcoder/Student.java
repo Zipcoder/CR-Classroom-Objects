@@ -3,7 +3,7 @@ package io.zipcoder;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Student {
+public class Student extends Object {
     private String firstName;
     private String lastName;
     private ArrayList<Double> examScores = new ArrayList<>();
@@ -59,5 +59,22 @@ public class Student {
             allExamScore += score;
         }
         return allExamScore/examScores.size();
+    }
+
+    /**
+     * Student Name: Leon Hunter
+     * 		> Average Score: 125
+     * 		> Exam Scores:
+     * 		    Exam 1 -> 100
+     * 		    Exam 2 -> 150
+     * 		    Exam 3 -> 250
+     * 		    Exam 4 -> 0
+     */
+
+    @Override
+    public String toString(){
+        String result = "Student Name: " + firstName + " " + lastName + "\n" +
+                "Average Score: " + getAverageExamScore() + "\n" + getExamScores();
+        return result;
     }
 }
