@@ -19,7 +19,9 @@ public class Student extends Object{
         }
 
     }
+    public Student(){
 
+    }
     public String getFirstName() {
         return firstName;
     }
