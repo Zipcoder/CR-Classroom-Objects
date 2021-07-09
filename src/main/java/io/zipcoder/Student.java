@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class Student extends Object{
+
     private String firstName;
     private String lastName;
     private ArrayList<Double> examScores = new ArrayList<>();

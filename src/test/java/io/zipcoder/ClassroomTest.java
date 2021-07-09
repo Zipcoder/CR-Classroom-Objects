@@ -1,6 +1,11 @@
 package io.zipcoder;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
 public class ClassroomTest {
 
@@ -20,5 +25,81 @@ public class ClassroomTest {
 
         // Then
         System.out.println(output);
+    }
+    @Test
+    public void testAddStudent(){
+        // : Given
+        int maxNumberOfStudents = 2;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
+        Student student = new Student("Leon", "Hunter", examScores);
+
+        // When
+        Student[] preEnrollment = classroom.getStudents();
+        classroom.addStudent(student);
+        Student[] postEnrollment = classroom.getStudents();
+
+        // Then
+        String preEnrollmentAsString = Arrays.toString(preEnrollment);
+        String postEnrollmentAsString = Arrays.toString(postEnrollment);
+
+        System.out.println("===========================");
+        System.out.println(preEnrollmentAsString);
+        System.out.println("===========================");
+        System.out.println(postEnrollmentAsString);
+    }
+@Test
+    public void testRemoveStudent() {
+      int maxNumberOfStudents = 3;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 100.0, 150.0, 250.0};
+        Student student = new Student("Leon", "Hunter", examScores);
+        Student student1 = new Student("Dolio", "Durant", examScores);
+        Student student2 = new Student("Kris", "Hunger", examScores);
+         String firstName="Dolio";
+         String lastName="Durant";
+        Student[] students = new Student[]{student,student1,student2};
+        classroom.addStudent(student);
+        classroom.addStudent(student1);
+        classroom.addStudent(student2);
+       // String firstName="Dolio";
+        //String lastName="Durant";
+
+         classroom.removeStudent("Dolio","Durant");
+         Student[] expected = classroom.getStudents();
+         Assert.assertEquals(student, expected[0]);
+         Assert.assertEquals(student2, expected[1]);
+         Assert.assertEquals(expected[3], null);
+
+    }
+
+    @Test
+    public void getStudentsByScoreTest() {
+        Double[] scores1 = new Double[]{45.0, 50.0, 55.0};
+        Double[] scores2 = new Double[]{60.0, 65.0};
+        Double[] scores3 = new Double[]{70.0, 70.0};
+        Student student1 = new Student("Jimmy", "John", scores1);
+        Student student2 = new Student("Tammy", "Tohn", scores2);
+        Student student3 = new Student("Jack", "Tohn", scores3);
+        Student[] newStudents = {student1, student2, student3};
+        Classroom classroom = new Classroom(newStudents);
+
+    }
+    @Test
+    public void getGradebookTest() {
+
+        Double[] examScores1 = new Double[] {99.0,97.0,95.0};
+        Double[] examScores2 = new Double[] {70.0,75.0,79.0};
+        Student student = new Student("Leon", "Hunter", examScores1 );
+        Student student1 = new Student("Kris", "Hunger", examScores2 );
+        Student[] newStudents = {student, student1};
+        Classroom classroom = new Classroom(newStudents);
+
+        Map<Student,String> gradebook = classroom.getGradeBook();
+
+        Assert.assertEquals(gradebook.get(student),"A");
+        Assert.assertEquals(gradebook.get(student1),"C");
+
+
     }
 }
