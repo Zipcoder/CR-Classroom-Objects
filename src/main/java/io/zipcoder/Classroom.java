@@ -1,7 +1,6 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Classroom{
     private Student[] studentsInClass;
@@ -54,7 +53,16 @@ public class Classroom{
 
 
     public void getStudentByScore() {
-        Arrays.sort(studentsInClass);
+        //Arrays.sort(studentsInClass);
+
+        List<Student> sortMe = Arrays.asList(studentsInClass);
+        Comparator<Student> byScore = Comparator.comparing(Student :: getAverageExamScore);
+        Comparator<Student> byLastName = Comparator.comparing(Student :: getLastName);
+        Comparator<Student> byFirstName = Comparator.comparing(Student :: getFirstName);
+
+        Collections.sort(sortMe, byScore.thenComparing(byLastName).thenComparing(byFirstName));
+        Collections.reverse(sortMe);
+        this.studentsInClass = sortMe.toArray(new Student[0]);
     }
 
     public void getGradedBook(){
@@ -63,11 +71,14 @@ public class Classroom{
         double result = 0.0;
         double standardDevi = 0.0;
         for (Student eachStudent : studentsInClass) {
+
             Double classAvg = getClassAverageExamScore();
             Double studentAvg = eachStudent.getAverageExamScore();
+
             Integer numOfStudents = studentsInClass.length;
 
-            result += Math.pow(studentAvg- classAvg, 2);
+            result += Math.pow(studentAvg - classAvg, 2);
+
             standardDevi = Math.sqrt(result/(numOfStudents - 1));
 
             if (studentAvg >= (classAvg + (standardDevi * 2))) {

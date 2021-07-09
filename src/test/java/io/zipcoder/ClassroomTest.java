@@ -112,9 +112,8 @@ public class ClassroomTest {
         classroom.getStudentByScore();
         String postSorting = Arrays.toString(classroom.getStudents());
 
-        System.out.println("===========================");
         System.out.println(preSorting);
-        System.out.println("===========================");
+        System.out.println("===============AFTER SORTING===============");
         System.out.println(postSorting);
     }
 
@@ -148,9 +147,50 @@ public class ClassroomTest {
 
         //Then
         System.out.println(preGrading);
-        System.out.println("==============AFTER GIVING LETTER GRADE=============");
+        System.out.println("==============AFTER GIVING LETTER GRADE =============");
         System.out.println(postGrading);
 
+    }
+
+    @Test
+    public void sortingAndLetterGradeTest() {
+        // : Given
+        //Making old students
+        Double[] examScores1 = {70.0, 90.0, 77.0};
+        Student jack = new Student("Jack","Smith", examScores1, "TEST");
+
+        Double[] examScores2 = {69.4, 94.0, 88.2};
+        Student kate = new Student("Kate", "Green", examScores2, "TEST");
+
+        Double[] examScores3 = { 100.0, 93.0, 87.0};
+        Student leon = new Student("Leon", "Hunter", examScores3, "TEST");
+
+        Double[] examScores4 = {87.4, 60.0, 50.2};
+        Student tim = new Student("Tim", "Bo", examScores4, "TEST");
+
+        Double[] examScore5 = { 71.0, 82.0, 83.0};
+        Student brian = new Student("Brian", "Jackson", examScore5, "TEST");
+
+        Double[] examScore6 = { 80.0, 87.0, 95.0};
+        Student jason = new Student("Jason", "White", examScore5, "TEST");
+
+        Double[] examScore7 = { 80.0, 87.0, 95.0};
+        Student lily = new Student("Lily", "White", examScore5, "TEST");
+
+        //Putting students into classroom
+        Student[] allStudents = {jack, kate, leon, tim, brian, jason, lily};
+        Classroom classroom = new Classroom(allStudents);
+
+        //When
+        String preGradeAndSort = Arrays.toString(classroom.getStudents());
+        classroom.getGradedBook();
+        classroom.getStudentByScore();
+        String postGradeAndSort = Arrays.toString(classroom.getStudents());
+
+        //Then
+        System.out.println(preGradeAndSort);
+        System.out.println("==============AFTER LETTER GRADE AND SORT =============");
+        System.out.println(postGradeAndSort);
     }
 
 }
