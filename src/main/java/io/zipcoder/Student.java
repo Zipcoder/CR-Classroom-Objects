@@ -3,16 +3,25 @@ package io.zipcoder;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Student extends Object {
+public class Student extends Object implements Comparable<Student> {
     private String firstName;
     private String lastName;
     private ArrayList<Double> examScores = new ArrayList<>();
+    String letterGrade;
 
 
-    public Student(String firstName, String lastName, Double[] testScores) {
+    public Student(String firstName, String lastName, Double[] testScores, String letterGrade) {
         this.firstName = firstName;
         this.lastName = lastName;
         Collections.addAll(this.examScores, testScores);
+        this.letterGrade = letterGrade;
+    }
+    public String getLetterGrade() {
+        return this.letterGrade;
+    }
+
+    public void setLetterGrade(String letterGrade) {
+        this.letterGrade = letterGrade;
     }
 
     public String getFirstName() {
@@ -74,7 +83,13 @@ public class Student extends Object {
     @Override
     public String toString(){
         String result = "Student Name: " + firstName + " " + lastName + "\n" +
-                "Average Score: " + getAverageExamScore() + "\n" + getExamScores();
+                "Average Score: " + getAverageExamScore() + "\n" + getExamScores() +
+                "Letter Grade:" + getLetterGrade();
         return result;
+    }
+
+    @Override
+    public int compareTo(Student student) {
+        return (int) (this.getAverageExamScore() - student.getAverageExamScore());
     }
 }
