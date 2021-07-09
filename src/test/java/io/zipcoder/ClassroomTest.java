@@ -136,9 +136,6 @@ public class ClassroomTest {
 
         Double[] examScore5 = { 71.0, 82.0, 83.0};
         Student brian = new Student("Brian", "Jackson", examScore5, "TEST");
-        brian.setLetterGrade("IM STUPID");
-        String brainLetterGrade = brian.getLetterGrade();
-        System.out.println(brainLetterGrade);
 
         //Putting students into classroom
         Student[] allStudents = {jack, kate, leon, tim, brian};
@@ -148,11 +145,11 @@ public class ClassroomTest {
         String preGrading = Arrays.toString(classroom.getStudents());
         classroom.getGradedBook();
         String postGrading = Arrays.toString(classroom.getStudents());
+
         //Then
         System.out.println(preGrading);
-        System.out.println("===========================");
+        System.out.println("==============AFTER GIVING LETTER GRADE=============");
         System.out.println(postGrading);
-
 
     }
 

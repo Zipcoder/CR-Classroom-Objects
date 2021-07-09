@@ -2,9 +2,8 @@ package io.zipcoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
-public class Classroom {
+public class Classroom{
     private Student[] studentsInClass;
 
     public Classroom(int numberOfStudents) {
@@ -12,9 +11,11 @@ public class Classroom {
     }
     public Classroom(Student[] students){
         this.studentsInClass = new Student[students.length];
-        for (int i = 0; i < students.length; i++) {
-            studentsInClass[i] = students[i];
-        }
+        System.arraycopy(students, 0, studentsInClass, 0, students.length);
+
+//        for (int i = 0; i < students.length; i++) {
+//            studentsInClass[i] = students[i];
+//        }
     }
     public Classroom(){
         this.studentsInClass = new Student[30];
@@ -54,21 +55,9 @@ public class Classroom {
 
     public void getStudentByScore() {
         Arrays.sort(studentsInClass);
-//        ArrayList<Student> haveSameScores = new ArrayList<>();
-//        for (int i = 0; i < studentsInClass.length; i++) {
-//            if(studentsInClass[i].getAverageExamScore().equals(studentsInClass[i+1].getAverageExamScore()){
-//                haveSameScores.add(studentsInClass[i+1]);
-//            }
-//        }
-//
-        //Arrays.sort(studentsInClass, (s1, s2) -> s1.getLastName().compareTo(s2.getLastName()));
     }
 
     public void getGradedBook(){
-        //get exam averages of all student
-        //get total count
-        //get the mean(avg)
-        //get standard deviation
 
         //Assign letter grades to students
         double result = 0.0;
