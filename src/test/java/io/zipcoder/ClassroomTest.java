@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.geom.Arc2D;
+import java.util.Arrays;
 
 public class ClassroomTest {
 
@@ -68,4 +69,37 @@ public class ClassroomTest {
         double expected = 91.11;
         Assert.assertEquals(expected, actual, 0.01);
     }
+     @Test
+    public void addStudentTest(){
+         //given
+         int maxNumOfStudents = 1;
+         Classroom testClassroom = new Classroom(maxNumOfStudents);
+         Double[] examScores = {85.0, 90.0, 95.0};
+         Student student1 = new Student("Jay", "Kay", examScores);
+
+         //when
+         Student[] preEnrollment = testClassroom.getStudents();
+         System.out.println("===========================");
+
+         String preEnrollmentAsString = Arrays.toString(preEnrollment);
+         System.out.println(preEnrollmentAsString);
+
+         //then
+         testClassroom.addStudent(student1);
+         Student[] postEnrollment = testClassroom.getStudents();
+         String postEnrollmentAsString = Arrays.toString(postEnrollment);
+
+
+         System.out.println("===========================");
+         System.out.println(postEnrollmentAsString);
+     }
+
+     @Test
+    public void removeStudentTest (){
+
+     }
+
+
+
+
 }
