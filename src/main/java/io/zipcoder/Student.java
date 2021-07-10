@@ -73,7 +73,7 @@ public class Student implements Comparable <Student> {
         return summation / this.examScores.size();
     }
 
-    public String toString() {
+    public String toString() {  // This is some dumb shit - sat here for hours because i forgot to include 'this.letterGrade + " " + '
         return this.letterGrade + " " + this.firstName + " " + this.lastName + ", " + this.examScores;
     }
 

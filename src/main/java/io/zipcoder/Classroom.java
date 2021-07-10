@@ -52,14 +52,20 @@ public class Classroom {
         this.student = removeStudentArray.toArray(new Student[0]);
     }
 
-    public void getStudentsByScore() {
+    public Student[] getStudentsByScore() {
      //   ArrayList<Student> sortStudentArray = new ArrayList<>(Arrays.asList(student));
      //   for (Student element : sortStudentArray) {
       //      element.getFirstName();
      //       sortStudentArray.sort(Comparator.comparingDouble(student -> element.getAverageExamScore()).thenComparing(student -> element.getFirstName()));
      //   }
-             Arrays.sort(student);
-    }
+         //    Arrays.sort(student);
+        List<Student> students = Arrays.asList(this.getStudents());
+        Comparator<Student> byScore = Comparator.comparing(Student::getAverageExamScore);
+        Comparator<Student> byFirstName = Comparator.comparing(Student::getFirstName);
+
+        Collections.sort(students, byScore.thenComparing(byFirstName));
+        return students.toArray(new Student[0]);
+        }
 
     public Student[] getGradeBook() {
        Arrays.sort(student);
