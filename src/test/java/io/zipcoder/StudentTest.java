@@ -55,9 +55,9 @@ public class StudentTest {
         Student student = new Student(firstName, lastName, testScores);
         //when
         double expected = 80.0;
-        double actual = student.getAverageExamScore();
+        double actual = student.getAverageTestScore();
         //then
-        Assert.assertEquals(expected, actual, 0.001);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
