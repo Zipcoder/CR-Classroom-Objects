@@ -5,12 +5,17 @@ import java.util.Arrays;
 
 public class Student {
 
-    String firstName;
-    String lastName;
-    ArrayList<Double> examScores = new ArrayList<>();
+    private String firstName;
+    private String lastName;
+    private ArrayList<Double> examScores;
     Double [] testScores;
-    public Student (String firstName, String lasName, Double [] testScores){
 
+
+    public Student (String firstName, String lasName, Double [] testScores){
+      this.firstName = firstName;
+      this.lastName = lasName;
+      this.examScores = new ArrayList<>(Arrays.asList(testScores));
+      this.testScores = testScores;
     }
     public String getFirstName() {
 
@@ -23,6 +28,7 @@ public class Student {
     }
 
     public String getLastName() {
+
         return lastName;
     }
 
@@ -32,6 +38,7 @@ public class Student {
     }
 
     public ArrayList<Double> getExamScores() {
+
         return examScores;
     }
 
@@ -40,37 +47,43 @@ public class Student {
        // this.examScores = examScores;
    // }
 
-    public Double[] getTestScores() {
-        return testScores;
+
+
+    public Integer getNumberOfExamsTaken(){
+
+        return this.testScores.length;
+
     }
 
-    public void setTestScores(Double[] testScores) {
+  public String GetExamScores() {
+      StringBuilder stringOfScores = new StringBuilder();
+      for (int i = 0; i < testScores.length; i++) {
+          stringOfScores.append(testScores[i] + " | ");
+          stringOfScores = stringOfScores.append(i);
+      }
+      return Arrays.toString(testScores);
+  }
 
-        this.testScores = testScores;
-    }
+   //}
+       // return Arrays.toString(examScores);
+  // }
 
-    public int getNumberOfExamsTaken(){
-        return testScores.length;
-    }
+    public void addExamScores(double testScore){
 
-   public String GetExamScores(double examScores){
-        return Arrays.toString(testScores);
-   }
-
-    public void addExamScores(double examScore){
-        this.examScores.add(examScore);
+        this.examScores.add(testScore);
     }
 
     public void setExamScores(int examNumber, double newScore){
+
         this.examScores.set(examNumber,newScore);
     }
 
     public double getAverageExamScore(){
-        double sum = 0;
+        double sum = 0.0;
         for (int i = 0; i < testScores.length; i++) {
-             sum += examScores.get(i);
+             sum += testScores[i];
         }
-        return sum;
+        return sum / testScores.length;
     }
 
    @Override
