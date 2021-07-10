@@ -7,10 +7,13 @@ import java.util.*;
 public class Classroom extends Student {
 
     private Student[] students;
+    ArrayList<Student> studentList;
     private ArrayList<Double> studentScores = new ArrayList<>();
     private Integer maxNumberOfStudents;
     public Classroom(int maxNumberOfStudents){
         this.maxNumberOfStudents = maxNumberOfStudents;
+        students=new Student[maxNumberOfStudents];
+        studentList=new ArrayList<>();
 
     }
     public Classroom(Student[] students ){
@@ -18,7 +21,8 @@ public class Classroom extends Student {
 
     }
     public Classroom(){
-    this.students = new Student[30];
+        studentList=new ArrayList<>();
+        this.students = new Student[30];
     }
 
     public Student[] getStudents() {
@@ -40,7 +44,7 @@ public class Classroom extends Student {
     }
 
     public void addStudent(Student student) {
-        students = new Student[maxNumberOfStudents];
+        //students = new Student[maxNumberOfStudents];
         for(int i = 0; i < students.length; i++){
             if(students[i] == null){
                 students[i] = student;
@@ -50,15 +54,17 @@ public class Classroom extends Student {
     //0,1,2,3,4
 
     public void removeStudent(String firstName, String lastName) {
-        ArrayList<Student> removeStudentArrayList = new ArrayList<>();
+        List<Student> removeStudentArrayList = new ArrayList<>();
         if(this.students!=null){
-            removeStudentArrayList=new ArrayList<>(Arrays.asList(students));
+            removeStudentArrayList=new ArrayList<>(Arrays.asList(this.students));
         }
-        for (Student student : removeStudentArrayList) {
-            if (student.getFirstName().equals(firstName) && student.getLastName().equals(lastName)){
-                removeStudentArrayList.remove(student);
-
+        for (int i = 0; i < removeStudentArrayList.size(); i++) {
+            if(removeStudentArrayList.get(i).getFirstName().equals(firstName))
+            {
+                removeStudentArrayList.remove(i);
             }
+
+
         }
         this.students = removeStudentArrayList.toArray(new Student[0]);
     }
@@ -84,7 +90,7 @@ public class Classroom extends Student {
     return null;
     }
 
-
+//map<key,value>,grade string
     public Map<Student,String> getGradeBook(){
     Map<Student,String> gradeBook = new HashMap<>();
     String grade="";

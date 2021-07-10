@@ -3,6 +3,7 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -50,26 +51,21 @@ public class ClassroomTest {
     }
 @Test
     public void testRemoveStudent() {
-      int maxNumberOfStudents = 3;
-        Classroom classroom = new Classroom(maxNumberOfStudents);
         Double[] examScores = { 100.0, 150.0, 250.0};
+        Double[] examScores1 = { 100.0, 110.0, 250.0};
+        Double[] examScores2 = { 100.0, 150.0, 290.0};
         Student student = new Student("Leon", "Hunter", examScores);
-        Student student1 = new Student("Dolio", "Durant", examScores);
-        Student student2 = new Student("Kris", "Hunger", examScores);
+        Student student1 = new Student("Dolio", "Durant", examScores1);
+        Student student2 = new Student("Kris", "Hunger", examScores2);
          String firstName="Dolio";
          String lastName="Durant";
         Student[] students = new Student[]{student,student1,student2};
-        classroom.addStudent(student);
-        classroom.addStudent(student1);
-        classroom.addStudent(student2);
-       // String firstName="Dolio";
-        //String lastName="Durant";
+        Classroom classroom = new Classroom(students);
 
-         classroom.removeStudent("Dolio","Durant");
+         classroom.removeStudent(firstName, lastName);
          Student[] expected = classroom.getStudents();
          Assert.assertEquals(student, expected[0]);
          Assert.assertEquals(student2, expected[1]);
-         Assert.assertEquals(expected[3], null);
 
     }
 
@@ -78,9 +74,9 @@ public class ClassroomTest {
         Double[] scores1 = new Double[]{45.0, 50.0, 55.0};
         Double[] scores2 = new Double[]{60.0, 65.0};
         Double[] scores3 = new Double[]{70.0, 70.0};
-        Student student1 = new Student("Jimmy", "John", scores1);
-        Student student2 = new Student("Tammy", "Tohn", scores2);
-        Student student3 = new Student("Jack", "Tohn", scores3);
+        Student student1 = new Student("Leon", "Hunter", scores1);
+        Student student2 = new Student("Dolio", "Durant", scores2);
+        Student student3 = new Student("Kris", "Hunger", scores3);
         Student[] newStudents = {student1, student2, student3};
         Classroom classroom = new Classroom(newStudents);
 
