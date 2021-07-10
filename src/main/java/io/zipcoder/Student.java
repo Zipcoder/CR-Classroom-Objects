@@ -7,12 +7,13 @@ public class Student {
     private String firstName;
     private String lastName;
     ArrayList<Double> examScores;
-    Double [] testScores;
+    Double[] testScores;
 
-    public Student(String firstName, String lastName, Double ... testScores) {
+    public Student(String firstName, String lastName, Double[] testScores) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.examScores = new ArrayList<Double>(Arrays.asList(testScores));
+
     }
 
     // ================== GETTERS ================== //
@@ -25,14 +26,14 @@ public class Student {
     }
 
     public int getNumberOfExamsTaken() {
-        return this.testScores.length;
+        return examScores.size();
     }
 
     public String getExamScores() {
         StringBuilder stringOfTestScores = new StringBuilder();
 
-        for (int i = 0; i < testScores.length; i++) {
-            stringOfTestScores.append(testScores[i]).append(" | ");
+        for (int i = 0; i < examScores.size() ; i++) {
+            stringOfTestScores.append(examScores.get(i)).append(" | ");
             stringOfTestScores.append(i);
         }
         return Arrays.toString(testScores);
@@ -44,10 +45,10 @@ public class Student {
 
     public Double getAverageExamScore() {
         double totalSum = 0.0;
-        for (int i = 0; i < testScores.length; i++) {
-            totalSum = totalSum + testScores[i];
+        for (int i = 0; i < examScores.size(); i++) {
+            totalSum = totalSum + examScores.size();
         }
-        return totalSum / testScores.length;
+        return totalSum / examScores.size();
     }
 
     // ===================== SETTERS =================== //
