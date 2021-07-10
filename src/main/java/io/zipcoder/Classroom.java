@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import java.util.Arrays;
+
 public class Classroom {
 
 Student[] students;
@@ -43,8 +45,31 @@ Student[] students;
           }
       }
     }
-   public void removeStudent (String firstName, String lastName){
-        
-}
+
+
+   public void removeStudent (String firstName, String lastName) {
+       for (int i = 0; i < students.length; i++) {
+           if (students[i].getFirstName().equals(firstName) && students[i].getLastName().equals(lastName)) {
+               students[i] = null;
+           }
+       }
+
+       for (int i = 0; i < students.length - 1; i++) {
+           if (students[i] == null) {
+               students[i] = students[i + 1];
+               students[i + 1] = null;
+           }
+       }
+
+   }
+
+       public Student[] getStudentsByScore(){
+           Arrays.sort(students);
+           return students;
+
+       }
+
 
 }
+
+
