@@ -96,9 +96,48 @@ public class ClassroomTest {
 
      @Test
     public void removeStudentTest (){
+        //given
+         Double[] examScores = {85.0, 90.0, 95.0};
+         Double[] examScores2 ={80.0, 90.0, 100.0};
+         Double[] examScores3 = {100.0, 100.0, 80.0};
+         Student student1 = new Student("Jay", "Kay", examScores);
+         Student student2 = new Student("Shelly-Ann", "Frasier", examScores2);
+         Student student3 = new Student("Linda", "Jones", examScores3);
+         Student[] students = {student1, student2, student3};
+
+         //when
+         Classroom testRoom = new Classroom(students);
+         testRoom.removeStudentbyName("Jay", "Kay");
+
+         //then
+         System.out.println(students[0]);
+         System.out.println(students[1]);
+         System.out.println(students[2]);
+        // Student actual = students[0];
+//         Assert.assertNull(actual);
 
      }
 
+    @Test
+    public void removeStudentTest2 () {
+        //given
+        Double[] examScores = {85.0, 90.0, 95.0};
+        Double[] examScores2 = {80.0, 90.0, 100.0};
+        Double[] examScores3 = {100.0, 100.0, 80.0};
+        Student student1 = new Student("Jay", "Kay", examScores);
+        Student student2 = new Student("Shelly-Ann", "Frasier", examScores2);
+        Student student3 = new Student("Linda", "Jones", examScores3);
+        Student[] students = {student1, student2, student3};
+
+        //when
+        Classroom testRoom = new Classroom(students);
+        testRoom.removeStudentbyName("Shelly-Ann", "Frasier");
+
+        //then
+        System.out.println(students[0]);
+        System.out.println(students[1]);
+        System.out.println(students[2]);
+    }
 
 
 

@@ -31,6 +31,10 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public String getFullName (){
+        return this.firstName + this.lastName;
+    }
+
     public Integer getNumberOfExamsTaken(){
         return examScores.size();
     }
