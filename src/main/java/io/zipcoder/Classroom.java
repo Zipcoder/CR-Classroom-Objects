@@ -37,6 +37,7 @@ public class Classroom {
             for (int i = 0; i < studentArray.length; i++) {
                 if (studentArray[i] == null) {
                     studentArray[i] = student;
+                    break;
                 }
             }
 //            ArrayList<Student> newEnrollment = new ArrayList<>(Arrays.asList(students));
@@ -47,36 +48,50 @@ public class Classroom {
         }
 
         public void removeStudent(String firstName, String lastName) {
+//            for (int i = 0; i < studentArray.length - 1; i++) {
+//                if (studentArray[i].getFirstName().equals(firstName) &&
+//                        studentArray[i].getLastName().equals(lastName)){
+//                    studentArray[i] = null;
+//                } studentArray[i] = studentArray[i + 1];
+//            }
+//            studentArray[studentArray.length - 1] = null;
+            
+//newStudentList.set(newStudentList.indexOf(student), null);
             ArrayList<Student> newStudentList = new ArrayList<Student>(Arrays.asList(studentArray));
-            //newStudentList.set(newStudentList.indexOf(studentArray), null);
+
             for (int i = 0; i < newStudentList.size(); i++) {
                 Student student = newStudentList.get(i);
-                if (student.getFirstName().equals(firstName) &&
-                        student.getLastName().equals(lastName)) {
-                    newStudentList.remove(student);
-                    newStudentList.add(null); // adding null to the end of list to replace student position.
+                if (student == null) {
+                    continue;
+                } else if (student.getFirstName().equals(firstName) &&
+                            student.getLastName().equals(lastName)) {
+                        newStudentList.remove(student);
+                        newStudentList.add(null); // adding null to the end of list to replace student position.
+                    }
                 }
+                this.studentArray = newStudentList.toArray(new Student[0]);
+//                System.out.println(this.studentArray[2]);
+//                System.out.println("Hellowww");
             }
-            this.studentArray = newStudentList.toArray(new Student[0]);
-        }
 
 
-        public Student[] getStudentsByScore(){
-            List<Student> studentList = new ArrayList<Student>(Arrays.asList(studentArray));
 
-            Comparator<Student> byExamScores = Comparator.comparing(Student::getExamScores);
-            Comparator<Student> byFullName = Comparator.comparing(Student::getFullName);
+            public Student[] getStudentsByScore () {
+                List<Student> studentList = new ArrayList<Student>(Arrays.asList(studentArray));
 
-            Collections.sort(studentList, byExamScores.thenComparing(byFullName));
+                Comparator<Student> byExamScores = Comparator.comparing(Student::getExamScores);
+                Comparator<Student> byFullName = Comparator.comparing(Student::getFullName);
 
-            // Collections.reverse(studentList); // Highest to lowest
+                Collections.sort(studentList, byExamScores.thenComparing(byFullName));
 
-            Student[] studentsSortedByScore = studentList.toArray(new Student[0]);
+                // Collections.reverse(studentList); // Highest to lowest
 
-            return studentsSortedByScore;
+                Student[] studentsSortedByScore = studentList.toArray(new Student[0]);
 
-            // by score , last name, first name
-        }
+                return studentsSortedByScore;
+
+                // by score , last name, first name
+            }
 
 
     // ~*~ Thank you Leon ! ~*~
@@ -103,7 +118,6 @@ public class Classroom {
             }
             return gradeBookResult;
         }
-
             public double getPercentile (Student student){
                 List<Double> allStudentGrades = Stream
                         .of(studentArray)

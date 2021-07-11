@@ -92,12 +92,17 @@ public class ClassroomTest {
         Student[] students = {student1, student2, student3};
 
         // When
-        Classroom testRoom = new Classroom(students);
+        Classroom testRoom = new Classroom();
+        testRoom.addStudent(student1);
+        testRoom.addStudent(student2);
+        testRoom.addStudent(student3);
         testRoom.removeStudent("James", "Bond");
 
         // Then
-        //System.out.println((students[0]));
-        Student actual = students[0];
+
+        System.out.println((Arrays.toString(testRoom.getStudentArray())));
+        Student actual = testRoom.getStudentArray()[2];
         Assert.assertNull(actual);
     }
+
 }

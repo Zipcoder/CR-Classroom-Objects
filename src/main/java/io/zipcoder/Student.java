@@ -40,7 +40,8 @@ public class Student {
             stringOfTestScores.append(examScores.get(i)).append(" | ");
             stringOfTestScores.append(i);
         }
-        return Arrays.toString(testScores);
+        return String.valueOf(examScores);
+                //Arrays.toString(testScores);
     }
 
     public void addExamScore(double testScore) {
@@ -50,7 +51,7 @@ public class Student {
     public Double getStudentAverageExamScore() {
         double totalSum = 0.0;
         for (int i = 0; i < examScores.size(); i++) {
-            totalSum = totalSum + examScores.size();
+            totalSum = totalSum + examScores.get(i);
         }
         return totalSum / examScores.size();
     }
@@ -71,7 +72,7 @@ public class Student {
     @Override
     public String toString() {
 
-        return String.format("Student Name: %s %s\n" + "    Average Score: %s\n" + "    Exam Scores: %s \n",
+        return String.format("Student Name: %s %s\n" + "    Average Score: %.2f\n" + "    Exam Scores: %s \n",
                 firstName, lastName, getStudentAverageExamScore(), getExamScores());
 //        return "Student Name: " + firstName + " " + lastName + '\n' +
 //                "Average Score: " + getAverageExamScore() + '\n' +
