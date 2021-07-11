@@ -13,10 +13,14 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.examScores = new ArrayList<Double>(Arrays.asList(testScores));
-
     }
 
+
+
     // ================== GETTERS ================== //
+    public String getFullName(){
+        return this.lastName + ", " + this.firstName;
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -43,7 +47,7 @@ public class Student {
         this.examScores.add(testScore);
     }
 
-    public Double getAverageExamScore() {
+    public Double getStudentAverageExamScore() {
         double totalSum = 0.0;
         for (int i = 0; i < examScores.size(); i++) {
             totalSum = totalSum + examScores.size();
@@ -67,14 +71,10 @@ public class Student {
     @Override
     public String toString() {
 
-        return String.format("Student Name: %s %s\n" + "Average Score: %s\n" + "Exam Scores: %s",
-                firstName, lastName, getAverageExamScore(), getExamScores());
+        return String.format("Student Name: %s %s\n" + "    Average Score: %s\n" + "    Exam Scores: %s \n",
+                firstName, lastName, getStudentAverageExamScore(), getExamScores());
 //        return "Student Name: " + firstName + " " + lastName + '\n' +
 //                "Average Score: " + getAverageExamScore() + '\n' +
 //                "Exam Scores: " + getExamScores();
     }
-
-
-
-
 }
