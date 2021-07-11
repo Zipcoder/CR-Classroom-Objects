@@ -5,18 +5,19 @@ import java.util.Arrays;
 
 public class Student {
 
-    private String firstName;
-    private String lastName;
+    protected String firstName;
+    protected String lastName;
     private ArrayList<Double> examScores;
-    Double [] testScores;
+    Double[] testScores;
 
 
-    public Student (String firstName, String lasName, Double [] testScores){
-      this.firstName = firstName;
-      this.lastName = lasName;
-      this.examScores = new ArrayList<>(Arrays.asList(testScores));
-      this.testScores = testScores;
+    public Student(String firstName, String lasName, Double[] testScores) {
+        this.firstName = firstName;
+        this.lastName = lasName;
+        this.examScores = new ArrayList<>(Arrays.asList(testScores));
+        this.testScores = testScores;
     }
+
     public String getFirstName() {
 
         return firstName;
@@ -42,52 +43,51 @@ public class Student {
         return examScores;
     }
 
-   // public void setExamScores(ArrayList<Double> examScores) {
+    // public void setExamScores(ArrayList<Double> examScores) {
 
-       // this.examScores = examScores;
-   // }
+    // this.examScores = examScores;
+    // }
 
 
-
-    public Integer getNumberOfExamsTaken(){
+    public Integer getNumberOfExamsTaken() {
 
         return this.testScores.length;
 
     }
 
-  public String GetExamScores() {
-      StringBuilder stringOfScores = new StringBuilder();
-      for (int i = 0; i < testScores.length; i++) {
-          stringOfScores.append(testScores[i] + " | ");
-          stringOfScores = stringOfScores.append(i);
-      }
-      return Arrays.toString(testScores);
-  }
+    public String GetExamScores() {
+        StringBuilder stringOfScores = new StringBuilder();
+        for (int i = 0; i < testScores.length; i++) {
+            stringOfScores.append(testScores[i] + " | ");
+            stringOfScores = stringOfScores.append(i);
+        }
+        return Arrays.toString(testScores);
+    }
 
-   //}
-       // return Arrays.toString(examScores);
-  // }
+    //}
+    // return Arrays.toString(examScores);
+    // }
 
-    public void addExamScores(double testScore){
+    public void addExamScores(double testScore) {
 
         this.examScores.add(testScore);
     }
 
-    public void setExamScores(int examNumber, double newScore){
+    public void setExamScores(int examNumber, double newScore) {
 
-        this.examScores.set(examNumber,newScore);
+        this.examScores.set(examNumber, newScore);
     }
 
-    public double getAverageExamScore(){
+    public double getAverageExamScore() {
         double sum = 0.0;
         for (int i = 0; i < testScores.length; i++) {
-             sum += testScores[i];
+            sum += testScores[i];
         }
         return sum / testScores.length;
     }
 
-   @Override
-    public String toString(){
+    @Override
+    public String toString() {
         return "NAME: " + firstName + " " + lastName + '\n' +
                 "Average Score: " + getAverageExamScore() + '\n' +
                 "Exam Scores: " + getExamScores();
@@ -99,8 +99,8 @@ public class Student {
                 "Exam Score : " + getExamScores();*/
 
 
-
-
     }
-
 }
+
+
+
