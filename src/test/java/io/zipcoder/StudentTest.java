@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StudentTest {
 
@@ -34,11 +35,10 @@ public class StudentTest {
         Student student = new Student(givenFirstName, givenLastName, examScores);
 
         // When
-        //String expectedFirstName = student.getFirstName();
         String output = student.getExamScores();
 
         // Then
-        // Assert.assertEquals(output, examScores);
+        Assert.assertEquals(output, Arrays.toString(examScores));
     }
 
     @Test
@@ -51,10 +51,11 @@ public class StudentTest {
 
         // When
         student.addExamScore(100.0);
+
         String output = student.getExamScores();
 
         // Then
-        //Assert.assertEquals(output, 100.0);
+        Assert.assertEquals(output, "[100.0]");
     }
 
     @Test
@@ -67,10 +68,13 @@ public class StudentTest {
 
         // When
         student.setExamScore(1,150.0);
-        String output = student.getExamScores();
+        //student.addExamScore(150);
+
+        String expectedOutput = student.getExamScores();
+
 
         // Then
-        //Assert.assertEquals(output, 150.0);
+        Assert.assertEquals(expectedOutput, "[150.0]");
     }
 
 }

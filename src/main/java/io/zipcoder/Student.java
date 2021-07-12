@@ -21,6 +21,7 @@ public class Student {
     public String getFullName(){
         return this.lastName + ", " + this.firstName;
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -66,7 +67,7 @@ public class Student {
     }
 
     public void setExamScore(int examNumber, double newScore){
-        this.examScores.set(examNumber, newScore);
+        this.examScores.set(examNumber - 1, newScore);
     }
 
     @Override

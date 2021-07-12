@@ -55,7 +55,7 @@ public class Classroom {
 //                } studentArray[i] = studentArray[i + 1];
 //            }
 //            studentArray[studentArray.length - 1] = null;
-            
+
 //newStudentList.set(newStudentList.indexOf(student), null);
             ArrayList<Student> newStudentList = new ArrayList<Student>(Arrays.asList(studentArray));
 
@@ -70,8 +70,6 @@ public class Classroom {
                     }
                 }
                 this.studentArray = newStudentList.toArray(new Student[0]);
-//                System.out.println(this.studentArray[2]);
-//                System.out.println("Hellowww");
             }
 
 
@@ -79,12 +77,12 @@ public class Classroom {
             public Student[] getStudentsByScore () {
                 List<Student> studentList = new ArrayList<Student>(Arrays.asList(studentArray));
 
-                Comparator<Student> byExamScores = Comparator.comparing(Student::getExamScores);
+                Comparator<Student> byAvgExamScores = Comparator.comparing(Student::getStudentAverageExamScore);
                 Comparator<Student> byFullName = Comparator.comparing(Student::getFullName);
 
-                Collections.sort(studentList, byExamScores.thenComparing(byFullName));
+                Collections.sort(studentList, byAvgExamScores.reversed().thenComparing(byFullName));
 
-                // Collections.reverse(studentList); // Highest to lowest
+                //Collections.reverse(studentList); // Highest to lowest
 
                 Student[] studentsSortedByScore = studentList.toArray(new Student[0]);
 
@@ -92,6 +90,7 @@ public class Classroom {
 
                 // by score , last name, first name
             }
+
 
 
     // ~*~ Thank you Leon ! ~*~
@@ -112,7 +111,7 @@ public class Classroom {
                     gradeBookResult.put(student, 'C');
                 } else if (isPercentileBetween51And89) {
                     gradeBookResult.put(student, 'D');
-                } else {
+               } else {
                     gradeBookResult.put(student, 'F');
                 }
             }

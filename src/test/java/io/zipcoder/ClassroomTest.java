@@ -24,7 +24,7 @@ public class ClassroomTest {
         double output = classroom.getClassAverageExamScore();
 
         // Then
-        System.out.println(output);
+        Assert.assertEquals(output,classroom.getClassAverageExamScore(), 0.00);
     }
 
     @Test
@@ -103,6 +103,25 @@ public class ClassroomTest {
         System.out.println((Arrays.toString(testRoom.getStudentArray())));
         Student actual = testRoom.getStudentArray()[2];
         Assert.assertNull(actual);
+    }
+
+    @Test
+    public void getGradeBookTest() {
+        // Given
+        Double[] examScores1 = {85.0, 90.0, 95.0};
+        Double[] examScores2 = {88.0, 90.0, 90.0};
+        Double[] examScores3 = {80.0, 97.0, 85.0};
+        Student student1 = new Student("Frank", "Kelp", examScores1);
+        Student student2 = new Student("Sarah", "Blanco", examScores2);
+        Student student3 = new Student("James", "Bond", examScores3);
+        Student[] students = {student1, student2, student3};
+
+        // When
+        Classroom testRoom = new Classroom(student1,student2, student3);
+
+
+        // Then
+        System.out.println(testRoom.getGradeBook());
     }
 
 }
