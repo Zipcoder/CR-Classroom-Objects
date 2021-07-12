@@ -32,7 +32,7 @@ public class Student {
     }
 
     public String getFullName (){
-        return this.firstName + this.lastName;
+        return this.firstName + " " + this.lastName;
     }
 
     public Integer getNumberOfExamsTaken(){

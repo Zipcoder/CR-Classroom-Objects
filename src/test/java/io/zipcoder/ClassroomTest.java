@@ -106,13 +106,17 @@ public class ClassroomTest {
          Student[] students = {student1, student2, student3};
 
          //when
-         Classroom testRoom = new Classroom(students);
+         Classroom testRoom = new Classroom();
+         testRoom.addStudent(student1);
+         testRoom.addStudent(student2);
+         testRoom.addStudent(student3);
          testRoom.removeStudentbyName("Jay", "Kay");
 
          //then
-         System.out.println(students[0]);
-         System.out.println(students[1]);
-         System.out.println(students[2]);
+         System.out.println(Arrays.toString(testRoom.getStudents()));
+         Student removedStudent = testRoom.getStudents()[2];
+         Assert.assertNull(removedStudent);
+
         // Student actual = students[0];
 //         Assert.assertNull(actual);
 
@@ -127,18 +131,102 @@ public class ClassroomTest {
         Student student1 = new Student("Jay", "Kay", examScores);
         Student student2 = new Student("Shelly-Ann", "Frasier", examScores2);
         Student student3 = new Student("Linda", "Jones", examScores3);
+
+
+        //when
+        Classroom testRoom = new Classroom();
+        testRoom.addStudent(student1);
+        testRoom.addStudent(student2);
+        testRoom.addStudent(student3);
+        testRoom.removeStudentbyName("Shelly-Ann", "Frasier");
+
+        //then
+        System.out.println(testRoom.getStudents()[1]); //equals second student Linda Jones
+        Student removedStudent = testRoom.getStudents()[2];
+        Assert.assertNull(removedStudent);
+    }
+
+    @Test
+    public void sortStudentScoreTest () {
+        //given
+        Double[] examScores = {85.0, 90.0, 95.0};
+        Double[] examScores2 = {80.0, 90.0, 100.0};
+        Double[] examScores3 = {100.0, 100.0, 80.0};
+        Student student1 = new Student("Jay", "Kay", examScores);
+        Student student2 = new Student("Shelly-Ann", "Frasier", examScores2);
+        Student student3 = new Student("Linda", "Jones", examScores3);
         Student[] students = {student1, student2, student3};
 
         //when
         Classroom testRoom = new Classroom(students);
-        testRoom.removeStudentbyName("Shelly-Ann", "Frasier");
+        Student[] testSort = testRoom.getStudentByScore();
 
         //then
-        System.out.println(students[0]);
-        System.out.println(students[1]);
-        System.out.println(students[2]);
+        System.out.println(Arrays.toString(testSort));
     }
 
+    @Test
+    public void getGradesTest(){
+        //given
+        Double[] examScores = {85.0, 90.0, 95.0};
+        Double[] examScores2 = {80.0, 90.0, 100.0};
+        Double[] examScores3 = {100.0, 100.0, 80.0};
+        Student student1 = new Student("Jay", "Kay", examScores);
+        Student student2 = new Student("Shelly-Ann", "Frasier", examScores2);
+        Student student3 = new Student("Linda", "Jones", examScores3);
+        Student[] students = {student1, student2, student3};
+
+        //when
+        Classroom testRoom = new Classroom(students);
+        char grade = testRoom.assignGrade(student2);
+
+        //then
+        System.out.println(grade);
+
+        //System.out.println(testRoom.getGradeBook());
+
+    }
+
+    @Test
+    public void getGradeBookTest() {
+        //given
+        Double[] examScores = {85.0, 70.0, 75.0};
+        Double[] examScores2 = {90.0, 95.0, 100.0};
+        Double[] examScores3 = {100.0, 100.0, 98.0};
+        Double[] examScores4 = {60.0, 72.0, 65.0};
+        Student student1 = new Student("Jay", "Kay", examScores);
+        Student student2 = new Student("Shelly-Ann", "Frasier", examScores2);
+        Student student3 = new Student("Linda", "Jones", examScores3);
+        Student  student4 = new Student("Bud", "Dunce", examScores4);
+        Student[] students = {student1, student2, student3, student4};
+
+        //when
+        Classroom testRoom = new Classroom(students);
 
 
+        //then
+        testRoom.getGradeBook();
+
+    }
+    @Test
+    public void getGradeBookMapTest() {
+        //given
+        Double[] examScores = {85.0, 70.0, 75.0};
+        Double[] examScores2 = {90.0, 95.0, 100.0};
+        Double[] examScores3 = {100.0, 100.0, 98.0};
+        Double[] examScores4 = {60.0, 72.0, 65.0};
+        Student student1 = new Student("Jay", "Kay", examScores);
+        Student student2 = new Student("Shelly-Ann", "Frasier", examScores2);
+        Student student3 = new Student("Linda", "Jones", examScores3);
+        Student  student4 = new Student("Bud", "Dunce", examScores4);
+        Student[] students = {student1, student2, student3, student4};
+
+        //when
+        Classroom testRoom = new Classroom(students);
+        char actualGrade = testRoom.getGradeBookMap().get(student4);
+
+        //then
+        Assert.assertEquals('F', actualGrade);
+
+    }
 }
