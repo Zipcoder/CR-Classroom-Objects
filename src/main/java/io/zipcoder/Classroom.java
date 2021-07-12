@@ -78,15 +78,4 @@ public class Classroom {
         }
         return map;
     }
-
-    public static void main(String[] args) {
-        Student student1 = new Student("Zach", "Kitto", new Double[]{100.0});
-        Student student2 = new Student("Leon", "Hunter", new Double[]{90.0});
-        Student student3 = new Student("Nick", "Wolak", new Double[]{80.0});
-        Student student4 = new Student("Zach", "Singer", new Double[]{70.0});
-        Student student5 = new Student("Jeremy", "Sabina", new Double[]{60.0});
-        Student[] array = new Student[]{student1, student2, student3, student4, student5};
-        Classroom classroom = new Classroom(array);
-        System.out.println(classroom.getGradeBook());
-    }
 }

@@ -57,5 +57,4 @@ public class StudentTest {
         // Then
         Assert.assertEquals(newExpectedScore, newActualScore);
     }
-
 }
