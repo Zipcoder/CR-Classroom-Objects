@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.jar.JarEntry;
@@ -58,8 +59,8 @@ public class Student {
         double sum = 0.0;
         for (int i = 0; i < testScores.length; i++) {
             sum += testScores[i];
-
         }
+        DecimalFormat format = new DecimalFormat("#.#");
         return sum / testScores.length;
     }
 
@@ -69,5 +70,10 @@ public class Student {
         //Student Name: Jen
         //Average Score: 80.0
         //Exam Score 1: 90.0 | 80.0 | 70.0 |
+    }
+
+    public String getFullName() {
+        String fullName = getFirstName() + " " + getLastName();
+        return fullName;
     }
 }

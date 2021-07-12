@@ -74,4 +74,18 @@ public class StudentTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testGetFullName() {
+        //given
+        String firstName = "Reina";
+        String lastName = "Collier";
+        Double[] testScores = {90.0, 80.0, 70.0};
+        Student newStudent = new Student(firstName, lastName, testScores);
+        String expected = "Reina Collier";
+        //when
+        String actual = newStudent.getFullName();
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
 }
